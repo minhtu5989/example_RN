@@ -20,5 +20,8 @@
     "react-navigation": "2.11.2",
     "redux-devtools-extension": "^2.13.5",
     "yarn": "^1.10.1"
+  },
+  "devDependencies": {
+    "react-native-debugger-open": "^0.3.17"
   }
 }
