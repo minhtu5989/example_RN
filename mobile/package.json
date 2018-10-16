@@ -1,0 +1,24 @@
+{
+  "name": "mobile",
+  "main": "node_modules/expo/AppEntry.js",
+  "private": true,
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "eject": "expo eject",
+    "postinstall": "rndebugger-open --expo"
+  },
+  "dependencies": {
+    "@expo/vector-icons": "^8.0.0",
+    "expo": "^30.0.1",
+    "install": "^0.12.1",
+    "npm": "^6.4.1",
+    "react": "16.3.1",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz",
+    "react-native-design-utility": "^0.0.30",
+    "react-navigation": "2.11.2",
+    "redux-devtools-extension": "^2.13.5",
+    "yarn": "^1.10.1"
+  }
+}

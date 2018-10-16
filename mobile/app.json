@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "name": "mobile",
+    "description": "This project is really great.",
+    "slug": "mobile",
+    "privacy": "public",
+    "sdkVersion": "30.0.0",
+    "platforms": ["ios", "android"],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "facebookAppId": "552302491907156 ",
+    "facebookScheme": "fb552302491907156",
+    "facebookDisplayName": "react-native-example",
+    "extra": {
+      "googleAppId": {
+        "ios": "156982581195-p08jadajl6ea9d28t8ldicu0nmdjrfs8.apps.googleusercontent.com",
+        "android": "156982581195-oskh77qc1hngvfpte2621k36lonnm3t3.apps.googleusercontent.com"
+      }
+    }
+  }
+}
