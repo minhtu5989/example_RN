@@ -1,9 +1,9 @@
 import jwt from 'jsonwebtoken';
 
-const JWT_SECRET = 'helloworld';
+const JWT_SECRET = 'DanileLuong';
 
 const JWT_OPTS = {
-  issuer: 'InStore',
+  issuer: 'MyExample',
 };
 
 const createToken = user => {
