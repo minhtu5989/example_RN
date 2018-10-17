@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { createBottomTabNavigator, createSwitchNavigator, createStackNavigator } from 'react-navigation'
+import { NavigationService } from '../api/NavigationService';
 
 const AuthNavigator = createStackNavigator(
     {
@@ -43,7 +44,7 @@ const AppNavigator = createSwitchNavigator(
 export class Navigation extends Component {
     render() {
         return (
-            <AppNavigator/>
+            <AppNavigator ref={ r => NavigationService.setTopLevelNavigator(r) } />
         );
     }
 }

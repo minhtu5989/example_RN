@@ -19,6 +19,7 @@
     "react-native-design-utility": "^0.0.30",
     "react-navigation": "2.11.2",
     "redux-devtools-extension": "^2.13.5",
+    "wretch": "^1.4.1",
     "yarn": "^1.10.1"
   },
   "devDependencies": {
