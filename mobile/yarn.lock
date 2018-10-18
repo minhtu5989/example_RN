@@ -4735,22 +4735,22 @@ mixin-deep@^1.2.0:
     minimist "0.0.8"
 
 mobx-react@^5.3.1:
-  version "5.3.1"
-  resolved "https://registry.yarnpkg.com/mobx-react/-/mobx-react-5.3.1.tgz#444309742de7da4e6ec96f608b9e64dc8acc0a6c"
-  integrity sha512-VzMCirxJzfh2kd/WnNbS4sxLtHD7siuw7ZKJJoDM9tyBKHg4nv4qNa/JE6V0MbbeVdkGA9DylfcCduAu1yHXxA==
+  version "5.3.2"
+  resolved "https://registry.yarnpkg.com/mobx-react/-/mobx-react-5.3.2.tgz#5cd0ae1911385cf55ad02938465d4b4e03dcb0f7"
+  integrity sha512-4LTK3JSwyfhJ0sNBPOyTyCcEK3wJ0fB4LRUJtOyJL3nZcH/UgsmzTSIbhSU4CeTXOmvZDbyhfi+B14HmL5oLRg==
   dependencies:
     hoist-non-react-statics "^3.0.0"
     react-lifecycles-compat "^3.0.2"
 
 mobx-state-tree@^3.5.0:
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/mobx-state-tree/-/mobx-state-tree-3.5.0.tgz#13167e0356838657de0b1df860be2d3a5147e54c"
-  integrity sha512-xUUHiFNDyFvzknRWX0QZAzhZcDgJXZHGRJqXU0gPVap2LyD7DL5KkerH1F/Ga5dfVn0qTFeQnoXQ59uHSkA2Yw==
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/mobx-state-tree/-/mobx-state-tree-3.6.0.tgz#e069ceca06427e72d81f2b65e55d8dba475ff015"
+  integrity sha512-VZsdlJVGaMKB2ynV1ZxU0bjRJCudbtaF2Amq/fW8lp1czGq3nq6u3XMPbn23RPU63yhEE9e8zbQoLD7sjsy6KQ==
 
 mobx@^5.5.0:
-  version "5.5.0"
-  resolved "https://registry.yarnpkg.com/mobx/-/mobx-5.5.0.tgz#a29f6a7526eed28edcd3f0e921a1edaa8bb22575"
-  integrity sha512-rD0Hsv9XtjS6axavvPX/XzWTeICRiH3bLR1L+MrJ7HOlx1hmSdWNzu8rQQ+1IkTiyJechRyGzs2tUgLRmEofJg==
+  version "5.5.1"
+  resolved "https://registry.yarnpkg.com/mobx/-/mobx-5.5.1.tgz#cd006b46085f6e3a6c96b183583d2ee907d37525"
+  integrity sha512-mymrvbAFIMCP5k9ylspuXPy7jeEAA8ILVRziqsLmpoGIfEJc5I4YQBLF3aKJnnqtCINJPCWEijKidpsuL6TfYw==
 
 morgan@^1.9.0:
   version "1.9.1"

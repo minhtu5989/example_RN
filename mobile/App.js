@@ -6,7 +6,7 @@ import { Provider } from 'mobx-react/native';
 import { store } from './src/models';
  import { theme } from './src/constants/theme'
 import { Navigation } from './src/screens/index';
-import { images } from './src/constants/images';
+import { images, tabBarIcons  } from './src/constants/images';
 import { cacheImages } from './src/utils/cacheImages'
 
 export default class App extends React.Component {
@@ -18,11 +18,17 @@ export default class App extends React.Component {
     this.cacheAssets()
   }
 
-  cacheAssets = async() => {
-    const imagesAssets = cacheImages(Object.values(images));
-    await Promise.all([...imagesAssets])
-    this.setState({isReady: true})
-  }
+  cacheAssets = async () => {
+    const imagesAssets = cacheImages([
+      ...Object.values(images),
+      ...Object.values(tabBarIcons.active),
+      ...Object.values(tabBarIcons.inactive),
+    ]);
+
+    await Promise.all([...imagesAssets]);
+
+    this.setState({ isReady: true });
+  };
 
   render() {
     if(!this.state.isReady)

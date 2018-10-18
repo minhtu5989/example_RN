@@ -31,7 +31,7 @@ export class LoginButton extends Component {
                 bg={this.addType()}
                 self='center' 
                 p='2xs' 
-                w='75%' 
+                w={310} 
                 radius='2xs'
                 mb='sm'
             >
@@ -45,7 +45,7 @@ export class LoginButton extends Component {
                         style={{ position:'relative' }}
                     >
                         {type  === 'google' && 
-                            <Image source={images.googleIcon}/>
+                            <Image source={images.googleColorIcon}/>
                         }
                         {type  === 'facebook' &&
                             <FontAwesome 
