@@ -23,7 +23,7 @@
     "ios": {
       "supportsTablet": true
     },
-    "facebookAppId": "552302491907156 ",
+    "facebookAppId": "552302491907156",
     "facebookScheme": "fb552302491907156",
     "facebookDisplayName": "react-native-example",
     "extra": {

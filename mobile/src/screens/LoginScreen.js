@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Box } from 'react-native-design-utility'
 import { Alert, Animated, Easing} from 'react-native';
+import { inject } from "mobx-react/native";
 
 import { OnBoadingLogo } from '../commons/OnBoadingLogo'
 import { LoginButton } from '../commons/LoginButton';
@@ -8,6 +9,7 @@ import { FacebookApi} from '../api/Facebook'
 import { GoogleApi} from '../api/Google'
 
 const BoxAnimated = Animated.createAnimatedComponent(Box);
+@inject('currentUser')
 
 class LoginScreen extends Component {
     state={
@@ -39,16 +41,17 @@ class LoginScreen extends Component {
 
     }    
 
-    async onPressGoogle(){ 
+    onPressGoogle = async() =>{ 
         try {
             const token = await GoogleApi.loginAsync();
-            console.log('token', token);
+
+            await this.props.currentUser.login(token, 'GOOGLE')
         } catch (error) {
             console.log('error', error);            
         }
     }
 
-    async onPressFacebook(){
+    onPressFacebook = async() =>  {
         try {
             const token = await FacebookApi.loginAsync();
             console.log('token', token);
@@ -63,6 +66,8 @@ class LoginScreen extends Component {
             inputRange: [0, 1],
             outputRange: [200, 0]
         })
+        console.log(`props`, this.props);
+        
         return (
             <Box f={1} center bg='white'>
 
