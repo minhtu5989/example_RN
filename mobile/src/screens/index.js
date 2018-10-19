@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { createBottomTabNavigator, createSwitchNavigator, createStackNavigator } from 'react-navigation'
 import { NavigationService } from '../api/NavigationService';
-
+import { FontAwesome } from '@expo/vector-icons';
 
 const AuthNavigator = createStackNavigator(
     {
@@ -16,10 +16,32 @@ const AuthNavigator = createStackNavigator(
     }
 )
 
-const TabNavigator = createBottomTabNavigator(
+const primaryHeader = { 
+    headerStyle: {
+        backgroundColor: 'green'
+    },
+    headerTintColor: 'white',
+    headerTitleStyle:{ fontWeight: '400' },
+}
+
+const HomeStack = createStackNavigator(
     {
         Home: {
             getScreen: () => require('./Tabs/HomeScreen').default,
+        },
+    },
+    { navigationOptions: { ...primaryHeader }  }
+)
+
+const TabNavigator = createBottomTabNavigator(
+    {
+        Home: { 
+            screen: HomeStack, 
+            navigationOptions :{
+                title: 'Home',
+                tabBarIcon: ({ tintColor }) => 
+                    <FontAwesome name='home' size={25} color={tintColor} />                
+            }
         },
         List: {
             getScreen: () => require('./Tabs/ListScreen').default,
@@ -38,11 +60,16 @@ const TabNavigator = createBottomTabNavigator(
         swipeEnabled: false,
         lazy: true,
         tabBarOptions: { 
-            showIcon: true, 
-            activeTintColor: 'blue', 
             // pressColor: 'white',
-            inactiveTintColor: 'black',
+            showIcon: true, 
             showLabel: true,
+            labelStyle:{
+                fontSize: 10,
+                // fontFamily: 
+                margin: 3
+            },
+            activeTintColor: 'blue', 
+            inactiveTintColor: 'black',
             style:{
                 backgroundColor: 'lightblue',
                 borderTopWidth: 0.3,
@@ -66,9 +93,7 @@ const MainNavigator = createStackNavigator(
     },
     {
         navigationOptions:{
-            headerStyle:{
-                backgroundColor: 'green'
-            }
+            header: null,
         }
     }
 )
