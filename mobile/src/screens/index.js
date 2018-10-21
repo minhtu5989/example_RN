@@ -18,7 +18,7 @@ const AuthNavigator = createStackNavigator(
 
 const primaryHeader = { 
     headerStyle: {
-        backgroundColor: 'green'
+        backgroundColor: '#4caf50'
     },
     headerTintColor: 'white',
     headerTitleStyle:{ fontWeight: '400' },
@@ -28,6 +28,9 @@ const HomeStack = createStackNavigator(
     {
         Home: {
             getScreen: () => require('./Tabs/HomeScreen').default,
+        },
+        Category: {
+            getScreen: () => require('./CategoryScreen').default,
         },
     },
     { navigationOptions: { ...primaryHeader }  }

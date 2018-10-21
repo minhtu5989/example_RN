@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react';
-import Carousel from 'react-native-snap-carousel';
+import Swiper from 'react-native-swiper';
 import { Box, Text } from "react-native-design-utility";
 import { Dimensions, Image, TouchableOpacity } from 'react-native';
+import { ViewPagerAndroid } from 'react-native-gesture-handler';
 
 const {width, height} = Dimensions.get('screen');
 
@@ -15,7 +16,7 @@ const SLIDER = [
             image: require('../../assets/img/slider2.jpg')
         },
         {
-            title: 'image 3',
+            title: 'image 3', 
             image: require('../../assets/img/slider3.jpg')
         },
         {
@@ -26,37 +27,31 @@ const SLIDER = [
         //   f={1} position='relative'
 
 class DealCarousel extends PureComponent {
-    _renderItem ({item, index}) {
-        return (
-            <Box key={index} center position='relative' w={256}>
-                {/* <TouchableOpacity
-                    onPress={() => console.log('222')}
-                >
-                    <Image source = {item.image} shadow={1} f={1} style={{ resizeMode:'contain' ,borderRadius: 10,  }}/>
-                </TouchableOpacity>
-                <Text mt={5} color='white' center>{ item.title }</Text> */}
-
-                <TouchableOpacity
-                    onPress={() => console.log('222')}
-                >
-                    <Image source = {item.image} shadow={1} style={{ resizeMode: 'contain', borderRadius: 10, width: 256, height: '100%' }}/>
-                </TouchableOpacity>
-            </Box>
-        );
-    }
-
     render () {
         return (
-                <Carousel
-                    ref={(c) => { this._carousel = c; }}
-                    data={SLIDER}
-                    firstItem={0}
-                    onSnapToItem={() => console.log(111)}
-                    layout={'default'}
-                    renderItem={this._renderItem}
-                    sliderWidth={360}
-                    itemWidth={256}
-                />
+            <Swiper center autoplay={true} autoplayTimeout={3} activeDotColor='green' dotColor='white' >
+                { SLIDER.map((slider) => {
+                    return(
+                    <TouchableOpacity
+                        f={1}
+                        center
+                        onPress={() => console.log('222')}
+                        key = {slider.title}
+                        w={width}
+                        h={200}
+                    >
+                        <Box center style={{paddingTop:10}}>
+                            <Image 
+                                source = { slider.image } 
+                                shadow={1} 
+                                center
+                                style={{ resizeMode: 'cover', borderRadius: 10, width: width-20, height: 180 }}
+                            />
+                        </Box>
+                    </TouchableOpacity>
+                    )
+                }) }
+            </Swiper>
         );
     }
 }

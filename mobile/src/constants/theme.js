@@ -115,6 +115,15 @@ const theme = {
     {
       shadowColor: color.black,
       shadowOffset: {
+        width: 1,
+        height: 1,
+      },
+      shadowOpacity: 0.3,
+      shadowRadius: 5,
+    },
+    {
+      shadowColor: color.black,
+      shadowOffset: {
         width: 0,
         height: 0,
       },

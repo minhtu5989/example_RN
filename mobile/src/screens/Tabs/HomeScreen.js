@@ -31,7 +31,7 @@ const catagories = [
  
 class HomeScreen extends Component {
     static navigationOptions = {
-        title: 'Homie'
+        title: 'Instore'
     };
 
     renderItem= ({item, index}) => {
@@ -41,8 +41,8 @@ class HomeScreen extends Component {
             styleItem.borderLeftColor = theme.color.greyLighter;
         }
         return(
-            <Box w={1/3} center bg='white' h={120} style={styleItem} >
-                <CategoryCard {...item} />
+            <Box w={1/3} center h={120} bg='transparent' style={styleItem} >
+                <CategoryCard {...item}/>
             </Box>
         )
     }
@@ -58,7 +58,7 @@ class HomeScreen extends Component {
                 <Box w='100%' h={200} bg='black' center>
                     <DealCarousel/>
                 </Box>
-                <Box f={1} >
+                <Box f={1} p={10}>
                     <FlatList
                         data={catagories}
                         renderItem={this.renderItem}
