@@ -4,6 +4,7 @@ import { StatusBar, FlatList } from 'react-native'
 import CategoryCard from '../../components/CategoryCard';
 
 import { theme } from "../../constants/theme";
+import DealCarousel from '../../components/DealCarousel';
 
 const NUMBER_COLUMN = 3;
 const catagories = [
@@ -54,8 +55,8 @@ class HomeScreen extends Component {
         return (
             <Box f={1}>
                 <StatusBar barStyle="light-content"/>
-                <Box w='100%' h={130} bg='red'>
-                    <Text>This is Home screen</Text>
+                <Box w='100%' h={200} bg='black' center>
+                    <DealCarousel/>
                 </Box>
                 <Box f={1} >
                     <FlatList

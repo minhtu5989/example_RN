@@ -4,7 +4,7 @@ import { UtilityThemeProvider, Box, Text } from 'react-native-design-utility';
 import { Provider } from 'mobx-react/native';
 
 import { store } from './src/models';
- import { theme } from './src/constants/theme'
+import { theme } from './src/constants/theme'
 import { Navigation } from './src/screens/index';
 import { images, tabBarIcons  } from './src/constants/images';
 import { cacheImages } from './src/utils/cacheImages'
@@ -46,3 +46,4 @@ export default class App extends React.Component {
     );
   }
 }
+
