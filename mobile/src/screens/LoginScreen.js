@@ -9,7 +9,7 @@ import { FacebookApi} from '../api/Facebook'
 import { GoogleApi} from '../api/Google'
 
 const BoxAnimated = Animated.createAnimatedComponent(Box);
-@inject('currentUser')
+@inject('authStore')
 
 class LoginScreen extends Component {
     state={

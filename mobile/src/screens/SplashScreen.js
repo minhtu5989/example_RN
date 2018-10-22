@@ -3,7 +3,7 @@ import { inject } from "mobx-react/native";
 
 import { OnBoadingLogo } from '../commons/OnBoadingLogo'
 
-@inject('currentUser')
+@inject('authStore')
  
 class SplashScreen extends Component {
     componentDidMount(){
@@ -12,7 +12,7 @@ class SplashScreen extends Component {
 
     checkAuth = () => {
         setTimeout( async() => {
-            await this.props.currentUser.setupAuth()
+            await this.props.authStore.setupAuth()
         }, 1000 );
     }
 

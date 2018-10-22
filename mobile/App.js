@@ -3,7 +3,7 @@ import { ActivityIndicator } from 'react-native';
 import { UtilityThemeProvider, Box, Text } from 'react-native-design-utility';
 import { Provider } from 'mobx-react/native';
 
-import { store } from './src/models';
+import { store } from './src/stores';
 import { theme } from './src/constants/theme'
 import { Navigation } from './src/screens/index';
 import { images, tabBarIcons  } from './src/constants/images';

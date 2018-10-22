@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { createBottomTabNavigator, createSwitchNavigator, createStackNavigator } from 'react-navigation'
 import { NavigationService } from '../api/NavigationService';
 import { FontAwesome } from '@expo/vector-icons';
+import ShoppingCartIcon from '../components/ShoppingCartIcon';
 
 const AuthNavigator = createStackNavigator(
     {
@@ -33,7 +34,7 @@ const HomeStack = createStackNavigator(
             getScreen: () => require('./CategoryScreen').default,
         },
     },
-    { navigationOptions: { ...primaryHeader }  }
+    { navigationOptions: { ...primaryHeader, headerRight: <ShoppingCartIcon/>  } }
 )
 
 const TabNavigator = createBottomTabNavigator(
@@ -93,6 +94,9 @@ const TabNavigator = createBottomTabNavigator(
 const MainNavigator = createStackNavigator(
     {
         Tab: TabNavigator,
+        ShoppingCart: {
+            getScreen: () => require('./ShoppingCartScreen').default,
+        }
     },
     {
         navigationOptions:{
