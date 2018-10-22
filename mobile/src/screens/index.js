@@ -4,6 +4,8 @@ import { NavigationService } from '../api/NavigationService';
 import { FontAwesome } from '@expo/vector-icons';
 import ShoppingCartIcon from '../components/ShoppingCartIcon';
 
+import { theme } from "../constants/theme";
+
 const AuthNavigator = createStackNavigator(
     {
         Login: {
@@ -19,7 +21,7 @@ const AuthNavigator = createStackNavigator(
 
 const primaryHeader = { 
     headerStyle: {
-        backgroundColor: '#4caf50'
+        backgroundColor: theme.color.green
     },
     headerTintColor: 'white',
     headerTitleStyle:{ fontWeight: '400' },
@@ -34,7 +36,12 @@ const HomeStack = createStackNavigator(
             getScreen: () => require('./CategoryScreen').default,
         },
     },
-    { navigationOptions: { ...primaryHeader, headerRight: <ShoppingCartIcon/>  } }
+    { 
+        navigationOptions:{ 
+            ...primaryHeader, 
+            headerRight: <ShoppingCartIcon/> 
+        } 
+    }
 )
 
 const TabNavigator = createBottomTabNavigator(
@@ -91,12 +98,25 @@ const TabNavigator = createBottomTabNavigator(
     } 
 )
 
+const ShopppingCartNavigator = createStackNavigator(
+    {
+        ShoppingCart: {
+            getScreen: () => require('./ShoppingCartScreen').default,
+        },
+    },
+    {
+        navigationOptions:{
+            headerStyle:{
+                backgroundColor: theme.color.white
+            }
+        }
+    }
+)
+
 const MainNavigator = createStackNavigator(
     {
         Tab: TabNavigator,
-        ShoppingCart: {
-            getScreen: () => require('./ShoppingCartScreen').default,
-        }
+        ShoppingCart: ShopppingCartNavigator
     },
     {
         navigationOptions:{

@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { Box, Text } from 'react-native-design-utility'
+import { ScrollView } from 'react-native';
+import { inject } from 'mobx-react/native';
+
 import ProductCart from '../components/ProductCart';
+
+@inject('productsStore')
 
 class CategoryScreen extends Component {
     static navigationOptions = ({navigation}) => ({
@@ -9,8 +14,12 @@ class CategoryScreen extends Component {
 
     render() {
         return (
-            <Box>
-                <ProductCart/> 
+            <Box>   
+                <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                    {this.props.productsStore.data.map(product => (
+                        <ProductCart product={product} key={product._id}/> 
+                    ))}
+                </ScrollView>
             </Box>
         );
     }

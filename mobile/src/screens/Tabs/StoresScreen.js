@@ -13,7 +13,7 @@ class StoresScreen extends Component {
     render() {
         return (
             <Box f={1} center>
-                <StatusBar barStyle="light-content"/>
+                <StatusBar barStyle="dark-content"/>
                 <Text>This is Stores screen</Text>
             </Box>            
         );

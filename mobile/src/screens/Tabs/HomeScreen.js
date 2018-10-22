@@ -54,7 +54,7 @@ class HomeScreen extends Component {
     render() {
         return (
             <Box f={1}>
-                <StatusBar barStyle="light-content"/>
+                <StatusBar barStyle="dark-content"/>
                 <Box w='100%' h={200} bg='black' center>
                     <DealCarousel/>
                 </Box>
