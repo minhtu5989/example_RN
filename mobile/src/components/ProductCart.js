@@ -10,7 +10,6 @@ import { Box, Text } from 'react-native-design-utility';
 import { observer } from 'mobx-react/native';
 import { Feather } from '@expo/vector-icons';
 
-import { productImgs } from '../constants/images';
 import { theme } from '../constants/theme';
 import QtyHover from './QtyHover';
 
@@ -86,7 +85,7 @@ class ProductCard extends Component {
                 ${product.price} each
               </Text>
               <Text left size="xs">
-                {product.name}
+                {product.name} 
               </Text>
               <Text left size="xs" color="greyLight">
                 At ${product.kgPrice.toFixed(2)}

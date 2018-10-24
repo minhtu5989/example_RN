@@ -86,6 +86,7 @@ const theme = {
     md: 24,
     lg: 36,
     xl: 40,
+    '2xl': 60
   },
   radius: {
     '2xs': 3,
