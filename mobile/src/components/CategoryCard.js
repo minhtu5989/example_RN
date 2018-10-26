@@ -1,13 +1,13 @@
 import React, { PureComponent } from 'react';
 import { Box, Text } from 'react-native-design-utility'
-import { Image, TouchableOpacity } from 'react-native';
+import { Image, } from 'react-native';
 
 import { NavigationService } from "../api/NavigationService";
 import { MyButton } from "../commons/MyButton";
+
 class CategoryCard extends PureComponent {
     constructor(props) {
         super(props);
-        this.state = {  };
         this._handlePress = this._handlePress.bind(this);
     } 
 
@@ -16,35 +16,31 @@ class CategoryCard extends PureComponent {
     }
 
     render() {
-        const {title, image} = this.props
-        return (
-            <MyButton
-                type='primary's 
-                onPress={this._handlePress}
-            >
-                <Box center f={1}>  
-                    { 
-                        image && 
-                        (<Box center mb='sm'>
-                            <Image source={image}/>
-                        </Box>)
-                    }
-                    
-                    <Box center>
-                        <Text 
-                            size='sm' 
-                            center 
-                            capitalizeEach 
-                            color='greyDarker'
-                        >
-                            {title}
-                        </Text>
-                    </Box>
+        const { item } = this.props;
+        return  <Box w='100%' h='100%' center >
+                    <MyButton
+                        type='primary'
+                        onPress={this._handlePress} 
+                    > 
+                            { 
+                                item.image && 
+                                    <Image source={item.image}/>
+                            }
+                                <Text 
+                                    size='sm' 
+                                    center 
+                                    capitalizeEach 
+                                    color='greyDarker'
+                                >
+                                    {item.title}
+                                </Text>
+                    </MyButton>
                 </Box>
-            </MyButton>
-        );
+                
+        
     }
 }
+
 
 export default CategoryCard;
 

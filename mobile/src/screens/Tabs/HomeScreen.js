@@ -5,8 +5,10 @@ import CategoryCard from '../../components/CategoryCard';
 
 import { theme } from "../../constants/theme";
 import DealCarousel from '../../components/DealCarousel';
+import { ProfileBtn } from "../../commons/ProfileBtn";
 
 const NUMBER_COLUMN = 3;
+
 const catagories = [
     {
         id: 1,
@@ -30,11 +32,13 @@ const catagories = [
 ]
  
 class HomeScreen extends Component {
-    static navigationOptions = {
-        title: 'Instore'
-    };
+    static navigationOptions = ({navigation}) => ({
+        title: 'Instore',
+        headerLeft: <ProfileBtn/>
+    });
 
-    renderItem= ({item, index}) => {
+
+    _renderItem= ({item, index}) => {
         let styleItem = {};
         if(index % NUMBER_COLUMN !== 0) {
             styleItem.borderLeftWidth = 2;
@@ -42,7 +46,7 @@ class HomeScreen extends Component {
         }
         return(
             <Box w={1/3} center h={120} bg='transparent' style={styleItem} >
-                <CategoryCard {...item}/>
+                <CategoryCard item={item}/>
             </Box>
         )
     }
@@ -61,7 +65,7 @@ class HomeScreen extends Component {
                 <Box f={1} p={10}>
                     <FlatList
                         data={catagories}
-                        renderItem={this.renderItem}
+                        renderItem={this._renderItem}
                         keyExtractor={this.keyExtractor}
                         numColumns={NUMBER_COLUMN}
                         ItemSeparatorComponent={this.separator}

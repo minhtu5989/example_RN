@@ -4,13 +4,10 @@ import { Image, Dimensions, TouchableOpacity } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { theme } from '../constants/theme';
 
-const {width, height} = Dimensions.get('window')
-// import { inject, observer } from 'mobx-react/native';
 
-// @observer
+const {width, height} = Dimensions.get('window')
 
 class CartItem extends Component {
-    state = {  }
     render() {
         const { product } =this.props
         return (
@@ -37,7 +34,7 @@ class CartItem extends Component {
                     </Box>
                 </Box>
                 <Box center mr='md'>
-                    <TouchableOpacity>
+                    <TouchableOpacity >
                         <Box h={35} w={45} center radius='sm' style={{borderWidth:1, borderColor:theme.color.greenLighter}}>
                             <Text>{product.cartQty}</Text>
                         </Box>

@@ -2,9 +2,18 @@ import React, { Component } from 'react'
 import { createBottomTabNavigator, createSwitchNavigator, createStackNavigator } from 'react-navigation'
 import { NavigationService } from '../api/NavigationService';
 import { FontAwesome } from '@expo/vector-icons';
-import ShoppingCartIcon from '../components/ShoppingCartIcon';
 
+import ShoppingCartIcon from '../components/ShoppingCartIcon';
 import { theme } from "../constants/theme";
+import { ProfileBtn } from '../commons/ProfileBtn';
+
+const primaryHeader = { 
+    headerStyle: {
+        backgroundColor: theme.color.green
+    },
+    headerTintColor: 'white',
+    headerTitleStyle:{ fontWeight: '400' },
+}
 
 const AuthNavigator = createStackNavigator(
     {
@@ -19,13 +28,33 @@ const AuthNavigator = createStackNavigator(
     }
 )
 
-const primaryHeader = { 
-    headerStyle: {
-        backgroundColor: theme.color.green
+const ShopppingCartNavigator = createStackNavigator(
+    {
+        ShoppingCart: {
+            getScreen: () => require('./ShoppingCartScreen').default,
+        },
     },
-    headerTintColor: 'white',
-    headerTitleStyle:{ fontWeight: '400' },
-}
+    {
+        navigationOptions:  {
+                headerStyle:{ backgroundColor: theme.color.white },
+        }
+    }
+)
+
+const ProfileStack = createStackNavigator(
+    {
+        Profile: {
+            getScreen: () => require('./ProfileScreen').default,
+        },
+    },
+    { 
+        navigationOptions:{ 
+            headerTitleStyle: {
+                fontWeight: '400',
+            }
+        } 
+    }
+)
 
 const HomeStack = createStackNavigator(
     {
@@ -35,14 +64,27 @@ const HomeStack = createStackNavigator(
         Category: {
             getScreen: () => require('./CategoryScreen').default,
         },
+        ShoppingCart: {
+            screen: ShopppingCartNavigator,
+            navigationOptions:{ header: null }
+        },
     },
     { 
         navigationOptions:{ 
             ...primaryHeader, 
-            headerRight: <ShoppingCartIcon/> 
+            headerRight: <ShoppingCartIcon/> ,
         } 
     }
 )
+
+HomeStack.navigationOptions = ({navigation}) => {
+    let tabBarVisible = true
+    console.log('navigation', navigation);
+    
+    if(NavigationService.getCurrentRouteName(navigation.state) === 'ShoppingCart')
+         { tabBarVisible = false }
+    return { tabBarVisible }
+}
 
 const TabNavigator = createBottomTabNavigator(
     {
@@ -51,7 +93,7 @@ const TabNavigator = createBottomTabNavigator(
             navigationOptions :{
                 title: 'Home',
                 tabBarIcon: ({ tintColor }) => 
-                    <FontAwesome name='home' size={25} color={tintColor} />                
+                    <FontAwesome name='home' size={25} color={tintColor} />,
             }
         },
         List: {
@@ -98,27 +140,14 @@ const TabNavigator = createBottomTabNavigator(
     } 
 )
 
-const ShopppingCartNavigator = createStackNavigator(
-    {
-        ShoppingCart: {
-            getScreen: () => require('./ShoppingCartScreen').default,
-        },
-    },
-    {
-        navigationOptions:{
-            headerStyle:{
-                backgroundColor: theme.color.white
-            }
-        }
-    }
-)
 
 const MainNavigator = createStackNavigator(
     {
         Tab: TabNavigator,
-        ShoppingCart: ShopppingCartNavigator
+         Profile: ProfileStack
     },
     {
+        mode: 'modal',
         navigationOptions:{
             header: null,
         }

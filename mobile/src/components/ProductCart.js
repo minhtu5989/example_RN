@@ -14,7 +14,6 @@ import { theme } from '../constants/theme';
 import QtyHover from './QtyHover';
 
 const ANIM_DURATION = 200;
-
 const BoxAnimated = Animated.createAnimatedComponent(Box);
 
 @observer

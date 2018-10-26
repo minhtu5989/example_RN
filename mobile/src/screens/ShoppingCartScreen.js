@@ -1,41 +1,47 @@
 import React, { Component } from 'react'
 import { Box, Text } from 'react-native-design-utility'
 import { StatusBar, FlatList, TouchableOpacity, Dimensions } from 'react-native'
-import { FontAwesome } from '@expo/vector-icons';
 import { inject, observer } from 'mobx-react/native';
-import CartItem from '../components/CartItem';
 
+import CartItem from '../components/CartItem';
 import { theme } from '../constants/theme';
+import CloseBtn from '../commons/CloseBtn';
+
 const {width, height} = Dimensions.get('window')
 
 
 @inject('shoppingCartStore')
 @observer
-
+ 
 class ShoppingCartScreen extends Component {
-    static navigationOptions = {
-        title: 'My cart'
-    };
+    static navigationOptions = ({navigation}) => ({
+        title: 'My cart',
+        headerLeft: <CloseBtn left size={25} onPress={() => navigation.goBack(null)} />
+    }); 
+
     renderItem = ({item}) => <CartItem product={item}/>
 
     keyExtractor = item => String(item._id)
 
     renderList(){
-        const { products } = this.props.shoppingCartStore
+        const { shoppingCartStore } = this.props
 
-        if(products.length === 0 )
+        if(shoppingCartStore.totalProducts === 0 )
             return(
                 <Box center f={1}>
                     <Text>Cart Empty</Text>
                 </Box>
             )
+        console.log('products: ', shoppingCartStore.totalProducts);
+        console.log('productsList: ', shoppingCartStore.productsList);
+        
         return(
             <Box f={1}>
                 <FlatList 
-                    data={products} 
+                    data={shoppingCartStore.productsList} 
                     renderItem={this.renderItem} 
                     keyExtractor={this.keyExtractor} 
-                    extraData={products}    
+                    extraData={shoppingCartStore}    
                 />
             </Box>
         )

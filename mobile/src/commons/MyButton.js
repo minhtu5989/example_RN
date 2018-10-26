@@ -1,48 +1,42 @@
 import React, { Component } from 'react';
 import { TouchableOpacity, StyleSheet } from 'react-native';
 import { Box,Text } from 'react-native-design-utility'
+import { FontAwesome, EvilIcons } from '@expo/vector-icons';
 
 export class MyButton extends Component {
     getAdditionalStyle(){
         const { type } = this.props;
         switch (type) {
             case 'success':
-                return { backgroundColor: "#25c73a" };
+                return { backgroundColor: "#25c73a", borderColor: '#3EA552', borderWidth: 1};
         
             case 'danger':
-                return { backgroundColor: "#ff564e" };
+                return { backgroundColor: "#ff564e", borderColor: '#FF0000', borderWidth: 1 };
     
             case 'warning':
-                return { backgroundColor: "#ffb827" };
+                return { backgroundColor: "#ffb827", borderColor: '#FFCC00', borderWidth: 1 };
             
             case 'primary':
-                return { backgroundColor: "#6aa3da" };
+                return { backgroundColor: "#6aa3da", borderColor: '#0099FF', borderWidth: 1 };
+
+            case 'image': 
+                return { backgroundColor: 'transparent' }
 
             default:
-                return { backgroundColor: 'white' };
+                return { borderWidth: 0 };
         }
     }
     render() {
-        const { children} = this.props;
+        const { children, ref} = this.props;
         const additionalStyle = this.getAdditionalStyle();
-        return (
-                        <TouchableOpacity
-                            {...this.props}
-                            style={[styles.buttonContainer, additionalStyle, this.props.style]} 
-                        >
-                                {children}
-                        </TouchableOpacity>
-        );
+        return  <TouchableOpacity
+                    {...this.props}     
+                    ref={ref}
+                    style={[ {height:'100%', width:'100%'} ,additionalStyle, this.props.style]} 
+                >
+                    <Box center f={1} center>
+                        {children}
+                    </Box>
+                </TouchableOpacity>
     }
 }
-
-const styles = StyleSheet.create({
-    buttonContainer:{
-        height:'100%', width:'100%',
-        padding: 10,
-        borderRadius: 5,
-        justifyContent: 'center',
-        alignItems:'center',
-        alignSelf:'stretch'
-    },
-});

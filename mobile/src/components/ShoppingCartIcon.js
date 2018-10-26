@@ -18,8 +18,8 @@ class ShoppingCartIcon extends Component {
     const { shoppingCartStore } = this.props;
     const { totalProducts } = shoppingCartStore;
     return (
-      <TouchableOpacity onPress={this.handlePress} style={styles.btn}>
-        <Box mr={16}>
+      <TouchableOpacity onPress={this.handlePress} style={styles.btn} >
+        <Box mr={30} h='100%' w='100%' center>
           <Image
             style={styles.img}
             resizeMode="contain"
@@ -47,6 +47,7 @@ class ShoppingCartIcon extends Component {
 const styles = StyleSheet.create({
   img: {
     width: 25,
+    top:4
   },
   btn: {
     flex: 1,

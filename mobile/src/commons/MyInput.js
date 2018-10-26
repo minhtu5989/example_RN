@@ -1,10 +1,27 @@
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import { Fumi } from 'react-native-textinput-effects';
+import { Fumi, Sae } from 'react-native-textinput-effects';
 import { Dimensions } from 'react-native';
 
 const {width, height} = Dimensions.get('window')
 
-const example = 
+
+const saeInput = 
+
+    <Box center shadow={1}>
+        <Sae
+            label={'Email Address'}
+            iconClass={FontAwesomeIcon}
+            iconName={'pencil'}
+            iconColor={'white'}
+            // TextInput props
+            autoCapitalize={'none'}
+            autoCorrect={false}
+        />
+    </Box>
+
+
+
+const FumiInput = 
 
     <Box center shadow={1}>
         <Fumi
