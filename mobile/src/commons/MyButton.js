@@ -32,7 +32,7 @@ export class MyButton extends Component {
         return  <TouchableOpacity
                     {...this.props}     
                     ref={ref}
-                    style={[ {height:'100%', width:'100%'} ,additionalStyle, this.props.style]} 
+                    style={[ {height:'100%', width:'100%', alignSelf:'center'} ,additionalStyle, this.props.style]} 
                 >
                     <Box center f={1} center>
                         {children}

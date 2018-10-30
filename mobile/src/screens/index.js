@@ -46,13 +46,21 @@ const ProfileStack = createStackNavigator(
         Profile: {
             getScreen: () => require('./ProfileScreen').default,
         },
+        Settings: {
+            getScreen: () => require('./SettingScreen').default,
+        }
     },
     { 
-        navigationOptions:{ 
+        navigationOptions: {
+            headerBackTitle: null,
+            headerTintColor: theme.color.green,
+            headerStyle: {
+              backgroundColor: theme.color.white,
+            },
             headerTitleStyle: {
-                fontWeight: '400',
-            }
-        } 
+              color: theme.color.black,
+            },
+        }
     }
 )
 
