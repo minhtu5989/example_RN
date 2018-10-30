@@ -26,6 +26,7 @@ export class MyButton extends Component {
                 return { borderWidth: 0 };
         }
     }
+    
     render() {
         const { children, ref} = this.props;
         const additionalStyle = this.getAdditionalStyle();

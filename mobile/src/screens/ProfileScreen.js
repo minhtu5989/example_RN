@@ -86,7 +86,7 @@ class ProfileScreen extends Component {
             </ListColumn>
           ))}
 
-            <MyButton type='success' style={{borderRadius: 6, height: 40, width: '90%', marginTop: 20,}}>
+            <MyButton type='success' style={{borderRadius: 6, height: 40, width: '90%', marginTop: 20,}} disabled={true}>
                 <Text bold color="black">
                     Log out
                 </Text>

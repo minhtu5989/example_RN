@@ -48,7 +48,10 @@ const ProfileStack = createStackNavigator(
         },
         Settings: {
             getScreen: () => require('./SettingScreen').default,
-        }
+        },
+        Addresses: {
+            getScreen: () => require('./AddressesScreen').default,
+        },
     },
     { 
         navigationOptions: {
