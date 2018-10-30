@@ -66,7 +66,7 @@ class ProductCard extends Component {
   };
 
   render() {
-    const { isHover, cardOpacity, qtyCardOpacity } = this.state;
+    const { isHover, cardOpacity } = this.state;
     const { product } = this.props;
     return (
       <Box bg="white" w={150} p="sm" position="relative">
