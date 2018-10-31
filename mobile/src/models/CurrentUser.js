@@ -12,6 +12,6 @@ export const CurrentUserModel = types
   })
   .views(self => ({
     get addressesIsEmpty(){
-      return self.addresses.length !== 0;
+      return self.addresses.length === 0;
     }
   }))

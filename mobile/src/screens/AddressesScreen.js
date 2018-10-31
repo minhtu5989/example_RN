@@ -16,31 +16,35 @@ class AddressesScreen extends Component {
         title: 'Address'
     }
 
-    renderIfEmpty = () => {
-        <Box  center px='md'>
-            <Box center mb='md'>
-                <EvilIcons name='location' color={theme.color.black} size={200}/>
-            </Box>         
-            <Box center mb='md'>
-                <Text bold size='lg'>
-                    Add address
-                </Text>
-                <Text bold size='lg'>
-                    You haven't added an address yet !
-                </Text>                
+    renderIfEmpty = () => (
+        <Box f={1} center bg='white'>
+            <StatusBar barStyle='dark-content'/>
+            <Box  center px='md'>
+                <Box center mb='md'>
+                    <EvilIcons name='location' color={theme.color.black} size={200}/>
+                </Box>         
+                <Box center mb='md'>
+                    <Text bold size='lg'>
+                        Add address
+                    </Text>
+                    <Text bold size='sm' color={theme.color.grey}>
+                        You haven't added an address yet !
+                    </Text>                
+                </Box>
+                <Box w={width - 48} h={40}>
+                    <MyButton type='success'>
+                        <Text>Add address</Text>
+                    </MyButton>
+                </Box> 
             </Box>
-            <Box w={width - 48} h={40}>
-                <MyButton type='success'>
-                    <Text>Add address</Text>
-                </MyButton>
-            </Box>              
         </Box>
-    }
+    )
 
 
     render() {
-        if(this.props.authStore.info.addressesIsEmpty)
+        if(this.props.authStore.info.addressesIsEmpty){
             return this.renderIfEmpty();
+        }
         return ( 
             <Box f={1} center bg='white'>
                 <StatusBar barStyle='dark-content'/>

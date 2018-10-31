@@ -8,16 +8,16 @@ export class MyButton extends Component {
         const { type } = this.props;
         switch (type) {
             case 'success':
-                return { backgroundColor: "#25c73a", borderColor: '#3EA552', borderWidth: 1};
+                return { backgroundColor: "#25c73a", borderColor: '#3EA552', };
         
             case 'danger':
-                return { backgroundColor: "#ff564e", borderColor: '#FF0000', borderWidth: 1 };
+                return { backgroundColor: "#ff564e", borderColor: '#FF0000', };
     
             case 'warning':
-                return { backgroundColor: "#ffb827", borderColor: '#FFCC00', borderWidth: 1 };
+                return { backgroundColor: "#ffb827", borderColor: '#FFCC00', };
             
             case 'primary':
-                return { backgroundColor: "#6aa3da", borderColor: '#0099FF', borderWidth: 1 };
+                return { backgroundColor: "#6aa3da", borderColor: '#0099FF', };
 
             case 'image': 
                 return { backgroundColor: 'transparent' }
@@ -33,7 +33,7 @@ export class MyButton extends Component {
         return  <TouchableOpacity
                     {...this.props}     
                     ref={ref}
-                    style={[ {height:'100%', width:'100%', alignSelf:'center'} ,additionalStyle, this.props.style]} 
+                    style={[ {height:'100%', width:'100%', alignSelf:'center', borderWidth: 1, borderRadius: 6} ,additionalStyle, this.props.style]} 
                 >
                     <Box center f={1} center>
                         {children}

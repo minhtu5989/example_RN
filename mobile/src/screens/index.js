@@ -5,7 +5,6 @@ import { FontAwesome } from '@expo/vector-icons';
 
 import ShoppingCartIcon from '../components/ShoppingCartIcon';
 import { theme } from "../constants/theme";
-import { ProfileBtn } from '../commons/ProfileBtn';
 
 const primaryHeader = { 
     headerStyle: {
@@ -13,6 +12,17 @@ const primaryHeader = {
     },
     headerTintColor: 'white',
     headerTitleStyle:{ fontWeight: '400' },
+}
+
+const modelHeader = {
+    headerBackTitle: null,
+    headerTintColor: theme.color.green,
+    headerStyle: {
+        backgroundColor: theme.color.white,
+    },
+    headerTitleStyle: {
+        color: theme.color.black,
+    },
 }
 
 const AuthNavigator = createStackNavigator(
@@ -28,7 +38,7 @@ const AuthNavigator = createStackNavigator(
     }
 )
 
-const ShopppingCartNavigator = createStackNavigator(
+const ShopppingCartStack = createStackNavigator(
     {
         ShoppingCart: {
             getScreen: () => require('./ShoppingCartScreen').default,
@@ -55,14 +65,20 @@ const ProfileStack = createStackNavigator(
     },
     { 
         navigationOptions: {
-            headerBackTitle: null,
-            headerTintColor: theme.color.green,
-            headerStyle: {
-              backgroundColor: theme.color.white,
-            },
-            headerTitleStyle: {
-              color: theme.color.black,
-            },
+            ...modelHeader,
+        }
+    }
+)
+
+const AddressesFormStack = createStackNavigator(
+    {
+        AddressesForm: {
+            getScreen: () => require('./AddressesFormScreen').default,
+        }
+    },
+    { 
+        navigationOptions: {
+            ...modelHeader,
         }
     }
 )
@@ -76,8 +92,8 @@ const HomeStack = createStackNavigator(
             getScreen: () => require('./CategoryScreen').default,
         },
         ShoppingCart: {
-            screen: ShopppingCartNavigator,
-            navigationOptions:{ header: null }
+            screen: ShopppingCartStack,
+            navigationOptions:{ header: null,  }
         },
     },
     { 
@@ -87,7 +103,7 @@ const HomeStack = createStackNavigator(
         } 
     }
 )
-
+//tắt thanh tab Bar ở dưới trong màn hình ShoppingCart
 HomeStack.navigationOptions = ({navigation}) => {
     let tabBarVisible = true
     console.log('navigation', navigation);
@@ -155,7 +171,8 @@ const TabNavigator = createBottomTabNavigator(
 const MainNavigator = createStackNavigator(
     {
         Tab: TabNavigator,
-         Profile: ProfileStack
+        Profile: ProfileStack,
+        AddressesForm: AddressesFormStack,
     },
     {
         mode: 'modal',
