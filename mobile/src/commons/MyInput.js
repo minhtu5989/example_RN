@@ -34,6 +34,7 @@ const FumiInput =
             value={this.state.txtPassword} 
             onChangeText={ txtPassword => this.setState({ txtPassword }) }
             maxLength = {30}
+            multiline
             ref='secondInput'
             // onSubmitEditing={this.onLogIn}
             blurOnSubmit={false}

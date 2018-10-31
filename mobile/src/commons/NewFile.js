@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Dimensions, StatusBar } from 'react-native';
+import { Dimensions, StatusBar, StyleSheet } from 'react-native';
 import { Box, Text } from 'react-native-design-utility'
 
 // import { EvilIcons, MaterialIcons } from '@expo/vector-icons';
@@ -19,7 +19,7 @@ class NewFile extends Component {
 
     render() {
         return (
-            <Box f={1} center>
+            <Box f={1} bg='white'>
                 <StatusBar barStyle='dark-content'/>
                 <Text>this is NewFile</Text>
             </Box>

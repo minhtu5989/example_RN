@@ -16,6 +16,10 @@ class AddressesScreen extends Component {
         title: 'Address'
     }
 
+    handleAddressesPress = () => {
+        this.props.navigation.navigate('AddressesForm')
+    }
+
     renderIfEmpty = () => (
         <Box f={1} center bg='white'>
             <StatusBar barStyle='dark-content'/>
@@ -32,7 +36,7 @@ class AddressesScreen extends Component {
                     </Text>                
                 </Box>
                 <Box w={width - 48} h={40}>
-                    <MyButton type='success'>
+                    <MyButton type='success' onPress={this.handleAddressesPress}>
                         <Text>Add address</Text>
                     </MyButton>
                 </Box> 

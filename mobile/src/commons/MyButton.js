@@ -8,19 +8,22 @@ export class MyButton extends Component {
         const { type } = this.props;
         switch (type) {
             case 'success':
-                return { backgroundColor: "#25c73a", borderColor: '#3EA552', };
+                return { backgroundColor: '#25c73a', borderColor: '#3EA552', };
         
             case 'danger':
-                return { backgroundColor: "#ff564e", borderColor: '#FF0000', };
+                return { backgroundColor: '#FF0000', borderColor: '#ff564e', };
     
             case 'warning':
-                return { backgroundColor: "#ffb827", borderColor: '#FFCC00', };
+                return { backgroundColor: '#ffb827' , borderColor: '#FFCC00', };
             
             case 'primary':
-                return { backgroundColor: "#6aa3da", borderColor: '#0099FF', };
+                return { backgroundColor: '#0099FF', borderColor: '#6aa3da', };
 
             case 'image': 
                 return { backgroundColor: 'transparent' }
+
+            case 'disabled': 
+                return { backgroundColor: '#bdbdbd', borderColor: '#F5F5F5' }
 
             default:
                 return { borderWidth: 0 };

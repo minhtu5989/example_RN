@@ -5,6 +5,7 @@ import { FontAwesome } from '@expo/vector-icons';
 
 import ShoppingCartIcon from '../components/ShoppingCartIcon';
 import { theme } from "../constants/theme";
+import { CloseBtn } from "../commons/CloseBtn";
 
 const primaryHeader = { 
     headerStyle: {
