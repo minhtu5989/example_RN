@@ -21,6 +21,7 @@ class CategoryCard extends PureComponent {
                     <MyButton
                         type='primary'
                         onPress={this._handlePress} 
+                        style={{backgroundColor: '#6aa3da'}}
                     > 
                             { 
                                 item.image && 

@@ -19,21 +19,28 @@ class AddressesFormScreen extends Component {
         // headerLeft: <CloseBtn left size={25} onPress={() => navigation.goBack(null)} /> ,
     });
 
+    goToSearch = () => {
+        this.props.navigation.navigate('AutoCompleteAddress')
+    }
+
     render() {
         return (
             <Box f={1} bg='white' p='sm'>
                 <StatusBar barStyle='dark-content'/>
                 <ScrollView>
                     <Box mb='sm'>
-                        <Input placeholder='Steet Address'/>
+                        <Input 
+                            placeholder='Steet Address' 
+                            editable={false} 
+                            onPress={this.goToSearch}/>
                         <Input placeholder='Apt # (optional)'/>
                         <Box dir='row'>
-                            <Box f={1}>
-                                <Input placeholder='Postal Code'/>
+                            <Box f={1}>f
+                                <Input placeholder='Postal Code' editable={false}/>
                             </Box>
                             <Box w={theme.space.xs}/>
                             <Box f={1}>
-                                <Input placeholder='City'/>
+                                <Input placeholder='City' editable={false}/>
                             </Box>
                         </Box>
                         <Input placeholder='Instructions for delivery (optional)' containerStyle={{height: 100}} />                        
