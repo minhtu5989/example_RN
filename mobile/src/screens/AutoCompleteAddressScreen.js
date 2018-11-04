@@ -6,7 +6,7 @@
 // import { theme } from '../constants/theme';
 // import LocationItem from '../components/LocationItem';
 
-// const AutoCompleteAddressScreen = () => {
+// const AutoCompleteAddressScreen = ({ navigation }) => {
 //     return ( 
 //         <Box f={1} bg='white'>
 //             <GoogleAutoComplete apiKey={API_KEY} components="country:vn">
@@ -47,6 +47,7 @@
 //                                                     key={location.id} 
 //                                                     {...location} 
 //                                                     fetchDetails={fetchDetails}
+//                                                     searchAddress={navigation.getParam('searchAddress')}
 //                                                 />
 //                                             }) 
 //                                         }
@@ -81,7 +82,8 @@ import {
 } from 'react-native-google-places-autocomplete'; // 1.2.12
 import { FontAwesome } from '@expo/vector-icons';
 import { theme } from '../constants/theme';
-import LocationItem from '../components/LocationItem';
+
+import { buildAddress } from "../utils/buildAddress";
 
 // const homePlace = { description: 'Home', geometry: { location: { lat: 48.8152937, lng: 2.4597668 } }};
 // const workPlace = { description: 'Work', geometry: { location: { lat: 48.8496818, lng: 2.2940881 } }};
@@ -94,14 +96,17 @@ export default class AutoCompleteAddressScreen extends Component {
           keyboardShouldPersistTaps='never'
           placeholder="Search"
           minLength={2} 
-          autoFocus={true}
+          autoFocus={false}
           returnKeyType={'search'} 
           listViewDisplayed="auto"
           fetchDetails={true}
           renderDescription={row => row.description} // custom description render
           onPress={(data, details = null) => {
-            console.log(data);
-            console.log(details);
+            this.props.navigation.goBack(null); 
+            const address = buildAddress(details)
+            console.log('data', data);
+            console.log('details',details);
+            console.log('address', address);
           }}
           getDefaultValue={() => {
             return ''; // text input default value
@@ -127,7 +132,7 @@ export default class AutoCompleteAddressScreen extends Component {
               height: 50
             },
             predefinedPlacesDescription: {
-              color: '#1faadb',
+              color: theme.color.green,
             },
           }}
           currentLocation={true} // Will add a 'Current location' button at the top of the predefined places list
@@ -135,7 +140,9 @@ export default class AutoCompleteAddressScreen extends Component {
           nearbyPlacesAPI="GoogleReverseGeocoding" // Which API to use: GoogleReverseGeocoding or GooglePlacesSearch
           GoogleReverseGeocodingQuery={{
             // available options for GoogleReverseGeocoding API : https://developers.google.com/maps/documentation/geocoding/intro
-        }}
+            rankby: 'distance',
+            types: '(cities)',
+          }}
           GooglePlacesSearchQuery={{
             // available options for GooglePlacesSearch API : https://developers.google.com/places/web-service/search
             rankby: 'distance',
@@ -145,10 +152,13 @@ export default class AutoCompleteAddressScreen extends Component {
         //   predefinedPlaces={[homePlace, workPlace, ]}
 
           debounce={200} // debounce the requests in ms. Set to 0 to remove debounce. By default 0ms.
-          renderLeftButton={()  => <Box ml={8} center> <FontAwesome name='search' size={25} color={theme.color.green} /> </Box> }
+          renderLeftButton={()  => <Box ml={8} center> <FontAwesome name='search' size={25} color={theme.color.grey} /> </Box> }
         //   renderRightButton={() => <Text>Custom text after the input</Text>}
         />
       </Box>
     );      
+  }
 }
-}
+AutoCompleteAddressScreen.navigationOptions = ({ navigation }) => ({
+  title: 'Search Address',
+});
