@@ -76,19 +76,25 @@
 
 import React, { Component } from 'react'
 import { Box, Text } from 'react-native-design-utility'
-import { TextInput, ScrollView, ActivityIndicator } from 'react-native';
 import {
   GooglePlacesAutocomplete,
 } from 'react-native-google-places-autocomplete'; // 1.2.12
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome, EvilIcons } from '@expo/vector-icons';
 import { theme } from '../constants/theme';
 
 import { buildAddress } from "../utils/buildAddress";
+import { NavigationService } from '../api/NavigationService';
+import { observable } from 'mobx';
 
 // const homePlace = { description: 'Home', geometry: { location: { lat: 48.8152937, lng: 2.4597668 } }};
 // const workPlace = { description: 'Work', geometry: { location: { lat: 48.8496818, lng: 2.2940881 } }};
 
-export default class AutoCompleteAddressScreen extends Component {
+class AutoCompleteAddressScreen extends Component {
+  static navigationOptions = ({ navigation }) => ({
+    title: 'Search Address',
+    headerLeft: <EvilIcons style={{marginLeft: 8,}} color={theme.color.green} size={25} name="close" onPress={() => navigation.goBack(null)} />,
+  });
+
   render() {
     return (
       <Box f={1}>
@@ -96,14 +102,14 @@ export default class AutoCompleteAddressScreen extends Component {
           keyboardShouldPersistTaps='never'
           placeholder="Search"
           minLength={2} 
-          autoFocus={false}
+          autoFocus={true}
           returnKeyType={'search'} 
           listViewDisplayed="auto"
           fetchDetails={true}
           renderDescription={row => row.description} // custom description render
           onPress={(data, details = null) => {
-            this.props.navigation.goBack(null); 
-            const address = buildAddress(details)
+            let address = buildAddress(details)
+            NavigationService.navigate('AddressesForm',{ address: address }) 
             console.log('data', data);
             console.log('details',details);
             console.log('address', address);
@@ -159,6 +165,5 @@ export default class AutoCompleteAddressScreen extends Component {
     );      
   }
 }
-AutoCompleteAddressScreen.navigationOptions = ({ navigation }) => ({
-  title: 'Search Address',
-});
+
+export default AutoCompleteAddressScreen;

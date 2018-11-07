@@ -17,7 +17,7 @@ class AddressesScreen extends Component {
     }
 
     handleAddressesPress = () => {
-        this.props.navigation.navigate('AddressesForm')
+        this.props.navigation.navigate('AutoCompleteAddress')
     }
 
     renderIfEmpty = () => (

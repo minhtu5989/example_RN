@@ -30,10 +30,6 @@ export const buildAddress = (address) =>
       acc.country = value;
     }
 
-    if (current.types.includes('postal_code')) {
-      acc.postalCode = value;
-    }
-
     if (current.types.includes('locality')) {
       acc.city = value;
     }

@@ -22,9 +22,6 @@ export class MyButton extends Component {
             case 'image': 
                 return { backgroundColor: 'transparent' }
 
-            case 'disabled': 
-                return { backgroundColor: '#bdbdbd', borderColor: '#F5F5F5' }
-
             default:
                 return { borderWidth: 0 };
         }

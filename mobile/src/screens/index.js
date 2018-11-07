@@ -47,7 +47,7 @@ const ShopppingCartStack = createStackNavigator(
     },
     {
         navigationOptions:  {
-                headerStyle:{ backgroundColor: theme.color.white },
+            headerStyle:{ backgroundColor: theme.color.white },
         }
     }
 )
@@ -73,12 +73,12 @@ const ProfileStack = createStackNavigator(
 
 const AddressesFormStack = createStackNavigator(
     {
+        AutoCompleteAddress: {
+            getScreen: () => require('./AutoCompleteAddressScreen').default,
+        },
         AddressesForm: {
             getScreen: () => require('./AddressesFormScreen').default,
         },
-        AutoCompleteAddress: {
-            getScreen: () => require('./AutoCompleteAddressScreen').default,
-        }
     },
     { 
         navigationOptions: {
@@ -86,6 +86,7 @@ const AddressesFormStack = createStackNavigator(
         }
     }
 )
+
 
 const HomeStack = createStackNavigator(
     {
