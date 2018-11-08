@@ -8,16 +8,16 @@ import ProductCart from '../components/ProductCart';
 @inject('productsStore')
 
 class CategoryScreen extends Component {
-    static navigationOptions = ({navigation}) => ({
-        title: navigation.getParam('name')
-    });
+    static navigationOptions = ({ navigation }) => ({
+        title: navigation.getParam('name', 'InStore'),
+      });
 
     render() {
         return (
             <Box>   
                 <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                     {this.props.productsStore.data.map(product => (
-                        <ProductCart product={product} key={product._id}/> 
+                        <ProductCart product={product}/> 
                     ))}
                 </ScrollView>
             </Box>

@@ -17,6 +17,7 @@ const ANIM_DURATION = 200;
 const BoxAnimated = Animated.createAnimatedComponent(Box);
 
 @observer
+
 class ProductCard extends Component {
   state = {
     isHover: false,
