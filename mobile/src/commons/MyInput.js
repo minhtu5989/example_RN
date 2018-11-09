@@ -6,18 +6,48 @@ const {width, height} = Dimensions.get('window')
 
 
 const saeInput = 
+<Sae
+    value={this.steetName}
 
-    <Box center shadow={1}>
-        <Sae
-            label={'Email Address'}
-            iconClass={FontAwesomeIcon}
-            iconName={'pencil'}
-            iconColor={'white'}
-            // TextInput props
-            autoCapitalize={'none'}
-            autoCorrect={false}
-        />
-    </Box>
+    label='Địa chỉ nhà:'
+    iconClass={FontAwesomeIcon}
+    iconName={'road'}
+    iconColor={theme.color.blue}
+    autoCapitalize={'none'}
+    autoCorrect={false}
+    underlineColorAndroid='transparent'
+    returnKeyType='done'
+    keyboardType='visible-password'
+    maxLength = {100}
+    multiline
+    blurOnSubmit={false}
+    clearTextOnFocus={true}
+    style={styles._style}
+    labelStyle={styles._labelStyle}
+    inputStyle={styles._inputStyle}
+/>
+
+const styles = StyleSheet.create({
+    _labelStyle:{
+        color: theme.color.blue,
+        padding: 5,
+
+    },
+    _style:{
+        backgroundColor: theme.color.greyLightest,
+        borderRadius: 5,
+        marginTop: 8,
+    },
+    _inputStyle:{
+        paddingHorizontal: 10,
+        color: 'black',
+    }
+})
+
+
+
+
+
 
 
 

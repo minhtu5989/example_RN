@@ -1,6 +1,11 @@
  import React, { Component } from 'react'
 import { Dimensions, StatusBar, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import { Box, Text } from 'react-native-design-utility'
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import Entypo from 'react-native-vector-icons/Entypo';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
+import { Sae } from 'react-native-textinput-effects';
 
 // import { EvilIcons, MaterialIcons } from '@expo/vector-icons';
 // import { theme } from '../constants/theme';
@@ -8,13 +13,9 @@ import { Box, Text } from 'react-native-design-utility'
 import { observer } from 'mobx-react/native';
 import { observable, action } from 'mobx';
 
-import { CloseBtn } from "../commons/CloseBtn";
 import Input from '../commons/Input';
 import { theme } from '../constants/theme';
 import { MyButton } from "../commons/MyButton";
-import { buildAddress } from '../utils/buildAddress';
-
-
 @observer
 
 class AddressesFormScreen extends Component {
@@ -43,6 +44,7 @@ class AddressesFormScreen extends Component {
         this.province = address.province
         this.country = address.country
         this.address = address
+        
     }
 
     render() {
@@ -53,30 +55,143 @@ class AddressesFormScreen extends Component {
                 {this.searchAddress()}
                 <ScrollView>
                     <Box mb='sm'>
-                        <Input 
-                            placeholder='Steet Address' 
+                        <Sae
                             value={this.steetName}
+
+                            label='Địa chỉ nhà:'
+                            iconClass={FontAwesomeIcon}
+                            iconName={'road'}
+                            iconColor={theme.color.blue}
+                            autoCapitalize={'none'}
+                            autoCorrect={false}
+                            underlineColorAndroid='transparent'
+                            returnKeyType='done'
+                            keyboardType='visible-password'
+                            maxLength = {100}
+                            multiline
+                            blurOnSubmit={false}
+                            clearTextOnFocus={true}
+                            style={styles._style}
+                            labelStyle={styles._labelStyle}
+                            inputStyle={styles._inputStyle}
                         />
+
                         <Box dir='row'>
-                            <Box f={1}>
-                                <Input placeholder='Town' value={this.town}/>
+                            <Box f={1} >
+                                <Sae
+                                    value={this.town}
+
+                                    label='Phường:'
+                                    iconClass={Entypo}
+                                    iconName={'location'}
+                                    iconColor={theme.color.blue}
+                                    autoCapitalize={'none'}
+                                    autoCorrect={false}
+                                    underlineColorAndroid='transparent'
+                                    returnKeyType='done'
+                                    keyboardType='visible-password'
+                                    maxLength = {30}
+                                    multiline
+                                    blurOnSubmit={false}
+                                    clearTextOnFocus={true}
+                                    style={styles._style}
+                                    labelStyle={styles._labelStyle}
+                                    inputStyle={styles._inputStyle}
+                                />
                             </Box>
                             <Box w={theme.space.xs}/>
                             <Box f={1}>
-                                <Input placeholder='City' editable={false} value={this.city}/>
+                                <Sae
+                                    value={this.city}
+
+                                    editable={false}
+                                    label='Thành phố:'
+                                    iconClass={MaterialCommunityIcons}
+                                    iconName={'city-variant'}
+                                    iconColor={theme.color.blue}
+                                    autoCapitalize={'none'}
+                                    autoCorrect={false}
+                                    underlineColorAndroid='transparent'
+                                    returnKeyType='done'
+                                    keyboardType='visible-password'
+                                    maxLength = {30}
+                                    multiline
+                                    blurOnSubmit={false}
+                                    clearTextOnFocus={true}
+                                    style={styles._style}
+                                    labelStyle={styles._labelStyle}
+                                    inputStyle={styles._inputStyle}
+                                />
                             </Box>
                         </Box>
 
                         <Box dir='row'>
-                            <Box f={1}>f
-                                <Input placeholder='Province' editable={false} value={this.province}/>
+                            <Box f={1}>
+                                <Sae
+                                    value={this.province}
+
+                                    editable={false}
+                                    label='Tỉnh:'
+                                    iconClass={MaterialCommunityIcons}
+                                    iconName={'city'}
+                                    iconColor={theme.color.blue}
+                                    autoCapitalize={'none'}
+                                    autoCorrect={false}
+                                    underlineColorAndroid='transparent'
+                                    returnKeyType='done'
+                                    keyboardType='visible-password'
+                                    maxLength = {30}
+                                    multiline
+                                    blurOnSubmit={false}
+                                    clearTextOnFocus={true}
+                                    style={styles._style}
+                                    labelStyle={styles._labelStyle}
+                                    inputStyle={styles._inputStyle}
+                                />
                             </Box>
                             <Box w={theme.space.xs}/>
                             <Box f={1}>
-                                <Input placeholder='Country' editable={false} value={this.country}/>
+                                <Sae
+                                    value={this.country}
+
+                                    editable={false}
+                                    label='Quốc gia:'
+                                    iconClass={MaterialCommunityIcons}
+                                    iconName={'city'}
+                                    iconColor={theme.color.blue}
+                                    autoCapitalize={'none'}
+                                    autoCorrect={false}
+                                    underlineColorAndroid='transparent'
+                                    returnKeyType='done'
+                                    keyboardType='visible-password'
+                                    // maxLength = {30}
+                                    multiline
+                                    blurOnSubmit={false}
+                                    clearTextOnFocus={true}
+                                    style={styles._style}
+                                    labelStyle={styles._labelStyle}
+                                    inputStyle={styles._inputStyle}
+                                />
                             </Box>
                         </Box>
-                        <Input placeholder='Instructions for delivery (optional)' containerStyle={{height: 100}} />                        
+                            <Sae
+                                label='Ghi chú đặt hàng :'
+                                iconClass={MaterialCommunityIcons}
+                                iconName={'truck-delivery'}
+                                iconColor={theme.color.blue}
+                                autoCapitalize={'none'}
+                                autoCorrect={false}
+                                underlineColorAndroid='transparent'
+                                returnKeyType='done'
+                                keyboardType='visible-password'
+                                // maxLength = {30}
+                                multiline
+                                blurOnSubmit={false}
+                                clearTextOnFocus={true}
+                                style={styles._style}
+                                labelStyle={styles._labelStyle}
+                                inputStyle={styles._inputStyle}
+                            />                     
                     </Box>
                     <MyButton 
                         type='success'
@@ -92,7 +207,22 @@ class AddressesFormScreen extends Component {
     }
 }
 
+const styles = StyleSheet.create({
+    _labelStyle:{
+        color: theme.color.blue,
+        padding: 5,
 
+    },
+    _style:{
+        backgroundColor: theme.color.greyLightest,
+        borderRadius: 5,
+        marginTop: 8,
+    },
+    _inputStyle:{
+        paddingHorizontal: 10,
+        color: 'black',
+    }
+})
 
 export default AddressesFormScreen;
 
