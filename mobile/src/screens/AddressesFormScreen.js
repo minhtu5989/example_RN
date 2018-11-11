@@ -1,5 +1,5 @@
  import React, { Component } from 'react'
-import { Dimensions, StatusBar, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+import { Dimensions, StatusBar, ScrollView, StyleSheet, ActivityIndicator } from 'react-native';
 import { Box, Text } from 'react-native-design-utility'
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -33,6 +33,8 @@ class AddressesFormScreen extends Component {
 
     @observable address=''
 
+    @observable isSaving= false
+
     @action.bound
     searchAddress = () => {
         const address = this.props.navigation.state.params.address;
@@ -46,17 +48,28 @@ class AddressesFormScreen extends Component {
         
     }
 
-    saveAddress = async () => {
+    @action.bound
+    async saveAddress() {
+        this.isSaving = true
         try {
-            await this.props.authStore.info.createAddress(this.address)   
-                     
+            // await this.props.authStore.info.createAddress(this.address)   
+            console.log(this.address);
+            
+            this.props.navigation.goBack(null)
         } catch (error) {
             console.log('error', error);
         }
     }
 
     render() {
-        
+        if(this.isSaving)
+        {
+            return (
+                <Box f={1} center bg='white'>
+                    <ActivityIndicator color={theme.color.green} size='large'/>
+                </Box>
+            )
+        }
         return (
             <Box f={1} bg='white' p='sm'>
                 <StatusBar barStyle='dark-content'/>

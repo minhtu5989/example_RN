@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Box, Text } from 'react-native-design-utility'
 import { StatusBar, Dimensions } from 'react-native'
 import { EvilIcons } from '@expo/vector-icons';
-import { inject } from 'mobx-react/native'
+import { inject, observer } from 'mobx-react/native'
 
 import { theme } from '../constants/theme';
 import { MyButton } from '../commons/MyButton';
@@ -10,6 +10,7 @@ import { MyButton } from '../commons/MyButton';
 const {width} = Dimensions.get('window')
 
 @inject('authStore')
+@observer
 
 class AddressesScreen extends Component {
     static navigationOptions = {
@@ -52,9 +53,11 @@ class AddressesScreen extends Component {
         return ( 
             <Box f={1} center bg='white'>
                 <StatusBar barStyle='dark-content'/>
-                <Box  center px='md'>
-                    <Text>a</Text>
-                </Box>
+                {this.props.authStore.info.addresses.map(address => (
+                    <Box key={address._id}>
+                        <Text>{address.steet}, {address.town} {address.city}, {address.province}, {address.country}</Text>
+                    </Box>
+                ))}
             </Box>            
         );
     }

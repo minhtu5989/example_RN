@@ -2,11 +2,15 @@ import { types } from 'mobx-state-tree'
 
 export const UserAddressModel = types
 .model({
-    id: types.identifier,
-    street: types.string,
-    aptNum: types.maybe(types.string),
-    postalCode: types.string,
+    _id: types.identifier,
+    street: types.maybeNull(types.string),
+    town: types.maybeNull(types.string),
     city: types.string,
     province: types.string,
-    instructions: types.maybe(types.string)
+    country: types.string,
+    instructions: types.maybeNull(types.string),
+    geo: types.model({
+        lng: types.maybeNull(types.number),
+        lat: types.maybeNull(types.number),
+    }),
 })

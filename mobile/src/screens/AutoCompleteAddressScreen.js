@@ -112,7 +112,7 @@ class AutoCompleteAddressScreen extends Component {
             NavigationService.navigate('AddressesForm',{ address: address }) 
             // console.log('data', data);
             // console.log('details',details);
-            console.log('address', address);
+            // console.log('address', address);
           }}
           getDefaultValue={() => {
             return ''; // text input default value
