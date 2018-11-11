@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/v1/customers', CustomerRoutes);
-// app.use('/api/v1/addresses', AddressRoutes);
+app.use('/api/v1/addresses', AddressRoutes);
 
 app.listen(3000, err => {
   if (err) {

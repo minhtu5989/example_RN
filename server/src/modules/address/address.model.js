@@ -6,11 +6,9 @@ const AddressSchema = new Schema(
       type: String,
       required: true,
     },
-    aptNum: String,
-    postalCode: {
-      type: String,
-      required: true,
-      maxlength: 6,
+    town: {
+        type: String,
+        required: true,
     },
     city: {
       type: String,

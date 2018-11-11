@@ -16,9 +16,10 @@ class CategoryScreen extends Component {
         return (
             <Box>   
                 <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                    {this.props.productsStore.data.map(product => (
+                    {/* {this.props.productsStore.data.map(product => (
                         <ProductCart product={product}/> 
-                    ))}
+                    ))} */}
+                    <Text>Item ??</Text>
                 </ScrollView>
             </Box>
         );
