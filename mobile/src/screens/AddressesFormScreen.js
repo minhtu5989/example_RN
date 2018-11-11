@@ -7,23 +7,21 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 import { Sae } from 'react-native-textinput-effects';
 
-// import { EvilIcons, MaterialIcons } from '@expo/vector-icons';
-// import { theme } from '../constants/theme';
-// import { MyButton } from '../commons/MyButton';
-import { observer } from 'mobx-react/native';
+import { observer, inject } from 'mobx-react/native';
 import { observable, action } from 'mobx';
 
-import Input from '../commons/Input';
 import { theme } from '../constants/theme';
 import { MyButton } from "../commons/MyButton";
+@inject('authStore')
 @observer
 
 class AddressesFormScreen extends Component {
     static navigationOptions = ({ navigation }) => ({
         title: 'Address',
     });
+    
 
-    @observable steetName=''
+    @observable street=''
 
     @observable town=''
 
@@ -38,13 +36,23 @@ class AddressesFormScreen extends Component {
     @action.bound
     searchAddress = () => {
         const address = this.props.navigation.state.params.address;
-        this.steetName = address.street
+
+        this.street = address.street
         this.town = address.town
         this.city = address.city
         this.province = address.province
         this.country = address.country
         this.address = address
         
+    }
+
+    saveAddress = async () => {
+        try {
+            await this.props.authStore.info.createAddress(this.address)   
+                     
+        } catch (error) {
+            console.log('error', error);
+        }
     }
 
     render() {
@@ -56,7 +64,8 @@ class AddressesFormScreen extends Component {
                 <ScrollView>
                     <Box mb='sm'>
                         <Sae
-                            value={this.steetName}
+                            value={this.street}
+                            onChangeText={ street => this.address.street = street }
 
                             label='Địa chỉ nhà:'
                             iconClass={FontAwesomeIcon}
@@ -80,6 +89,7 @@ class AddressesFormScreen extends Component {
                             <Box f={1} >
                                 <Sae
                                     value={this.town}
+                                    onChangeText={ town => this.address.town = town }
 
                                     label='Phường:'
                                     iconClass={Entypo}
@@ -196,6 +206,7 @@ class AddressesFormScreen extends Component {
                     <MyButton 
                         type='success'
                         style={{height: 50}}
+                        onPress={this.saveAddress}
                     >
                         <Text bold color="white">
                             Save

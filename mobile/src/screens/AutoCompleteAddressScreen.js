@@ -110,8 +110,8 @@ class AutoCompleteAddressScreen extends Component {
           onPress={(data, details = null) => {
             let address = buildAddress(details)
             NavigationService.navigate('AddressesForm',{ address: address }) 
-            console.log('data', data);
-            console.log('details',details);
+            // console.log('data', data);
+            // console.log('details',details);
             console.log('address', address);
           }}
           getDefaultValue={() => {
