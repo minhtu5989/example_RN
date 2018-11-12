@@ -50,12 +50,11 @@ class AddressesFormScreen extends Component {
 
     @action.bound
     async saveAddress() {
-        this.isSaving = true
         try {
-            // await this.props.authStore.info.createAddress(this.address)   
-            console.log(this.address);
-            
+            await this.props.authStore.info.createAddress(this.address)   
             this.props.navigation.goBack(null)
+            this.props.navigation.goBack(null)
+            return this.isSaving = true
         } catch (error) {
             console.log('error', error);
         }
@@ -80,7 +79,7 @@ class AddressesFormScreen extends Component {
                             value={this.street}
                             onChangeText={ street => this.address.street = street }
 
-                            label='Địa chỉ nhà:'
+                            label='Street Number:'
                             iconClass={FontAwesomeIcon}
                             iconName={'road'}
                             iconColor={theme.color.blue}
@@ -104,7 +103,7 @@ class AddressesFormScreen extends Component {
                                     value={this.town}
                                     onChangeText={ town => this.address.town = town }
 
-                                    label='Phường:'
+                                    label='Town:'
                                     iconClass={Entypo}
                                     iconName={'location'}
                                     iconColor={theme.color.blue}
@@ -128,7 +127,7 @@ class AddressesFormScreen extends Component {
                                     value={this.city}
 
                                     editable={false}
-                                    label='Thành phố:'
+                                    label='City:'
                                     iconClass={MaterialCommunityIcons}
                                     iconName={'city-variant'}
                                     iconColor={theme.color.blue}
@@ -154,7 +153,7 @@ class AddressesFormScreen extends Component {
                                     value={this.province}
 
                                     editable={false}
-                                    label='Tỉnh:'
+                                    label='Province:'
                                     iconClass={MaterialCommunityIcons}
                                     iconName={'city'}
                                     iconColor={theme.color.blue}
@@ -178,7 +177,7 @@ class AddressesFormScreen extends Component {
                                     value={this.country}
 
                                     editable={false}
-                                    label='Quốc gia:'
+                                    label='Country:'
                                     iconClass={MaterialCommunityIcons}
                                     iconName={'city'}
                                     iconColor={theme.color.blue}
@@ -198,7 +197,7 @@ class AddressesFormScreen extends Component {
                             </Box>
                         </Box>
                             <Sae
-                                label='Ghi chú đặt hàng :'
+                                label='Notice for delivery :'
                                 iconClass={MaterialCommunityIcons}
                                 iconName={'truck-delivery'}
                                 iconColor={theme.color.blue}
@@ -218,7 +217,7 @@ class AddressesFormScreen extends Component {
                     </Box>
                     <MyButton 
                         type='success'
-                        style={{height: 50}}
+                        style={{height: 50,}}
                         onPress={this.saveAddress}
                     >
                         <Text bold color="white">
@@ -233,7 +232,7 @@ class AddressesFormScreen extends Component {
 
 const styles = StyleSheet.create({
     _labelStyle:{
-        color: theme.color.blue,
+        color: theme.color.green,
         padding: 5,
 
     },

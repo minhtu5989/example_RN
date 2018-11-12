@@ -55,7 +55,7 @@ class AddressesScreen extends Component {
                 <StatusBar barStyle='dark-content'/>
                 {this.props.authStore.info.addresses.map(address => (
                     <Box key={address._id}>
-                        <Text>{address.steet}, {address.town} {address.city}, {address.province}, {address.country}</Text>
+                        <Text>{address.street}, {address.town} {address.city}, {address.province}, {address.country}</Text>
                     </Box>
                 ))}
             </Box>            

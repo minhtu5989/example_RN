@@ -18,6 +18,10 @@ const AddressSchema = new Schema(
       type: String,
       required: true,
     },
+    country:{
+      type: String,
+      required: true
+    },
     instructions: String,
     geo: {
       type: { type: String },
