@@ -14,8 +14,15 @@ const CustomerSchema = new Schema(
     avatarUrl: String,
     provider: [
       {
-        uid: { required: true, type: String },
-        type: { required: true, type: String, enum: PROVIDER_ENUM },
+        uid: { 
+          type: String,
+          required: true 
+        },
+        type: { 
+          type: String, 
+          required: true, 
+          enum: PROVIDER_ENUM 
+        },
       },
     ],
   },

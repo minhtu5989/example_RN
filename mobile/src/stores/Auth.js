@@ -13,18 +13,13 @@ export const AuthStore = types
 })
 .actions(self => ({
 
-  setupAuth: flow(function*(){
-      yield self.getAuthToken()
-      yield self.getUserInfo()
-  }),
-
   getAuthToken: flow(function*(){
     try {
       const token = yield AsyncStorage.getItem(TOKEN_KEY)
-      console.log('get AuthToken !!');
 
       if(token){
         self.authToken = token
+        console.log('get AuthToken !!');
       }
       else{
         NavigationService.navigate('Auth')
@@ -49,6 +44,11 @@ export const AuthStore = types
     } catch (error) {
       console.log('error', error);
     }
+  }),
+  
+  setupAuth: flow(function*(){
+      yield self.getAuthToken()
+      yield self.getUserInfo()
   }),
 
   saveToken: flow(function*(token){
