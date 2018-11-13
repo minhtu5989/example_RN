@@ -17,7 +17,7 @@ const productsStore = ProductsStore.create({
       unityPrice: 1.9,
     }),
     ProductModel.create({
-      _id: '2',
+      _id: "2",
       name: 'Tomato',
       imageUrl: require('../../assets/img/products/tomato.png'),
       kgPrice: 9.51,

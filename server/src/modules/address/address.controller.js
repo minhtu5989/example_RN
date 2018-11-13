@@ -31,3 +31,15 @@ export const create = async (req, res) => {
     res.status(400).json({ message: error.message });
   };
 }
+
+export const userAddresses = async (req, res) => {
+  try {
+    const addresses = await AddressServices.getUserAddress(req.user._id)
+
+    res.status(201).json({ addresses });
+    
+  } catch (error) {
+    console.log('error', error);
+    
+  }
+}

@@ -1,5 +1,4 @@
 import { types, flow, getParent } from 'mobx-state-tree';
-import get from 'lodash.get';
 
 import { UserAddressModel } from "../models/UserAddresses";
 import { baseApi } from "../api/Api";
@@ -31,25 +30,27 @@ export const CurrentUserModel = types
         .json()
         // console.log('res', res);
 
-        // if(typeof res.address === 'object')   // xác định res.address tồn tại
-        // {
-        //   const address = UserAddressModel.create({
-        //     ...res.address,
-        //     geo:{
-        //       lng: get(res.address, ['geo', 'coords', 0], 'không tồn tại'),
-        //       lat: get(res.address, ['geo', 'coords', 1], 'không tồn tại')
-        //       /* 
-        //         get của lodash.get 
-        //         -- phần tử 1 : object cần tìm giá trị
-        //         -- phần tử 2 : nếu tồn tạị 'geo', 'coords', 0 thì sẽ trả về value : res.address.geo.coords[0]
-        //         --phần tử 3 : nếu ko tồn tại sẽ trả về value 
-        //         (34 minute - part 18)
-        //       */
-        //     }
-        //   })
-
           if (res.address) {
             self.addresses.push(res.address);
+          }
+      } catch (error) {
+        throw error;
+      }
+    }),
+
+    getAddresses: flow(function*(){
+      try {
+        const res = yield baseApi
+        .url('/addresses')
+        .auth(`Bearer ${self.authStore.authToken}`)
+        // .headers({ Authorization: `Bearer ${self.authStore.authToken}` })
+        .get()
+        .json()
+
+
+        if(Array.isArray(res.addresses))      //check boolean Array
+          {
+            self.addresses = res.addresses
           }
       } catch (error) {
         throw error;

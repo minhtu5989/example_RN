@@ -1,5 +1,4 @@
 import Address from './address.model';
-import { userInfo } from 'os';
 
 export const createAddress = async (data) => {
     try {

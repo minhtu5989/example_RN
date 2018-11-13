@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Box, Text } from 'react-native-design-utility'
-import { StatusBar, Dimensions } from 'react-native'
+import { StatusBar, Dimensions, ScrollView} from 'react-native'
 import { EvilIcons } from '@expo/vector-icons';
 import { inject, observer } from 'mobx-react/native'
 
@@ -15,6 +15,18 @@ const {width} = Dimensions.get('window')
 class AddressesScreen extends Component {
     static navigationOptions = {
         title: 'Address'
+    }
+
+    componentDidMount() {
+        this.fetchAddresses()
+    }
+    
+    fetchAddresses = async () => {
+        try {
+            await this.props.authStore.info.getAddresses()
+        } catch (error) {
+            throw error
+        }
     }
 
     handleAddressesPress = () => {
@@ -53,11 +65,14 @@ class AddressesScreen extends Component {
         return ( 
             <Box f={1} center bg='white'>
                 <StatusBar barStyle='dark-content'/>
-                {this.props.authStore.info.addresses.map(address => (
-                    <Box key={address._id}>
-                        <Text>{address.street}, {address.town} {address.city}, {address.province}, {address.country}</Text>
-                    </Box>
-                ))}
+                <ScrollView>
+                    {this.props.authStore.info.addresses.map(address => (
+                        <Box key={address._id}>
+                                <Text>{address.street}, {address.town} {address.city}, {address.province}, Việt Nam</Text>
+                        </Box>
+                    ))}
+                </ScrollView>
+
             </Box>            
         );
     }

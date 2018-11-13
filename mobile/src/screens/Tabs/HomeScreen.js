@@ -11,22 +11,22 @@ const NUMBER_COLUMN = 3;
 
 const catagories = [
     {
-        id: 1,
+        _id: 1,
         title: 'Grocery',
         image: require('../../../assets/img/cart.png')
     },
     {
-        id: 2,
+        _id: 2,
         title: 'Drugs',
         image: require('../../../assets/img/drugs.png')
     },
     {
-        id: 3,
+        _id: 3,
         title: 'Pets',
         image: require('../../../assets/img/pets.png')
     },
     {
-        id: 4,
+        _id: 4,
         title: 'video games',
     }
 ]
@@ -51,7 +51,7 @@ class HomeScreen extends Component {
         )
     }
 
-    keyExtractor = item => String(item.id)
+    keyExtractor = item => String(item._id)
 
     separator = () => <Box h={2} bg='greyLighter'/>
 

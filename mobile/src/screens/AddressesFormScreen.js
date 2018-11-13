@@ -29,7 +29,7 @@ class AddressesFormScreen extends Component {
 
     @observable province=''
 
-    @observable country=''
+    @observable country='Việt Nam'
 
     @observable address=''
 
@@ -43,7 +43,6 @@ class AddressesFormScreen extends Component {
         this.town = address.town
         this.city = address.city
         this.province = address.province
-        this.country = address.country
         this.address = address
         
     }
