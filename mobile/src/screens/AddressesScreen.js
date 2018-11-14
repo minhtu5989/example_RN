@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { Box, Text } from 'react-native-design-utility'
-import { StatusBar, Dimensions, ScrollView} from 'react-native'
+import { StatusBar, Dimensions, ScrollView, ActivityIndicator} from 'react-native'
 import { EvilIcons } from '@expo/vector-icons';
 import { inject, observer } from 'mobx-react/native'
+import { observable, action } from 'mobx'
 
 import { theme } from '../constants/theme';
 import { MyButton } from '../commons/MyButton';
@@ -13,20 +14,50 @@ const {width} = Dimensions.get('window')
 @observer
 
 class AddressesScreen extends Component {
-    static navigationOptions = {
-        title: 'Address'
+    static navigationOptions = ({navigation}) => {
+        const headerRight = navigation.getParam('showAddBtn') 
+        ?
+        <Box mr='xs'>
+            <MyButton onPress={navigation.getParam('handleAddressesPress')} >
+                <Text color={theme.color.green}>Add</Text>
+            </MyButton>
+        </Box>
+        : 
+        null
+        return {
+            title: 'Address',
+            headerRight 
+        }
+        
     }
+
+    @observable isLoading = false
 
     componentDidMount() {
         this.fetchAddresses()
     }
-    
-    fetchAddresses = async () => {
+
+    @action.bound
+    async fetchAddresses() {
         try {
+            this.isLoading = true
             await this.props.authStore.info.getAddresses()
+
+            setTimeout(() => {
+                this.setAddBtn()
+            }, 1000);
+
+            this.isLoading = false
         } catch (error) {
             throw error
         }
+    }
+
+    setAddBtn = () => {
+        this.props.navigation.setParams({
+            showAddBtn: true,
+            handleAddressesPress: this.handleAddressesPress
+        })
     }
 
     handleAddressesPress = () => {
@@ -59,9 +90,19 @@ class AddressesScreen extends Component {
 
 
     render() {
+        if(this.isLoading)
+        {
+            return (
+                <Box f={1} center bg='white'>
+                    <ActivityIndicator color={theme.color.green} size='large' />
+                </Box>
+            )
+        }
+
         if(this.props.authStore.info.addressesIsEmpty){
             return this.renderIfEmpty();
         }
+
         return ( 
             <Box f={1} center bg='white'>
                 <StatusBar barStyle='dark-content'/>

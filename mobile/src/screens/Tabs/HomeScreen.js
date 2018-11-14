@@ -34,7 +34,9 @@ const catagories = [
 class HomeScreen extends Component {
     static navigationOptions = ({navigation}) => ({
         title: 'Instore',
-        headerLeft: <ProfileBtn/>
+        headerLeft: (
+            <ProfileBtn/>
+        )
     });
 
 

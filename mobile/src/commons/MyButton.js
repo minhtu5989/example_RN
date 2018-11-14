@@ -20,7 +20,7 @@ export class MyButton extends Component {
                 return { backgroundColor: '#0099FF', borderColor: '#6aa3da', };
 
             case 'image': 
-                return { backgroundColor: 'transparent' }
+                return { backgroundColor: 'transparent', borderWidth: 0 }
 
             default:
                 return { borderWidth: 0 };
@@ -28,16 +28,22 @@ export class MyButton extends Component {
     }
     
     render() {
-        const { children, ref} = this.props;
+        const { children, ref, style } = this.props;
         const additionalStyle = this.getAdditionalStyle();
-        return  <TouchableOpacity
-                    {...this.props}     
+
+        return  (
+                <TouchableOpacity
+                    {...this.props}  
                     ref={ref}
-                    style={[ {height:'100%', width:'100%', alignSelf:'center', borderWidth: 1, borderRadius: 6} ,additionalStyle, this.props.style]} 
+                    style={[ {height:'100%', width:'100%', alignSelf:'center', 
+                            borderWidth: 1, borderRadius: 6,} ,additionalStyle, style]} 
                 >
                     <Box center f={1} center>
                         {children}
                     </Box>
                 </TouchableOpacity>
+        )
     }
 }
+
+
