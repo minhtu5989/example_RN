@@ -3,7 +3,7 @@ import { Box, Text } from 'react-native-design-utility'
 import { StatusBar, Dimensions, ScrollView, ActivityIndicator} from 'react-native'
 import { EvilIcons } from '@expo/vector-icons';
 import { inject, observer } from 'mobx-react/native'
-import { observable, action } from 'mobx'
+import { observable, action, when, reaction } from 'mobx'
 
 import { theme } from '../constants/theme';
 import { MyButton } from '../commons/MyButton';
@@ -14,6 +14,27 @@ const {width} = Dimensions.get('window')
 @observer
 
 class AddressesScreen extends Component {
+
+    constructor(props){
+        super(props);
+
+        //value 2 sẽ chạy chỉ 1 lần khi value 1 đúng  (when)
+        when(
+            () => !this.props.authStore.info.addressesIsEmpty,
+            () => {
+                this.setAddBtn()
+            }
+        )
+
+        //value 2 sẽ đc chạy mỗi lần value 1 đúng   (reaction)
+        // reaction(
+        //     () => !this.props.authStore.info.addressesIsEmpty,
+        //     () => {
+        //         this.setAddBtn()
+        //     }
+        // )
+    }
+
     static navigationOptions = ({navigation}) => {
         const headerRight = navigation.getParam('showAddBtn') 
         ?
@@ -43,9 +64,6 @@ class AddressesScreen extends Component {
             this.isLoading = true
             await this.props.authStore.info.getAddresses()
 
-            setTimeout(() => {
-                this.setAddBtn()
-            }, 1000);
 
             this.isLoading = false
         } catch (error) {
