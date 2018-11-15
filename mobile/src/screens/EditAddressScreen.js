@@ -5,29 +5,29 @@ import { theme } from '../constants/theme';
 
 import { MyButton } from '../commons/MyButton';
 
-// import { NavigationService } from '../api/NavigationService';
 // import { EvilIcons, MaterialIcons } from '@expo/vector-icons';
 // import { inject, observer } from 'mobx-react/native';
 
 
-class NewFile extends Component {
+
+class EditAddressScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {  };
     }
 
     static navigationOptions = ({ navigation }) => ({
-        title: 'NewFile',
+        title: 'Edit Address',
     });
+
 
     render() {
         return (
             <Box f={1} bg='white'>
-                <StatusBar barStyle='dark-content'/>
-                <Text>this is NewFile</Text>
+                <Text>xxx</Text>
             </Box>
         );
     }
 }
 
-export default NewFile;
+export default EditAddressScreen;

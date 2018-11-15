@@ -20,12 +20,12 @@ class AutoCompleteAddressScreen extends Component {
 
   render() {
     return (
-      <Box f={1}>
+      <Box f={1} bg='white'>
         <GooglePlacesAutocomplete
           keyboardShouldPersistTaps='never'
-          placeholder="Search"
+          placeholder="Search address ..."
           minLength={2} 
-          autoFocus={true}
+          // autoFocus={true}
           returnKeyType={'search'} 
           listViewDisplayed="auto"
           fetchDetails={true}
@@ -52,13 +52,14 @@ class AutoCompleteAddressScreen extends Component {
                 backgroundColor:'white',
             },
             textInputContainer: {
-                backgroundColor: 'rgba(0,0,0,0)',
+                backgroundColor: theme.color.greyLightest,
                 borderTopWidth: 0,
                 borderBottomWidth:0.6
             },
             description: {
               fontWeight: 'bold',
-              height: 50
+              height: 50,
+              // color: theme.color.myAppColor
             },
             predefinedPlacesDescription: {
               color: theme.color.myAppColor,
@@ -81,7 +82,7 @@ class AutoCompleteAddressScreen extends Component {
         //   predefinedPlaces={[homePlace, workPlace, ]}
 
           debounce={200} // debounce the requests in ms. Set to 0 to remove debounce. By default 0ms.
-          renderLeftButton={()  => <Box ml={8} center> <FontAwesome name='search' size={25} color={theme.color.grey} /> </Box> }
+          renderLeftButton={()  => <Box ml={8} center> <FontAwesome name='search' size={25} color={theme.color.myAppColor} /> </Box> }
         //   renderRightButton={() => <Text>Custom text after the input</Text>}
         />
       </Box>
