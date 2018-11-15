@@ -1,5 +1,9 @@
 const color = {
+
+  myAppColor: '#2196f3',
+
   black: '#212121',
+  white: '#fff',
 
   greyDarkest: '#242424',
   greyDarker: '#616161',
@@ -9,7 +13,6 @@ const color = {
   greyLighter: '#F5F5F5',
   greyLightest: '#eeeeee',
 
-  white: '#fff',
 
   redDarkest: '#b71c1c',
   redDarker: '#c62828',

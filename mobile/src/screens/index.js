@@ -9,7 +9,7 @@ import { CloseBtn } from "../commons/CloseBtn";
 
 const primaryHeader = { 
     headerStyle: {
-        backgroundColor: theme.color.green
+        backgroundColor: theme.color.myAppColor
     },
     headerTintColor: 'white',
     headerTitleStyle:{ fontWeight: '400' },
@@ -17,7 +17,7 @@ const primaryHeader = {
 
 const modelHeader = {
     headerBackTitle: null,
-    headerTintColor: theme.color.green,
+    headerTintColor: theme.color.myAppColor,
     headerStyle: {
         backgroundColor: theme.color.white,
     },

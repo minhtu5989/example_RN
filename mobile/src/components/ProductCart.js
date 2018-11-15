@@ -102,18 +102,18 @@ class ProductCard extends Component {
             <Box
               circle={25}
               style={{
-                borderColor: theme.color.green,
+                borderColor: theme.color.myAppColor,
                 borderWidth: 1,
               }}
               center
-              bg={product.cartQty > 0 ? 'green' : 'white'}
+              bg={product.cartQty > 0 ? 'myAppColor' : 'white'}
             >
               {product.cartQty > 0 ? (
                 <Text color="white" size="sm">
                   {product.cartQty}
                 </Text>
               ) : (
-                <Feather name="plus" size={15} color={theme.color.green} />
+                <Feather name="plus" size={15} color={theme.color.myAppColor} />
               )}
             </Box>
           </TouchableOpacity>

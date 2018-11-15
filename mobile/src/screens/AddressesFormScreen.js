@@ -64,7 +64,7 @@ class AddressesFormScreen extends Component {
         {
             return (
                 <Box f={1} center bg='white'>
-                    <ActivityIndicator color={theme.color.green} size='large'/>
+                    <ActivityIndicator color={theme.color.myAppColor} size='large'/>
                 </Box>
             )
         }
@@ -231,7 +231,7 @@ class AddressesFormScreen extends Component {
 
 const styles = StyleSheet.create({
     _labelStyle:{
-        color: theme.color.green,
+        color: theme.color.myAppColor,
         padding: 5,
 
     },

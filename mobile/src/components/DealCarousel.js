@@ -3,6 +3,7 @@ import Swiper from 'react-native-swiper';
 import { Box, Text } from "react-native-design-utility";
 import { Dimensions, Image, TouchableOpacity } from 'react-native';
 import { ViewPagerAndroid } from 'react-native-gesture-handler';
+import { theme } from '../constants/theme';
 
 const {width, height} = Dimensions.get('screen');
 
@@ -29,7 +30,7 @@ const SLIDER = [
 class DealCarousel extends PureComponent {
     render () {
         return (
-            <Swiper center autoplay={true} autoplayTimeout={3} activeDotColor='green' dotColor='white' >
+            <Swiper center autoplay={true} autoplayTimeout={3} activeDotColor={theme.color.myAppColor} dotColor='white' >
                 { SLIDER.map((slider) => {
                     return(
                     <TouchableOpacity

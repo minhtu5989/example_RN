@@ -15,7 +15,7 @@ import { NavigationService } from '../api/NavigationService';
 class AutoCompleteAddressScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: 'Search Address',
-    headerLeft: <EvilIcons style={{marginLeft: 8,}} color={theme.color.green} size={25} name="close" onPress={() => navigation.goBack(null)} />,
+    headerLeft: <EvilIcons style={{marginLeft: 8,}} color={theme.color.myAppColor} size={25} name="close" onPress={() => navigation.goBack(null)} />,
   });
 
   render() {
@@ -61,7 +61,7 @@ class AutoCompleteAddressScreen extends Component {
               height: 50
             },
             predefinedPlacesDescription: {
-              color: theme.color.green,
+              color: theme.color.myAppColor,
             },
           }}
           currentLocation={true} // Will add a 'Current location' button at the top of the predefined places list
@@ -148,7 +148,7 @@ export default AutoCompleteAddressScreen;
 //                                 <Box bg='greyLighter' radius={6} h='90%' w='90%' p={8}>
 //                                     <TextInput 
 //                                         placeholder='Search Address'
-//                                         selectionColor={theme.color.green}
+//                                         selectionColor={theme.color.myAppColor}
 //                                         autoFocus
 //                                         onChangeText={handleTextChange}
 //                                         value={inputValue}
@@ -160,7 +160,7 @@ export default AutoCompleteAddressScreen;
 //                                 ?
 //                                 (
 //                                     <Box h='100%' w='100%' center>
-//                                         <ActivityIndicator color={theme.color.green} size='large'/>
+//                                         <ActivityIndicator color={theme.color.myAppColor} size='large'/>
 //                                     </Box>
 //                                 )
 //                                 :

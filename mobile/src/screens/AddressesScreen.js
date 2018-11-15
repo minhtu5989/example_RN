@@ -7,6 +7,7 @@ import { observable, action, when, reaction } from 'mobx'
 
 import { theme } from '../constants/theme';
 import { MyButton } from '../commons/MyButton';
+import AddressListItem from '../components/AddressListItem';
 
 const {width} = Dimensions.get('window')
 
@@ -40,7 +41,7 @@ class AddressesScreen extends Component {
         ?
         <Box mr='xs'>
             <MyButton onPress={navigation.getParam('handleAddressesPress')} >
-                <Text color={theme.color.green}>Add</Text>
+                <Text color={theme.color.myAppColor}>Add</Text>
             </MyButton>
         </Box>
         : 
@@ -108,11 +109,11 @@ class AddressesScreen extends Component {
 
 
     render() {
-        if(this.isLoading)
+        if(this.isLoading && this.props.authStore.info.addressesIsEmpty)
         {
             return (
                 <Box f={1} center bg='white'>
-                    <ActivityIndicator color={theme.color.green} size='large' />
+                    <ActivityIndicator color={theme.color.myAppColor} size='large' />
                 </Box>
             )
         }
@@ -122,16 +123,13 @@ class AddressesScreen extends Component {
         }
 
         return ( 
-            <Box f={1} center bg='white'>
+            <Box f={1} bg='white'>
                 <StatusBar barStyle='dark-content'/>
                 <ScrollView>
                     {this.props.authStore.info.addresses.map(address => (
-                        <Box key={address._id}>
-                                <Text>{address.street}, {address.town} {address.city}, {address.province}, Việt Nam</Text>
-                        </Box>
+                        <AddressListItem key={address._id} address={address} />
                     ))}
                 </ScrollView>
-
             </Box>            
         );
     }

@@ -51,16 +51,16 @@ class QtyHover extends Component {
         <Box dir="row" align="center" justify="between" p="xs">
           {qty > 1 ? (
             <TouchableOpacity onPress={this.props.handleDec}>
-              <Feather name="minus" color={theme.color.green} size={20} />
+              <Feather name="minus" color={theme.color.myAppColor} size={20} />
             </TouchableOpacity>
           ) : (
             <TouchableOpacity onPress={this.props.handleRemove}>
-              <Feather name="trash-2" color={theme.color.green} size={20} />
+              <Feather name="trash-2" color={theme.color.myAppColor} size={20} />
             </TouchableOpacity>
           )}
           <Text>{qty}</Text>
           <TouchableOpacity onPress={this.props.handleInc}>
-            <Feather name="plus" color={theme.color.green} size={20} />
+            <Feather name="plus" color={theme.color.myAppColor} size={20} />
           </TouchableOpacity>
         </Box>
       </BoxAnimated>

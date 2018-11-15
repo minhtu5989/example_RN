@@ -27,7 +27,7 @@ class CartItem extends Component {
                     <Box>
                         <TouchableOpacity onPress={product.removeFromCart}>
                             <Box dir='row' align='center'>
-                                <Feather size={theme.text.size.lg} name='trash-2' color={theme.color.green}/>
+                                <Feather size={theme.text.size.lg} name='trash-2' color={theme.color.myAppColor}/>
                                 <Text size='md' color='greyDark' ml={5}>Remove</Text>
                             </Box>
                         </TouchableOpacity>
@@ -35,7 +35,7 @@ class CartItem extends Component {
                 </Box>
                 <Box center mr='md'>
                     <TouchableOpacity >
-                        <Box h={35} w={45} center radius='sm' style={{borderWidth:1, borderColor:theme.color.greenLighter}}>
+                        <Box h={35} w={45} center radius='sm' style={{borderWidth:1, borderColor:theme.color.myAppColorLighter}}>
                             <Text>{product.cartQty}</Text>
                         </Box>
                     </TouchableOpacity>

@@ -14,7 +14,7 @@ class Input extends PureComponent {
         {...rest}
         multiline
         style={styles.input}
-        selectionColor={theme.color.green}
+        selectionColor={theme.color.myAppColor}
       />
     );
 

@@ -11,7 +11,7 @@ const CloseBtn = ({ color, size, ...props }) => (
 );
 
 CloseBtn.defaultProps = {
-  color: theme.color.green,
+  color: theme.color.myAppColor,
   size: 18,
 };
 
