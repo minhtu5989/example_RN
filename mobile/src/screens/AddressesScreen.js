@@ -16,6 +16,22 @@ const {width} = Dimensions.get('window')
 
 class AddressesScreen extends Component {
 
+    static navigationOptions = ({navigation}) => {
+        const headerRight = navigation.getParam('showAddBtn') 
+        ?
+        <Box mr='xs'>
+            <MyButton onPress={navigation.getParam('handleAddressesPress')} >
+                <Text color={theme.color.myAppColor}>Add</Text>
+            </MyButton>
+        </Box>
+        : 
+        null
+        return {
+            title: 'Address',
+            headerRight 
+        }
+        
+    }
     constructor(props){
         super(props);
 
@@ -36,23 +52,6 @@ class AddressesScreen extends Component {
         // )
     }
 
-    static navigationOptions = ({navigation}) => {
-        const headerRight = navigation.getParam('showAddBtn') 
-        ?
-        <Box mr='xs'>
-            <MyButton onPress={navigation.getParam('handleAddressesPress')} >
-                <Text color={theme.color.myAppColor}>Add</Text>
-            </MyButton>
-        </Box>
-        : 
-        null
-        return {
-            title: 'Address',
-            headerRight 
-        }
-        
-    }
-
     @observable isLoading = false
 
     componentDidMount() {
@@ -64,8 +63,6 @@ class AddressesScreen extends Component {
         try {
             this.isLoading = true
             await this.props.authStore.info.getAddresses()
-
-
             this.isLoading = false
         } catch (error) {
             throw error

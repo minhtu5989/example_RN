@@ -79,8 +79,8 @@ const AddressesFormStack = createStackNavigator(
         EditAddress: {
             getScreen: () => require('./EditAddressScreen').default,
         },
-        AddressesForm: {
-            getScreen: () => require('./AddressesFormScreen').default,
+        CreateAddress: {
+            getScreen: () => require('./CreateAddressScreen').default,
         },
     },
     { 

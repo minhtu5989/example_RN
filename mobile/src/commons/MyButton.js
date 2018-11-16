@@ -23,7 +23,7 @@ export class MyButton extends Component {
                 return { backgroundColor: 'transparent', borderWidth: 0 }
 
             default:
-                return { borderWidth: 0 };
+                return { backgroundColor: 'transparent', borderWidth: 0 };
         }
     }
     
@@ -38,7 +38,7 @@ export class MyButton extends Component {
                     style={[ {height:'100%', width:'100%', alignSelf:'center', 
                             borderWidth: 1, borderRadius: 6,} ,additionalStyle, style]} 
                 >
-                    <Box center f={1} center>
+                    <Box center f={1}>
                         {children}
                     </Box>
                 </TouchableOpacity>

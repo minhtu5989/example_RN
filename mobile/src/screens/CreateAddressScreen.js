@@ -1,29 +1,31 @@
 import React, { Component } from 'react'
+import { Dimensions, StatusBar, StyleSheet, TouchableOpacity } from 'react-native';
 import { Box, Text } from 'react-native-design-utility'
 import { theme } from '../constants/theme';
-import { action, } from 'mobx';
-
-import { MyButton } from '../commons/MyButton';
-import { EvilIcons } from '@expo/vector-icons';
-import AddressesForm from '../components/AddressesForm';
 import { inject } from 'mobx-react/native';
 
- 
+import { MyButton } from '../commons/MyButton';
+import { CloseBtn } from "../commons/CloseBtn";
+import { EvilIcons, MaterialIcons } from '@expo/vector-icons';
+import AddressesForm from '../components/AddressesForm';
+import { action, } from 'mobx';
+
+// import { inject, observer } from 'mobx-react/native';
+
 @inject('authStore')
 
-class EditAddressScreen extends Component {
+class CreateAddressScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {  };
     }
 
     static navigationOptions = ({ navigation }) => ({
-        title: 'Edit Address',
+        title: 'Create Address',
         headerLeft: (
             <Box ml='xs'>
                 <MyButton 
                     onPress={() => navigation.dismiss()} 
-                    // style={{marginLeft: }}   
                 >
                     <EvilIcons color={theme.color.myAppColor} size={24} name="close" />
                 </MyButton>
@@ -33,10 +35,9 @@ class EditAddressScreen extends Component {
     });
 
     @action.bound
-    async save(data) {
+    async save(address) {
         try {
-            const address = await this.props.navigation.getParam('address')
-            await address.updateAddress(data)
+            await this.props.authStore.info.createAddress(address)   
             this.props.navigation.dismiss()
         } catch (error) {
             console.log('error', error);
@@ -48,7 +49,6 @@ class EditAddressScreen extends Component {
             <Box f={1} bg='white'>
                 <AddressesForm 
                     navigation={this.props.navigation} 
-                    editMode
                     address={this.props.navigation.getParam('address')}
                     save={this.save}
                 />
@@ -57,4 +57,4 @@ class EditAddressScreen extends Component {
     }
 }
 
-export default EditAddressScreen;
+export default CreateAddressScreen;

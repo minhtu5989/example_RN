@@ -10,25 +10,25 @@ import { NavigationService } from '../api/NavigationService';
 
 class AddressListItem extends Component {
     handlePress = () => {
-        NavigationService.navigate('EditAddress')
+        NavigationService.navigate('EditAddress', { address: this.props.address })
     }
 
     render() {
         const {address} = this.props
         return (
-            <MyButton onPress={this.handlePress}>
-                <Box h={50} w={'100%'} px='sm' f={1}
-                    style={{
-                        justifyContent: 'center',
-                        borderBottomWidth: StyleSheet.hairlineWidth, 
-                        borderBottomColor: theme.color.grey
-                    }}
-                >
-                    <Text color={theme.color.myAppColor}>
-                        {address.street}, {address.town}, {address.city}, {address.province}, Việt Nam
-                    </Text>
-                </Box>
-            </MyButton>
+            <Box h={80} px='sm' f={1}
+                style={{
+                    justifyContent: 'center',
+                    borderBottomWidth: StyleSheet.hairlineWidth, 
+                    borderBottomColor: theme.color.grey,
+                }}
+            >
+                <MyButton onPress={this.handlePress} style={{alignItems: 'flex-start'}}>
+                        <Text color={theme.color.black} size='sm' >
+                            {address.street}, {address.town}, {address.city}, {address.province}, Việt Nam
+                        </Text>
+                </MyButton>
+            </Box>
         );
     }
 }

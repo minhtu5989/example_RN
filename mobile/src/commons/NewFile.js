@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Dimensions, StatusBar, StyleSheet } from 'react-native';
+import { Dimensions, StatusBar, StyleSheet, TouchableOpacity } from 'react-native';
 import { Box, Text } from 'react-native-design-utility'
 import { theme } from '../constants/theme';
 

@@ -4,62 +4,62 @@ import { Box, Text } from 'react-native-design-utility'
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import get from 'lodash.get';
 
 import { Sae } from 'react-native-textinput-effects';
 
 import { observer, inject } from 'mobx-react/native';
-import { observable, action } from 'mobx';
+import { observable, action, computed } from 'mobx';
 
 import { theme } from '../constants/theme';
 import { MyButton } from "../commons/MyButton";
+
 @inject('authStore')
 @observer
 
-class AddressesFormScreen extends Component {
-    static navigationOptions = ({ navigation }) => ({
-        title: 'Address',
-    });
-    
+class AddressesForm extends Component {
 
-    @observable street=''
+    @observable 
+    country='Việt Nam'
 
-    @observable town=''
+    @observable 
+    address= get(this.props, 'address', null)
 
-    @observable city=''
+    @observable 
+    isSaving= false
 
-    @observable province=''
+    @computed 
+    get street(){
+        return get(this.address, 'street', '')
+    }
 
-    @observable country='Việt Nam'
+    @computed 
+    get town(){
+        return get(this.address, 'town', '')
+    }
 
-    @observable address=''
+    @computed 
+    get city(){
+        return get(this.address, 'city', '')
+    }
 
-    @observable isSaving= false
-
-    @action.bound
-    searchAddress = () => {
-        const address = this.props.navigation.state.params.address;
-
-        this.street = address.street
-        this.town = address.town
-        this.city = address.city
-        this.province = address.province
-        this.address = address
-        
+    @computed 
+    get province(){
+        return get(this.address, 'province', '')
     }
 
     @action.bound
     async saveAddress() {
+        this.isSaving = true
         try {
-            await this.props.authStore.info.createAddress(this.address)   
-            this.props.navigation.goBack(null)
-            this.props.navigation.goBack(null)
-            return this.isSaving = true
+            await this.props.save(this.address)
         } catch (error) {
             console.log('error', error);
         }
     }
 
     render() {
+        const { editMode } = this.props
         if(this.isSaving)
         {
             return (
@@ -71,7 +71,6 @@ class AddressesFormScreen extends Component {
         return (
             <Box f={1} bg='white' p='sm'>
                 <StatusBar barStyle='dark-content'/>
-                {this.searchAddress()}
                 <ScrollView>
                     <Box mb='sm'>
                         <Sae
@@ -214,16 +213,19 @@ class AddressesFormScreen extends Component {
                                 inputStyle={styles._inputStyle}
                             />                     
                     </Box>
+                </ScrollView>
+                <Box  mb='sm' justify='end'>
                     <MyButton 
                         type='success'
                         style={{height: 50,}}
                         onPress={this.saveAddress}
                     >
                         <Text bold color="white">
-                            Save
+                            {editMode ? 'Edit' : 'Save'}
                         </Text>
                     </MyButton>
-                </ScrollView>
+                </Box>
+
             </Box>
         );
     }
@@ -242,10 +244,11 @@ const styles = StyleSheet.create({
     },
     _inputStyle:{
         paddingHorizontal: 10,
+        fontSize: 14,
         color: 'black',
     }
 })
 
-export default AddressesFormScreen;
+export default AddressesForm;
 
  

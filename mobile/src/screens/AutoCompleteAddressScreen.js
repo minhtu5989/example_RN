@@ -32,7 +32,7 @@ class AutoCompleteAddressScreen extends Component {
           renderDescription={row => row.description} // custom description render
           onPress={(data, details = null) => {
             let address = buildAddress(details)
-            NavigationService.navigate('AddressesForm',{ address: address }) 
+            NavigationService.navigate('CreateAddress', { address: address }) 
             // console.log('data', data);
             // console.log('details',details);
             // console.log('address', address);
