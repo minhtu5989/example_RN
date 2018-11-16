@@ -11,6 +11,6 @@ const routes = Router();
 
 routes.post('/', customerAuth, create)
 routes.get('/', customerAuth, userAddresses)
-routes.put('/:id', customerAuth, update)
+routes.put('/:_id', customerAuth, update)
 
 export default routes;

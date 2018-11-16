@@ -26,9 +26,9 @@ export const buildAddress = (address) =>
       acc.town = value;
     }
 
-    if (current.types.includes('country')) {
-      acc.country = value;
-    }
+    // if (current.types.includes('country')) {
+    //   acc.country = value;
+    // }
 
     if (current.types.includes('locality')) {
       acc.city = value;

@@ -114,7 +114,7 @@ const HomeStack = createStackNavigator(
 //tắt thanh tab Bar ở dưới trong màn hình ShoppingCart
 HomeStack.navigationOptions = ({navigation}) => {
     let tabBarVisible = true
-    console.log('navigation', navigation);
+    // console.log('navigation', navigation);
     
     if(NavigationService.getCurrentRouteName(navigation.state) === 'ShoppingCart')
          { tabBarVisible = false }

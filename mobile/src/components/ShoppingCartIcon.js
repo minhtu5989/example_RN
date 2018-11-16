@@ -15,8 +15,7 @@ class ShoppingCartIcon extends Component {
   };
 
   render() {
-    const { shoppingCartStore } = this.props;
-    const { totalProducts } = shoppingCartStore;
+    const { totalProducts } = this.props.shoppingCartStore;
     return (
       <TouchableOpacity onPress={this.handlePress} style={styles.btn} >
         <Box mr={30} h='100%' w='100%' center>

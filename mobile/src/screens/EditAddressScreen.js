@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Box, Text } from 'react-native-design-utility'
 import { theme } from '../constants/theme';
-import { action, } from 'mobx';
 
 import { MyButton } from '../commons/MyButton';
 import { EvilIcons } from '@expo/vector-icons';
@@ -23,7 +22,6 @@ class EditAddressScreen extends Component {
             <Box ml='xs'>
                 <MyButton 
                     onPress={() => navigation.dismiss()} 
-                    // style={{marginLeft: }}   
                 >
                     <EvilIcons color={theme.color.myAppColor} size={24} name="close" />
                 </MyButton>
@@ -32,17 +30,6 @@ class EditAddressScreen extends Component {
         )
     });
 
-    // @action.bound
-    // async save(data) {
-    //     try {
-    //         const address = await this.props.navigation.getParam('address')
-    //         await address.updateAddress(data)
-    //         this.props.navigation.dismiss()
-    //     } catch (error) {
-    //         console.log('error', error);
-    //     }
-    // }
-
     render() {
         return (
             <Box f={1} bg='white'>
@@ -50,7 +37,6 @@ class EditAddressScreen extends Component {
                     navigation={this.props.navigation} 
                     editMode
                     address={this.props.navigation.getParam('address')}
-                    // save={this.save}
                 />
             </Box>
         );

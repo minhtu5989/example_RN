@@ -10,7 +10,10 @@ import { observer } from 'mobx-react/native';
 @observer
 class AddressListItem extends Component {
     handlePress = () => {
-        NavigationService.navigate('AutoCompleteAddress',{ goToEdit: true })
+        NavigationService.navigate('AutoCompleteAddress',{ 
+            goToEdit: true,
+            _id: this.props.address._id
+        })
     }
 
     render() {

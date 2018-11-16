@@ -29,6 +29,9 @@ export const UserAddressModel = types
         return getParent(self, 2)       
         // value 1 trả về Array của User (model), value 2 trả về 1 phần tử (model) trong Array
     },
+    get authStore(){
+        return getParent(self)
+    }
 }))
 .actions(self => ({
     update(newData){
@@ -45,7 +48,7 @@ export const UserAddressModel = types
         try {
             const res = yield baseApi
                 .url(`/addresses/${self._id}`)
-                // .auth(`Bearer ${self.user.authStore.authToken}`) 
+                .auth(`Bearer ${self.authStore.authToken}`) 
                 /*
                     Mobx-state-tree là kiểu cây nên phải đi từ dưới lên
                     getParent của UserAddressesModel là phẩn tử addresses[] trong CurrentUserModel 

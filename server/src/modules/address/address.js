@@ -25,7 +25,7 @@ export const getUserAddress = async (userId) => {
     }
 }
 
-export const updateAddress = async (addressId, newAddressValues, userId) => {
+export const updateAddress = async (addressId, newAddressValues) => {
     try {
       const address = await Address.findById(addressId);
       console.log('address received', address);
@@ -35,9 +35,9 @@ export const updateAddress = async (addressId, newAddressValues, userId) => {
         throw new Error('Address not exist');
       }
   
-      if (address.user.toString() !== userId.toString()) {
-        throw new Error('Unauthorized');
-      }
+      // if (address.user.toString() !== userId.toString()) {
+      //   throw new Error('Unauthorized');
+      // }
   
       /*
         Object.keys trả về một mảng có value từng phần tử là String

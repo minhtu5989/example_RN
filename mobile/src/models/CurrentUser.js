@@ -9,7 +9,7 @@ export const CurrentUserModel = types
     firstName: types.string,
     lastName: types.string,
     avatarUrl: types.maybe(types.string),
-    addresses: types.optional(types.array(UserAddressModel), [] )
+    addresses: types.optional(types.array(UserAddressModel), [] ),
   })
   .views(self => ({
     get addressesIsEmpty(){
@@ -20,6 +20,45 @@ export const CurrentUserModel = types
     }
   }))
   .actions(self => ({
+    update(newData){
+      console.log('newData', newData);
+      applySnapshot(self, newData)
+      // so sánh address cũ (self) và res.address (newData) và lưu khác nhau
+  },
+  /*
+      updateAddress không nằm chung với createAddress ở CurrentAddress 
+      vì xuống nhánh cây dưới sẽ lấy đc _id để gửi về Server
+      còn createAddress thì khởi tạo _id nên ko CẦN phải xuống nhánh cây dưới
+  */
+  updateAddress: flow(function*(data){
+      try {
+          const res = yield baseApi
+              .url(`/addresses/${data._id}`)
+              .auth(`Bearer ${self.authStore.authToken}`) 
+              /*
+                  Mobx-state-tree là kiểu cây nên phải đi từ dưới lên
+                  getParent của UserAddressesModel là phẩn tử addresses[] trong CurrentUserModel 
+                  và getParent của CurrentUserModel là phần tử info trong AuthStore
+                  cho nên self phải đi qua CurrentUserModel rồi qua AuthStore mới lấy đc authToken
+              */ 
+              .put(data)
+              .json();
+  
+          console.log('res', res);
+          
+          if(res.address)
+              self.update(res.address)
+  
+      } catch (error) {
+          throw error;
+      }
+  }),
+
+
+
+
+
+
     createAddress: flow(function*(data){
       try {
         const res = yield baseApi

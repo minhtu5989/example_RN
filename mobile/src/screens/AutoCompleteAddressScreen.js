@@ -19,7 +19,6 @@ class AutoCompleteAddressScreen extends Component {
   });
 
   render() {
-    const goToEdit = this.props.navigation.getParam('goToEdit')
     return (
       <Box f={1} bg='white'>
         <GooglePlacesAutocomplete
@@ -31,16 +30,20 @@ class AutoCompleteAddressScreen extends Component {
           listViewDisplayed="auto"
           fetchDetails={true}
           renderDescription={row => row.description} // custom description render
-          onPress={(data, details = null) => {
+          onPress={ async(data, details = null) => {
             let address = buildAddress(details)
-            if(goToEdit){
-              return NavigationService.navigate('EditAddress', { address: address }) 
-            }
-              
-            return NavigationService.navigate('CreateAddress', { address: address }) 
             // console.log('data', data);
             // console.log('details',details);
-            // console.log('address', address);
+            const _id = this.props.navigation.getParam('_id')
+            const goToEdit = this.props.navigation.getParam('goToEdit')
+            if(goToEdit && _id){
+              address._id = _id
+              NavigationService.navigate('EditAddress', { address: address }) 
+              return console.log('auto address',address);
+            }
+            NavigationService.navigate('CreateAddress', { address: address }) 
+            return console.log('auto address',address);
+            
           }}
           getDefaultValue={() => {
             return ''; // text input default value

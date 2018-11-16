@@ -9,7 +9,7 @@ const {width, height} = Dimensions.get('window')
 
 class CartItem extends Component {
     render() {
-        const { product } =this.props
+        const { product } = this.props
         return (
             <Box align='center' p='xs' m="3xs" bg='white' dir='row' h={150} w={width} >
                 <Box f={0.3} >

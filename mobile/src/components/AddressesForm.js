@@ -14,8 +14,7 @@ import { observable, action, computed } from 'mobx';
 import { theme } from '../constants/theme';
 import { MyButton } from "../commons/MyButton";
 
-// @inject('authStore')
-@inject('addressStore')
+@inject('authStore')
 
 @observer
 
@@ -53,15 +52,16 @@ class AddressesForm extends Component {
     @action.bound
     async saveAddress() {
         try {
-            const { editMode } = this.props
-            if(editMode){
-                await this.props.addressStore.info.updateAddress(this.address)
-                this.props.navigation.dismiss()
-            }
-                
-            // await this.props.save(this.address)
+            const { editMode, authStore, navigation } = this.props
+            this.isSaving = true
 
-            return this.isSaving = true
+            if(editMode){
+                await authStore.info.updateAddress(this.address)
+                return navigation.dismiss()
+            }
+
+            await authStore.info.createAddress(this.address)   
+            return navigation.dismiss()
         } catch (error) {
             console.log('error', error);
         }
