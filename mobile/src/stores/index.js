@@ -2,6 +2,9 @@ import { AuthStore } from './Auth';
 import { ProductsStore } from './Products';
 import { ShoppingCartStore } from './ShoppingCart';
 import { ProductModel } from '../models/Product';
+import { Address } from './Address';
+
+const addressStore = Address.create();
 
 const authStore = AuthStore.create();
 
@@ -26,10 +29,12 @@ const productsStore = ProductsStore.create({
   ],
 });
 
+
 export const store = {
   authStore,
   shoppingCartStore,
   productsStore,
+  addressStore
 };
 
 window.MobxStore = store;

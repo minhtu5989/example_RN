@@ -43,3 +43,22 @@ export const userAddresses = async (req, res) => {
     
   }
 }
+
+export const update = async (req, res) => {
+  try {
+    if (!req.body.data) {
+      return res.sendStatus(400);
+    }
+
+    const address = await AddressServices.updateAddress(
+      req.params.id,
+      req.body.data,
+      req.user._id,
+    );
+
+    res.status(200).json({ address });
+  } catch (error) {
+    console.log('error', error);
+    throw error;
+  }
+}

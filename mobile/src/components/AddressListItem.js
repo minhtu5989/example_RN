@@ -6,11 +6,11 @@ import { theme } from '../constants/theme';
 import { MyButton } from '../commons/MyButton';
 import { NavigationService } from '../api/NavigationService';
 
-// import { inject, observer } from 'mobx-react/native';
-
+import { observer } from 'mobx-react/native';
+@observer
 class AddressListItem extends Component {
     handlePress = () => {
-        NavigationService.navigate('EditAddress', { address: this.props.address })
+        NavigationService.navigate('AutoCompleteAddress',{ goToEdit: true })
     }
 
     render() {

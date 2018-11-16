@@ -55,5 +55,5 @@ export const CurrentUserModel = types
       } catch (error) {
         throw error;
       }
-    })
+    }),
   }))

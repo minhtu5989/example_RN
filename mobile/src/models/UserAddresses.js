@@ -28,9 +28,14 @@ export const UserAddressModel = types
     get user(){
         return getParent(self, 2)       
         // value 1 trả về Array của User (model), value 2 trả về 1 phần tử (model) trong Array
-    }
+    },
 }))
 .actions(self => ({
+    update(newData){
+        console.log('newData', newData);
+        applySnapshot(self, newData)
+        // so sánh address cũ (self) và res.address (newData) và lưu khác nhau
+    },
     /*
         updateAddress không nằm chung với createAddress ở CurrentAddress 
         vì xuống nhánh cây dưới sẽ lấy đc _id để gửi về Server
@@ -40,7 +45,7 @@ export const UserAddressModel = types
         try {
             const res = yield baseApi
                 .url(`/addresses/${self._id}`)
-                .auth(`Bearer ${self.user.authStore.authToken}`) 
+                // .auth(`Bearer ${self.user.authStore.authToken}`) 
                 /*
                     Mobx-state-tree là kiểu cây nên phải đi từ dưới lên
                     getParent của UserAddressesModel là phẩn tử addresses[] trong CurrentUserModel 
@@ -49,6 +54,9 @@ export const UserAddressModel = types
                 */ 
                 .put(data)
                 .json();
+
+            console.log('res', res);
+            
             if(res.address)
                 self.update(res.address)
 
@@ -56,9 +64,4 @@ export const UserAddressModel = types
             throw error;
         }
     }),
-    update(newData){
-        console.log('newData', newData);
-        applySnapshot(self, newData)
-        // so sánh address cũ (self) và res.address (newData) và lưu khác nhau
-    }
 }))

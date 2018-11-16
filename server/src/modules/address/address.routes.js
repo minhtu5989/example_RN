@@ -2,7 +2,8 @@ import { Router } from 'express';
 
 import { 
     create, 
-    userAddresses 
+    userAddresses,
+    update
 } from './address.controller';
 import { customerAuth } from '../customer';
 
@@ -10,5 +11,6 @@ const routes = Router();
 
 routes.post('/', customerAuth, create)
 routes.get('/', customerAuth, userAddresses)
+routes.put('/:id', customerAuth, update)
 
 export default routes;

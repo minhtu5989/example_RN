@@ -34,15 +34,15 @@ class CreateAddressScreen extends Component {
         )
     });
 
-    @action.bound
-    async save(address) {
-        try {
-            await this.props.authStore.info.createAddress(address)   
-            this.props.navigation.dismiss()
-        } catch (error) {
-            console.log('error', error);
-        }
-    }
+    // @action.bound
+    // async save(address) {
+    //     try {
+    //         await this.props.authStore.info.createAddress(address)   
+    //         this.props.navigation.dismiss()
+    //     } catch (error) {
+    //         console.log('error', error);
+    //     }
+    // }
 
     render() {
         return (
@@ -50,7 +50,7 @@ class CreateAddressScreen extends Component {
                 <AddressesForm 
                     navigation={this.props.navigation} 
                     address={this.props.navigation.getParam('address')}
-                    save={this.save}
+                    // save={this.save}
                 />
             </Box>
         );

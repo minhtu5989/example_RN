@@ -19,6 +19,7 @@ class AutoCompleteAddressScreen extends Component {
   });
 
   render() {
+    const goToEdit = this.props.navigation.getParam('goToEdit')
     return (
       <Box f={1} bg='white'>
         <GooglePlacesAutocomplete
@@ -32,7 +33,11 @@ class AutoCompleteAddressScreen extends Component {
           renderDescription={row => row.description} // custom description render
           onPress={(data, details = null) => {
             let address = buildAddress(details)
-            NavigationService.navigate('CreateAddress', { address: address }) 
+            if(goToEdit){
+              return NavigationService.navigate('EditAddress', { address: address }) 
+            }
+              
+            return NavigationService.navigate('CreateAddress', { address: address }) 
             // console.log('data', data);
             // console.log('details',details);
             // console.log('address', address);

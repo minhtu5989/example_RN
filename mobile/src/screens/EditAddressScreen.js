@@ -32,16 +32,16 @@ class EditAddressScreen extends Component {
         )
     });
 
-    @action.bound
-    async save(data) {
-        try {
-            const address = await this.props.navigation.getParam('address')
-            await address.updateAddress(data)
-            this.props.navigation.dismiss()
-        } catch (error) {
-            console.log('error', error);
-        }
-    }
+    // @action.bound
+    // async save(data) {
+    //     try {
+    //         const address = await this.props.navigation.getParam('address')
+    //         await address.updateAddress(data)
+    //         this.props.navigation.dismiss()
+    //     } catch (error) {
+    //         console.log('error', error);
+    //     }
+    // }
 
     render() {
         return (
@@ -50,7 +50,7 @@ class EditAddressScreen extends Component {
                     navigation={this.props.navigation} 
                     editMode
                     address={this.props.navigation.getParam('address')}
-                    save={this.save}
+                    // save={this.save}
                 />
             </Box>
         );

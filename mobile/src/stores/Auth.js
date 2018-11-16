@@ -9,7 +9,7 @@ const TOKEN_KEY = '@DanielLuong/token'
 export const AuthStore = types
 .model(`AuthStore`, {
   authToken: types.maybe(types.string),
-  info: types.maybe(CurrentUserModel)
+  info: types.maybe(CurrentUserModel),
 })
 .actions(self => ({
 
