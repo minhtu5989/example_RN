@@ -9,6 +9,8 @@ export const createAddress = async (data) => {
                 coords: [data.geo.lng, data.geo.lat],
             },
         })
+        console.log('Create Address successful !!');
+        
         return address;
     } catch (error) {
         throw error
@@ -18,7 +20,6 @@ export const createAddress = async (data) => {
 export const getUserAddress = async (userId) => {
     try {
         const addresses = await Address.find({user: userId})
-        
         return addresses;
     } catch (error) {
         throw error
@@ -57,9 +58,8 @@ export const updateAddress = async (addressId, newAddressValues, userId) => {
           address[key] = newAddressValues[key];
         }
       });
-  
       await address.save();
-  console.log('update address', address);
+      console.log('Update address successful !!');
   
       return address;
     } catch (error) {

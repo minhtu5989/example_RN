@@ -30,20 +30,15 @@ class AutoCompleteAddressScreen extends Component {
           listViewDisplayed="auto"
           fetchDetails={true}
           renderDescription={row => row.description} // custom description render
-          onPress={ async(data, details = null) => {
+          onPress={ async(details = null) => {
             let address = buildAddress(details)
-            // console.log('data', data);
-            // console.log('details',details);
             const _id = this.props.navigation.getParam('_id')
             const goToEdit = this.props.navigation.getParam('goToEdit')
             if(goToEdit && _id){
               address._id = _id
-              NavigationService.navigate('EditAddress', { address }) 
-              return console.log('auto address',address);
+              return NavigationService.navigate('EditAddress', { address }) 
             }
-            NavigationService.navigate('CreateAddress', { address: address }) 
-            return console.log('auto address',address);
-            
+            return NavigationService.navigate('CreateAddress', { address }) 
           }}
           getDefaultValue={() => {
             return ''; // text input default value

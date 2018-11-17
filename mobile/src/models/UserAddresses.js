@@ -26,32 +26,25 @@ export const UserAddressModel = types
 }))
 .views(self => ({
     get parent(){
-        return getParent(self, 2)       
+        return getParent(self, 3)       
     },
 }))
 .actions(self => ({
-    exam(){
-        console.log('successful!!');
-    },
 
     update(newData){
-        console.log('newData', newData);
         applySnapshot(self, newData)
     },
     updateAddress: flow(function*(data){
         try {
-            console.log('token',self.parent.authStore.authToken);
-            
             const res = yield baseApi
                 .url(`/addresses/${self._id}`)
-                .auth(`Bearer ${self.parent.authStore.authToken}`) 
+                .auth(`Bearer ${self.parent.authToken}`) 
                 .put({ data })
                 .json();
     
-            console.log('res', res);
-            
-            if(res.address)
+            if(res.address){
                 self.update(res.address)
+            }
     
         } catch (error) {
             throw error;

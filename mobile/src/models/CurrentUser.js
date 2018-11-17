@@ -20,7 +20,7 @@ export const CurrentUserModel = types
     },
   }))
   .actions(self => ({
-    
+
     createAddress: flow(function*(data){
       try {
         const res = yield baseApi
@@ -29,11 +29,10 @@ export const CurrentUserModel = types
         .headers({ Authorization: `Bearer ${self.authStore.authToken}` })
         .post({ data })
         .json()
-        // console.log('res', res);
 
-          if (res.address) {
-            self.addresses.push(res.address);
-          }
+        if (res.address) {
+          self.addresses.push(res.address);
+        }
       } catch (error) {
         throw error;
       }
@@ -48,11 +47,9 @@ export const CurrentUserModel = types
         .get()
         .json()
 
-
-        if(Array.isArray(res.addresses))      //check boolean Array
-          {
+        if(Array.isArray(res.addresses)){      //check boolean Array
             return self.addresses = res.addresses
-          }
+        }
       } catch (error) {
         throw error;
       }

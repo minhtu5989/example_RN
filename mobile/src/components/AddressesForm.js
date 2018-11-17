@@ -55,25 +55,14 @@ class AddressesForm extends Component {
             this.isSaving = true
 
             if(editMode){
-            //    console.log(this.address);
-            //    console.log('exam',authStore.info.xxx);
-            //    authStore.info.tuluong(this.address)
-
-                const addresses = await authStore.info.addresses.toJSON()
-                addresses.forEach(el => {
-                    console.log('el',el);
-                    console.log('el._id',el._id);
-                    console.log('this.address._id',this.address._id);
-                    
-                    el._id = this.address._id
-                    return el
-                })    
-                console.log(`addresses[${el}]`,addresses[el]);
-                
-                // updateAddress(this.address)
+            const addresses = await authStore.info.addresses.toJSON()
+            addresses.forEach(el => {
+                if( el._id.toString() === this.address._id.toString() ){
+                     el.updateAddress(this.address)
+                }
+            })
                 return navigation.dismiss()
             }
-
             await authStore.info.createAddress(this.address)   
             return navigation.dismiss()
         } catch (error) {
