@@ -5,9 +5,9 @@ import { EvilIcons } from '@expo/vector-icons';
 import { inject, observer } from 'mobx-react/native'
 import { observable, action, when, reaction } from 'mobx'
 
-import { theme } from '../constants/theme';
-import { MyButton } from '../commons/MyButton';
-import AddressListItem from '../components/AddressListItem';
+import { theme } from '../../constants/theme';
+import { MyButton } from '../../commons/MyButton';
+import AddressListItem from '../../components/AddressListItem';
 
 const {width} = Dimensions.get('window')
 

@@ -3,11 +3,11 @@ import { Box, Text } from 'react-native-design-utility'
 import { StatusBar, FlatList, TouchableOpacity, Dimensions } from 'react-native'
 import { inject, observer } from 'mobx-react/native';
 
-import CartItem from '../components/CartItem';
-import { theme } from '../constants/theme';
-import CloseBtn from '../commons/CloseBtn';
+import CartItem from '../../components/CartItem';
+import { theme } from '../../constants/theme';
+import CloseBtn from '../../commons/CloseBtn';
 
-const {width, height} = Dimensions.get('window')
+const {width} = Dimensions.get('window')
 
 
 @inject('shoppingCartStore')

@@ -3,7 +3,7 @@ import { Box, Text } from 'react-native-design-utility'
 import { ScrollView } from 'react-native';
 import { inject } from 'mobx-react/native';
 
-import ProductCart from '../components/ProductCart';
+import ProductCart from '../../components/ProductCart';
 
 @inject('productsStore')
 

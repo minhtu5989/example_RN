@@ -3,8 +3,8 @@ import { StatusBar, ScrollView } from 'react-native';
 import { Box, Text } from 'react-native-design-utility';
 import { EvilIcons, MaterialIcons } from '@expo/vector-icons';
 
-import { theme } from '../constants/theme';
-import ListColumn from '../commons/ListColumn';
+import { theme } from '../../constants/theme';
+import ListColumn from '../../commons/ListColumn';
 
 const baseIconStyle = {
   size: 25,

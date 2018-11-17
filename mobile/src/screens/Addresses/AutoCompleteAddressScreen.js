@@ -4,10 +4,10 @@ import {
   GooglePlacesAutocomplete,
 } from 'react-native-google-places-autocomplete'; // 1.2.12
 import { FontAwesome, EvilIcons } from '@expo/vector-icons';
-import { theme } from '../constants/theme';
+import { theme } from '../../constants/theme';
 
-import { buildAddress } from "../utils/buildAddress";
-import { NavigationService } from '../api/NavigationService';
+import { buildAddress } from "../../utils/buildAddress";
+import { NavigationService } from '../../api/NavigationService';
 
 // const homePlace = { description: 'Home', geometry: { location: { lat: 48.8152937, lng: 2.4597668 } }};
 // const workPlace = { description: 'Work', geometry: { location: { lat: 48.8496818, lng: 2.2940881 } }};

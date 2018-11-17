@@ -1,23 +1,23 @@
 import React, { Component } from 'react'
 import { Box, Text } from 'react-native-design-utility'
-import { theme } from '../constants/theme';
-
-import { MyButton } from '../commons/MyButton';
-import { EvilIcons } from '@expo/vector-icons';
-import AddressesForm from '../components/AddressesForm';
+import { theme } from '../../constants/theme';
 import { inject } from 'mobx-react/native';
 
- 
+import { MyButton } from '../../commons/MyButton';
+import { EvilIcons } from '@expo/vector-icons';
+import AddressesForm from '../../components/AddressesForm';
+
+
 @inject('authStore')
 
-class EditAddressScreen extends Component {
+class CreateAddressScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {  };
     }
 
     static navigationOptions = ({ navigation }) => ({
-        title: 'Edit Address',
+        title: 'Create Address',
         headerLeft: (
             <Box ml='xs'>
                 <MyButton 
@@ -35,7 +35,6 @@ class EditAddressScreen extends Component {
             <Box f={1} bg='white'>
                 <AddressesForm 
                     navigation={this.props.navigation} 
-                    editMode
                     address={this.props.navigation.getParam('address')}
                 />
             </Box>
@@ -43,4 +42,4 @@ class EditAddressScreen extends Component {
     }
 }
 
-export default EditAddressScreen;
+export default CreateAddressScreen;

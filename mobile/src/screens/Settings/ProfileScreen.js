@@ -9,10 +9,10 @@ import {
   Feather,
 } from '@expo/vector-icons';
 
-import CloseBtn from '../commons/CloseBtn';
-import ListColumn from '../commons/ListColumn';
-import { theme } from '../constants/theme';
-import { MyButton } from "../commons/MyButton";
+import CloseBtn from '../../commons/CloseBtn';
+import ListColumn from '../../commons/ListColumn';
+import { theme } from '../../constants/theme';
+import { MyButton } from "../../commons/MyButton";
 
 const baseIconStyle = {
   size: 25,

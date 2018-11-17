@@ -3,10 +3,10 @@ import { Box } from 'react-native-design-utility'
 import { Alert, Animated, Easing} from 'react-native';
 import { inject } from "mobx-react/native";
 
-import { OnBoadingLogo } from '../commons/OnBoadingLogo'
-import { LoginButton } from '../commons/LoginButton';
-import { FacebookApi} from '../api/Facebook'
-import { GoogleApi} from '../api/Google'
+import { OnBoadingLogo } from '../../commons/OnBoadingLogo'
+import { LoginButton } from '../../commons/LoginButton';
+import { FacebookApi} from '../../api/Facebook'
+import { GoogleApi} from '../../api/Google'
 
 const BoxAnimated = Animated.createAnimatedComponent(Box);
 @inject('authStore')

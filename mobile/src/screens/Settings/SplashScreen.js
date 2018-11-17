@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { inject } from "mobx-react/native";
 
-import { OnBoadingLogo } from '../commons/OnBoadingLogo'
+import { OnBoadingLogo } from '../../commons/OnBoadingLogo'
 
 @inject('authStore')
  

@@ -5,7 +5,6 @@ import { FontAwesome } from '@expo/vector-icons';
 
 import ShoppingCartIcon from '../components/ShoppingCartIcon';
 import { theme } from "../constants/theme";
-import { CloseBtn } from "../commons/CloseBtn";
 
 const primaryHeader = { 
     headerStyle: {
@@ -29,7 +28,7 @@ const modelHeader = {
 const AuthNavigator = createStackNavigator(
     {
         Login: {
-            getScreen: () => require('./LoginScreen').default,
+            getScreen: () => require('./Settings/LoginScreen').default,
         },
     },
     {
@@ -42,7 +41,7 @@ const AuthNavigator = createStackNavigator(
 const ShopppingCartStack = createStackNavigator(
     {
         ShoppingCart: {
-            getScreen: () => require('./ShoppingCartScreen').default,
+            getScreen: () => require('./Products/ShoppingCartScreen').default,
         },
     },
     {
@@ -55,13 +54,13 @@ const ShopppingCartStack = createStackNavigator(
 const ProfileStack = createStackNavigator(
     {
         Profile: {
-            getScreen: () => require('./ProfileScreen').default,
+            getScreen: () => require('./Settings/ProfileScreen').default,
         },
         Settings: {
-            getScreen: () => require('./SettingScreen').default,
+            getScreen: () => require('./Settings/SettingScreen').default,
         },
         Addresses: {
-            getScreen: () => require('./AddressesScreen').default,
+            getScreen: () => require('./Addresses/AddressesScreen').default,
         },
     },
     { 
@@ -74,13 +73,13 @@ const ProfileStack = createStackNavigator(
 const AddressesFormStack = createStackNavigator(
     {
         AutoCompleteAddress: {
-            getScreen: () => require('./AutoCompleteAddressScreen').default,
+            getScreen: () => require('./Addresses/AutoCompleteAddressScreen').default,
         },
         EditAddress: {
-            getScreen: () => require('./EditAddressScreen').default,
+            getScreen: () => require('./Addresses/EditAddressScreen').default,
         },
         CreateAddress: {
-            getScreen: () => require('./CreateAddressScreen').default,
+            getScreen: () => require('./Addresses/CreateAddressScreen').default,
         },
     },
     { 
@@ -97,7 +96,7 @@ const HomeStack = createStackNavigator(
             getScreen: () => require('./Tabs/HomeScreen').default,
         },
         Category: {
-            getScreen: () => require('./CategoryScreen').default,
+            getScreen: () => require('./Products/CategoryScreen').default,
         },
         ShoppingCart: {
             screen: ShopppingCartStack,
@@ -114,8 +113,6 @@ const HomeStack = createStackNavigator(
 //tắt thanh tab Bar ở dưới trong màn hình ShoppingCart
 HomeStack.navigationOptions = ({navigation}) => {
     let tabBarVisible = true
-    // console.log('navigation', navigation);
-    
     if(NavigationService.getCurrentRouteName(navigation.state) === 'ShoppingCart')
          { tabBarVisible = false }
     return { tabBarVisible }
@@ -193,7 +190,7 @@ const MainNavigator = createStackNavigator(
 const AppNavigator = createSwitchNavigator(
     {
         Splash: {
-            getScreen: () => require('./SplashScreen').default,
+            getScreen: () => require('./Settings/SplashScreen').default,
         },
         Auth: AuthNavigator,
         Main: MainNavigator,
