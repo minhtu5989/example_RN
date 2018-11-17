@@ -1,5 +1,5 @@
  import React, { Component } from 'react'
-import { Dimensions, StatusBar, ScrollView, StyleSheet, ActivityIndicator } from 'react-native';
+import { StatusBar, ScrollView, StyleSheet, ActivityIndicator } from 'react-native';
 import { Box, Text } from 'react-native-design-utility'
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -15,7 +15,6 @@ import { theme } from '../constants/theme';
 import { MyButton } from "../commons/MyButton";
 
 @inject('authStore')
-
 @observer
 
 class AddressesForm extends Component {
@@ -56,7 +55,22 @@ class AddressesForm extends Component {
             this.isSaving = true
 
             if(editMode){
-                await authStore.info.updateAddress(this.address)
+            //    console.log(this.address);
+            //    console.log('exam',authStore.info.xxx);
+            //    authStore.info.tuluong(this.address)
+
+                const addresses = await authStore.info.addresses.toJSON()
+                addresses.forEach(el => {
+                    console.log('el',el);
+                    console.log('el._id',el._id);
+                    console.log('this.address._id',this.address._id);
+                    
+                    el._id = this.address._id
+                    return el
+                })    
+                console.log(`addresses[${el}]`,addresses[el]);
+                
+                // updateAddress(this.address)
                 return navigation.dismiss()
             }
 

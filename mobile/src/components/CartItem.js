@@ -3,10 +3,11 @@ import { Box, Text, } from 'react-native-design-utility'
 import { Image, Dimensions, TouchableOpacity } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { theme } from '../constants/theme';
+import { observer } from 'mobx-react/native';
 
 
 const {width, height} = Dimensions.get('window')
-
+@observer
 class CartItem extends Component {
     render() {
         const { product } = this.props

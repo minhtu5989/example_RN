@@ -25,7 +25,7 @@ class AutoCompleteAddressScreen extends Component {
           keyboardShouldPersistTaps='never'
           placeholder="Search address ..."
           minLength={2} 
-          // autoFocus={true}
+          autoFocus={true}
           returnKeyType={'search'} 
           listViewDisplayed="auto"
           fetchDetails={true}
@@ -38,7 +38,7 @@ class AutoCompleteAddressScreen extends Component {
             const goToEdit = this.props.navigation.getParam('goToEdit')
             if(goToEdit && _id){
               address._id = _id
-              NavigationService.navigate('EditAddress', { address: address }) 
+              NavigationService.navigate('EditAddress', { address }) 
               return console.log('auto address',address);
             }
             NavigationService.navigate('CreateAddress', { address: address }) 

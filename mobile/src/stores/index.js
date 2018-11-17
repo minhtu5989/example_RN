@@ -3,7 +3,6 @@ import { ProductsStore } from './Products';
 import { ShoppingCartStore } from './ShoppingCart';
 import { ProductModel } from '../models/Product';
 
-
 const authStore = AuthStore.create();
 
 const shoppingCartStore = ShoppingCartStore.create({ products: [] });

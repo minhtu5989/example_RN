@@ -53,7 +53,7 @@ export const update = async (req, res) => {
     const address = await AddressServices.updateAddress(
       req.params._id,
       req.body.data,
-      // req.user._id,
+      req.user._id,
     );
 
     res.status(200).json({ address });
