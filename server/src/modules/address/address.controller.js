@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 import * as AddressServices from './address';
 
 
-export const create = async (req, res) => {
+export const createAddress = async (req, res) => {
   const { data } = req.body;
 
   const schema = Yup.object().shape({
@@ -20,7 +20,7 @@ export const create = async (req, res) => {
   try {
     await schema.validate(data);
 
-    const address = await AddressServices.createAddress({
+    const address = await AddressServices.createAdd({
       ...data,
     //   postalCode: data.postalCode.replace(/\s/g, ''),       //xoá  space  trong chuỗi
       user: req.user._id, 
@@ -34,7 +34,7 @@ export const create = async (req, res) => {
 
 export const userAddresses = async (req, res) => {
   try {
-    const addresses = await AddressServices.getUserAddress(req.user._id)
+    const addresses = await AddressServices.getUserAdd(req.user._id)
 
     res.status(201).json({ addresses });
     
@@ -44,13 +44,13 @@ export const userAddresses = async (req, res) => {
   }
 }
 
-export const update = async (req, res) => {
+export const updateAddress = async (req, res) => {
   try {
     if (!req.body.data) {
       return res.sendStatus(400);
     }
 
-    const address = await AddressServices.updateAddress(
+    const address = await AddressServices.updateAdd(
       req.params._id,
       req.body.data,
       req.user._id,
@@ -59,6 +59,21 @@ export const update = async (req, res) => {
     res.status(200).json({ address });
   } catch (error) {
     console.log('error', error);
+    throw error;
+  }
+}
+
+export const deleteAddress = async(req, res) =>{
+  try {
+
+    await AddressServices.deleteAdd(
+      req.params._id,
+      req.user._id,
+    );
+
+    res.status(200);
+
+  } catch (error) {
     throw error;
   }
 }

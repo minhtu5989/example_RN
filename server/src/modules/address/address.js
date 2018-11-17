@@ -1,6 +1,6 @@
 import Address from './address.model';
 
-export const createAddress = async (data) => {
+export const createAdd = async (data) => {
     try {
         const address = await Address.create({
             ...data,
@@ -17,7 +17,7 @@ export const createAddress = async (data) => {
     }
 } 
 
-export const getUserAddress = async (userId) => {
+export const getUserAdd = async (userId) => {
     try {
         const addresses = await Address.find({user: userId})
         return addresses;
@@ -26,20 +26,19 @@ export const getUserAddress = async (userId) => {
     }
 }
 
-export const updateAddress = async (addressId, newAddressValues, userId) => {
+export const updateAdd = async (addressId, newAddressValues, userId) => {
     try {
+
       const address = await Address.findById(addressId);
-      console.log('address received', address);
-      console.log('address new', newAddressValues);
-      
+
       if (!address) {
         throw new Error('Address not exist');
       }
-  
+
       if (address.user.toString() !== userId.toString()) {
         throw new Error('Unauthorized');
       }
-  
+      
       /*
         Object.keys trả về một mảng có value từng phần tử là String
         => Object.key(newAddressValues) = ['street', 'town', 'city', 'province', 'city', 'instructions', 'geo','user']
@@ -51,9 +50,6 @@ export const updateAddress = async (addressId, newAddressValues, userId) => {
             newAddressValues[key].lat,
           ];
         } 
-        // else if (key === 'postalCode') {
-        //   address.postalCode = newAddressValues[key].replace(/\s/g, '');
-        // } 
         else {
           address[key] = newAddressValues[key];
         }
@@ -62,7 +58,27 @@ export const updateAddress = async (addressId, newAddressValues, userId) => {
       console.log('Update address successful !!');
   
       return address;
+
     } catch (error) {
       throw error;
     }
   };
+
+export const deleteAdd = async(addressId, userId) => {
+  try {
+    const address = await Address.findById(addressId);
+
+    if (!address) {
+      throw new Error('Address not exist');
+    }
+
+    if (address.user.toString() !== userId.toString()) {
+      throw new Error('Unauthorized');
+    }
+
+    return address.remove()
+
+  } catch (error) {
+    throw error;
+  }
+}
