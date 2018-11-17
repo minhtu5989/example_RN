@@ -71,7 +71,7 @@ export const deleteAddress = async(req, res) =>{
       req.user._id,
     );
 
-    res.status(200);
+    res.status(209);
 
   } catch (error) {
     throw error;

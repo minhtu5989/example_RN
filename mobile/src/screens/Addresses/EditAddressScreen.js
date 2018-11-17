@@ -11,11 +11,6 @@ import { inject } from 'mobx-react/native';
 @inject('authStore')
 
 class EditAddressScreen extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {  };
-    }
-
     static navigationOptions = ({ navigation }) => ({
         title: 'Edit Address',
         headerLeft: (
@@ -29,13 +24,18 @@ class EditAddressScreen extends Component {
             
         )
     });
+    
+    constructor(props) {
+        super(props);
+        this.state = {  };
+    }
 
     render() {
         return (
             <Box f={1} bg='white'>
                 <AddressesForm 
                     navigation={this.props.navigation} 
-                    editMode
+                    editMode={true}
                     address={this.props.navigation.getParam('address')}
                 />
             </Box>

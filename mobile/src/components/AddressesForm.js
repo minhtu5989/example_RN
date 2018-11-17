@@ -1,5 +1,5 @@
  import React, { Component } from 'react'
-import { StatusBar, ScrollView, StyleSheet, ActivityIndicator } from 'react-native';
+import { StatusBar, ScrollView, StyleSheet, ActivityIndicator, Alert } from 'react-native';
 import { Box, Text } from 'react-native-design-utility'
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -48,6 +48,34 @@ class AddressesForm extends Component {
         return get(this.address, 'province', '')
     }
 
+    deleteAddress = () => {
+        try {
+            
+            Alert.alert(
+                'Are you sure?',
+                '',
+                [
+                    {
+                        text: 'Yes',
+                        onPress: async () => {
+                        await this.props.authStore.info.removeAddress(this.address._id);
+                        this.props.navigation.dismiss();
+                        },
+                    },
+                    
+                    {
+                        text: 'Cancel',
+                        style: 'cancel',
+                    },
+
+                ],
+                { cancelable: true },
+            );
+        } catch (error) {
+          console.log('error', error);
+        }
+    }
+
     @action.bound
     async saveAddress() {
         try {
@@ -55,16 +83,13 @@ class AddressesForm extends Component {
             this.isSaving = true
 
             if(editMode){
-            const addresses = await authStore.info.addresses.toJSON()
-            addresses.forEach(el => {
-                if( el._id.toString() === this.address._id.toString() ){
-                     el.updateAddress(this.address)
-                }
-            })
+                await authStore.info.editAddress(this.address)
                 return navigation.dismiss()
             }
+
             await authStore.info.createAddress(this.address)   
             return navigation.dismiss()
+
         } catch (error) {
             console.log('error', error);
         }
@@ -228,6 +253,7 @@ class AddressesForm extends Component {
                 </ScrollView>
                 <Box  mb='sm' justify='end'>
                     <MyButton 
+                        disabled={!this.address.street}
                         type='success'
                         style={{height: 50,}}
                         onPress={this.saveAddress}
@@ -236,6 +262,18 @@ class AddressesForm extends Component {
                             {editMode ? 'Edit' : 'Save'}
                         </Text>
                     </MyButton>
+                    {editMode && (
+                        <MyButton
+                            disabled={!this.address.street}
+                            type='danger'
+                            onPress={this.deleteAddress}
+                            style={{marginTop: 20}}
+                            >
+                            <Text bold color="white">
+                                Delete
+                            </Text>
+                        </MyButton>
+                    )}
                 </Box>
 
             </Box>

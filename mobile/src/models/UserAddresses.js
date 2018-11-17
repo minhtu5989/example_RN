@@ -1,4 +1,4 @@
-import { types, flow, getParent, applySnapshot } from 'mobx-state-tree'
+import { types, flow, getParent, applySnapshot, destroy } from 'mobx-state-tree'
 import get from 'lodash.get';
 
 import { baseApi } from "../api/Api";
@@ -33,7 +33,9 @@ export const UserAddressModel = types
 
     update(newData){
         applySnapshot(self, newData)
+        return console.log('Update Address Successful');
     },
+
     updateAddress: flow(function*(data){
         try {
             const res = yield baseApi
@@ -44,6 +46,27 @@ export const UserAddressModel = types
     
             if(res.address){
                 self.update(res.address)
+            }
+     
+        } catch (error) {
+            throw error;
+        }
+    }),
+
+    deleteAddress: flow(function*(_id){
+        try {
+            console.log('_id', _id);
+            console.log('self_id', self._id);
+            
+            const res = yield baseApi
+                .url(`/addresses/${self._id}`)
+                .auth(`Bearer ${self.parent.authToken}`) 
+                .delete()
+                .res();
+            
+            if(res.status === 209){ 
+                destroy(self)
+                return console.log('Delete Address Successful');
             }
     
         } catch (error) {
