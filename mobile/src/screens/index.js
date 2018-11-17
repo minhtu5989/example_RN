@@ -82,7 +82,7 @@ const AddressesFormStack = createStackNavigator(
             getScreen: () => require('./Addresses/CreateAddressScreen').default,
         },
     },
-    { 
+    {  
         navigationOptions: {
             ...modelHeader,
         }
