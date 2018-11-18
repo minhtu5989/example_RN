@@ -30,7 +30,7 @@ class AutoCompleteAddressScreen extends Component {
           listViewDisplayed="auto"
           fetchDetails={true}
           renderDescription={row => row.description} // custom description render
-          onPress={ async(details = null) => {
+          onPress={ async(data, details = null) => {
             let address = buildAddress(details)
             const _id = this.props.navigation.getParam('_id')
             const goToEdit = this.props.navigation.getParam('goToEdit')

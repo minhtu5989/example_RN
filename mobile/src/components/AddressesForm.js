@@ -83,11 +83,11 @@ class AddressesForm extends Component {
             this.isSaving = true
 
             if(editMode){
-                await authStore.info.editAddress(this.address)
-                return navigation.dismiss()
+                navigation.dismiss()
+                return await authStore.info.editAddress(this.address)
             }
 
-            await authStore.info.createAddress(this.address)   
+            const fetching = await authStore.info.createAddress(this.address)   
             return navigation.dismiss()
 
         } catch (error) {
@@ -267,7 +267,7 @@ class AddressesForm extends Component {
                             disabled={!this.address.street}
                             type='danger'
                             onPress={this.deleteAddress}
-                            style={{marginTop: 20}}
+                            style={{marginTop: 20, height: 50}}
                             >
                             <Text bold color="white">
                                 Delete

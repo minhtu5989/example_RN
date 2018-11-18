@@ -45,7 +45,7 @@ export const UserAddressModel = types
                 .json();
     
             if(res.address){
-                self.update(res.address)
+                return self.update(res.address)
             }
      
         } catch (error) {

@@ -35,7 +35,7 @@ class EditAddressScreen extends Component {
             <Box f={1} bg='white'>
                 <AddressesForm 
                     navigation={this.props.navigation} 
-                    editMode={true}
+                    editMode
                     address={this.props.navigation.getParam('address')}
                 />
             </Box>
