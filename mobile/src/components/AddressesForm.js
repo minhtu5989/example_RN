@@ -48,9 +48,9 @@ class AddressesForm extends Component {
         return get(this.address, 'province', '')
     }
 
+    @action.bound
     deleteAddress = () => {
         try {
-            
             Alert.alert(
                 'Are you sure?',
                 '',
@@ -80,15 +80,16 @@ class AddressesForm extends Component {
     async saveAddress() {
         try {
             const { editMode, authStore, navigation } = this.props
+
             this.isSaving = true
 
             if(editMode){
                 navigation.dismiss()
                 return await authStore.info.editAddress(this.address)
             }
-
-            const fetching = await authStore.info.createAddress(this.address)   
-            return navigation.dismiss()
+            
+            navigation.dismiss()
+            return await authStore.info.createAddress(this.address)   
 
         } catch (error) {
             console.log('error', error);

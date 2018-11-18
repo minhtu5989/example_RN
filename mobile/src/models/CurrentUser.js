@@ -13,8 +13,13 @@ export const CurrentUserModel = types
   })
   .views(self => ({
     get addressesIsEmpty(){
-      return self.addresses.length === 0;
+      return self.addresses.length === 0
     },
+
+    get userAddresses(){
+      return self.addresses;
+    },
+
     get parent(){
       return getParent(self)
     },
@@ -33,6 +38,8 @@ export const CurrentUserModel = types
         if (res.address) {
           self.addresses.push(res.address);
         }
+
+        return res;
       } catch (error) {
         throw error;
       }

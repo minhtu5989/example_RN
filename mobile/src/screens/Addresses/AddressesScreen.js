@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Box, Text } from 'react-native-design-utility'
-import { StatusBar, Dimensions, ScrollView, ActivityIndicator} from 'react-native'
+import { StatusBar, Dimensions, FlatList, ActivityIndicator} from 'react-native'
 import { EvilIcons } from '@expo/vector-icons';
 import { inject, observer } from 'mobx-react/native'
 import { observable, action, when, reaction } from 'mobx'
@@ -34,12 +34,16 @@ class AddressesScreen extends Component {
     }
     constructor(props){
         super(props);
-
+        this.state = {
+            data: []
+        }
         //value 2 sẽ chạy chỉ 1 lần khi value 1 đúng  (when)
         when(
             () => !this.props.authStore.info.addressesIsEmpty,
             () => {
-                this.setAddBtn()
+                setTimeout(() => {
+                    this.setAddBtn()
+                }, 1500); 
             }
         )
 
@@ -55,14 +59,17 @@ class AddressesScreen extends Component {
     @observable isLoading = false
 
     componentDidMount() {
-        this.fetchAddresses()
+        this.fetchAddresses();
     }
 
     @action.bound
-    async fetchAddresses() {
+    fetchAddresses = async() => {
         try {
             this.isLoading = true
-            await this.props.authStore.info.getAddresses()
+            const res = await this.props.authStore.info.getAddresses()
+            this.setState({ data: res })
+            console.log('this.data',this.state.data);
+            console.log('res',res);
             this.isLoading = false
         } catch (error) {
             throw error
@@ -95,7 +102,7 @@ class AddressesScreen extends Component {
                         You haven't added an address yet !
                     </Text>                
                 </Box>
-                <Box w={width - 48} h={40}>
+                <Box w={width - 48} h={40} style={{justifyContent:'flex-end', marginBottom: 15}}>
                     <MyButton type='success' onPress={this.handleAddressesPress}>
                         <Text>Add address</Text>
                     </MyButton>
@@ -104,6 +111,22 @@ class AddressesScreen extends Component {
         </Box>
     )
 
+
+    _renderItem = ({item}) => {
+            <AddressListItem address={item} />
+    }
+
+    renderList = () => {
+        return(
+            <Box f={1}>
+                <FlatList 
+                    data={this.state.data} 
+                    renderItem={this._renderItem} 
+                    keyExtractor={item => item._id} 
+                />
+            </Box>
+        )
+    }
 
     render() {
         if(this.isLoading && this.props.authStore.info.addressesIsEmpty)
@@ -114,19 +137,13 @@ class AddressesScreen extends Component {
                 </Box>
             )
         }
-
         if(this.props.authStore.info.addressesIsEmpty){
             return this.renderIfEmpty();
         }
-
         return ( 
             <Box f={1} bg='white'>
                 <StatusBar barStyle='dark-content'/>
-                <ScrollView>
-                    {this.props.authStore.info.addresses.map(address => (
-                        <AddressListItem key={address._id} address={address} />
-                    ))}
-                </ScrollView>
+                {this.renderList()}
             </Box>            
         );
     }
