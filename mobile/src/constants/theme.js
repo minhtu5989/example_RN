@@ -2,6 +2,12 @@ const color = {
 
   myAppColor: '#2196f3',
 
+  primary: '#0099FF',
+  success: '#25c73a',
+  danger: '#ff564e',
+  warning: '#FFCC00',
+  
+
   black: '#212121',
   white: '#fff',
 

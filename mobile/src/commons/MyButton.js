@@ -11,10 +11,10 @@ export class MyButton extends Component {
                 return { backgroundColor: '#25c73a', borderColor: '#3EA552', };
         
             case 'danger':
-                return { backgroundColor: '#FF0000', borderColor: '#ff564e', };
+                return { backgroundColor: '#ff564e', borderColor: '#FF0000', };
     
             case 'warning':
-                return { backgroundColor: '#ffb827' , borderColor: '#FFCC00', };
+                return { backgroundColor: '#FFCC00' , borderColor: '#ffb827', };
             
             case 'primary':
                 return { backgroundColor: '#0099FF', borderColor: '#6aa3da', };

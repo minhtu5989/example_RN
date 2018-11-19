@@ -19,7 +19,7 @@ class AddressListItem extends Component {
     render() {
         const {address} = this.props
         return (
-            <Box h={80} px='sm' f={1}
+            <Box h={80} px='sm'
                 style={{
                     justifyContent: 'center',
                     borderBottomWidth: StyleSheet.hairlineWidth, 
