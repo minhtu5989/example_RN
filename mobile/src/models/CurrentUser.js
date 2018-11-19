@@ -12,8 +12,12 @@ export const CurrentUserModel = types
     addresses: types.optional(types.array(UserAddressModel), [] ),
   })
   .views(self => ({
-    get addressesIsEmpty(){
-      return self.addresses.length === 0
+    get totalAddresses(){
+      return self.addresses.length
+    },
+
+    get addressList() {
+      return self.addresses.slice();
     },
 
     get userAddresses(){

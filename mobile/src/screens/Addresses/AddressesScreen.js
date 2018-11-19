@@ -34,9 +34,6 @@ class AddressesScreen extends Component {
     }
     constructor(props){
         super(props);
-        this.state = {
-            data: []
-        }
         //value 2 sẽ chạy chỉ 1 lần khi value 1 đúng  (when)
         when(
             () => !this.props.authStore.info.addressesIsEmpty,
@@ -63,13 +60,10 @@ class AddressesScreen extends Component {
     }
 
     @action.bound
-    fetchAddresses = async() => {
+    async fetchAddresses()  {
         try {
             this.isLoading = true
-            const res = await this.props.authStore.info.getAddresses()
-            this.setState({ data: res })
-            console.log('this.data',this.state.data);
-            console.log('res',res);
+            await this.props.authStore.info.getAddresses()
             this.isLoading = false
         } catch (error) {
             throw error
@@ -111,25 +105,27 @@ class AddressesScreen extends Component {
         </Box>
     )
 
-
-    _renderItem = ({item}) => {
-            <AddressListItem address={item} />
-    }
-
     renderList = () => {
+        const { info } = this.props.authStore
+        
+        if( this.props.authStore.info.totalAddresses === 0 ){
+            return this.renderIfEmpty();
+        }
+
         return(
             <Box f={1}>
                 <FlatList 
-                    data={this.state.data} 
-                    renderItem={this._renderItem} 
-                    keyExtractor={item => item._id} 
+                    data={info.addressList} 
+                    renderItem={ ({item}) => <AddressListItem address={item} /> } 
+                    keyExtractor={item => String(item._id)} 
                 />
+                
             </Box>
         )
     }
 
     render() {
-        if(this.isLoading && this.props.authStore.info.addressesIsEmpty)
+        if(this.isLoading && this.props.authStore.info.totalAddresses === 0)
         {
             return (
                 <Box f={1} center bg='white'>
@@ -137,9 +133,7 @@ class AddressesScreen extends Component {
                 </Box>
             )
         }
-        if(this.props.authStore.info.addressesIsEmpty){
-            return this.renderIfEmpty();
-        }
+
         return ( 
             <Box f={1} bg='white'>
                 <StatusBar barStyle='dark-content'/>

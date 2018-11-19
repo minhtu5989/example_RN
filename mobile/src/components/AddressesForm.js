@@ -48,7 +48,7 @@ class AddressesForm extends Component {
         return get(this.address, 'province', '')
     }
 
-    @action.bound
+    // @action.bound
     deleteAddress = () => {
         try {
             Alert.alert(
@@ -76,8 +76,8 @@ class AddressesForm extends Component {
         }
     }
 
-    @action.bound
-    async saveAddress() {
+    // @action.bound
+    saveAddress = async() => {
         try {
             const { editMode, authStore, navigation } = this.props
 
