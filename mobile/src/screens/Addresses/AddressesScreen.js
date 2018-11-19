@@ -4,14 +4,12 @@ import { StatusBar, Dimensions, FlatList, ActivityIndicator, TouchableHighlight}
 import { EvilIcons } from '@expo/vector-icons';
 import { inject, observer } from 'mobx-react/native'
 import { observable, action, when, reaction } from 'mobx'
-import Swipeable from 'react-native-swipeable';
 
 import { theme } from '../../constants/theme';
 import { MyButton } from '../../commons/MyButton';
-import AddressListItem from '../../components/AddressListItem';
+import { AddressFlatList } from "../../components/AddressFlatList";
 
 const {width} = Dimensions.get('window')
-
 @inject('authStore')
 @observer
 
@@ -38,10 +36,7 @@ class AddressesScreen extends Component {
     constructor(props){
         super(props);
         //value 2 sẽ chạy chỉ 1 lần khi value 1 đúng  (when)
-        this.state = { 
-            isSwiping: true, 
-            swipeable: null
-        }
+
         when(
             () => !this.props.authStore.info.addressesIsEmpty,
             () => {
@@ -111,86 +106,23 @@ class AddressesScreen extends Component {
         </Box>
     )
 
-    releaseLeft(){ 
-        const leftFlag = 'left True'
-        console.log('leftFlag', leftFlag);
-    }
-
-    releaseRight() { 
-        const rightFlag = 'right True'
-        console.log('rightFlag', rightFlag);
-    }
-
-    handleUserBeganScrollingParentView = () => {
-        this.swipeable.recenter();
-    }
-
-    @action.bound
-    renderList() {
-        const { info } = this.props.authStore
-        
-        if( this.props.authStore.info.totalAddresses === 0 ){
-            return this.renderIfEmpty();
-        }
-
-        const leftContent = <Box f={1} bg={theme.color.primary}><Text>Edit</Text></Box>
-        const rightContent = <Box f={1} bg={theme.color.danger}><Text>Delete</Text></Box>
-        const rightButtons = [
-            <Box center f={1} bg='red' w={100}>
-                <Text color='black'>Button 1</Text>
-            </Box>,
-            <Box center f={1} bg='blue' w={100}>
-                <Text color='black'>Button 2</Text>
-            </Box>
-          ];
-        
-        return(
-            <Box f={1} bg='white'>
-                <StatusBar barStyle='dark-content'/>
-                <Box style={{flex: 1}}>
-                    <FlatList 
-                        onScroll={this.handleUserBeganScrollingParentView}
-                        scrollEnabled={!this.state.isSwiping}
-                        data={info.addressList} 
-                        renderItem={ ({item}) => 
-                            <Swipeable 
-                                onRef={ref => this.swipeable = ref}
-                                leftContent={leftContent}   
-                                leftActionActivationDistance={150}
-                                onLeftActionRelease={this.releaseLeft}
-                                leftButtonWidth={50}
-
-                                // rightContent={rightContent} 
-                                // rightActionActivationDistance={150}
-                                // onRightActionRelease={this.releaseRight}
-                                rightButtons={rightButtons}
-                                rightButtonWidth={100}
-
-                                onSwipeStart={() => this.setState({ isSwiping: true})}
-                                onSwipeRelease={() => this.setState({ isSwiping: false})}
-                            >
-                                <AddressListItem address={item} /> 
-                            </Swipeable>
-                        } 
-                        keyExtractor={item => String(item._id)} 
-                    />
-                </Box>
-            </Box>
-        )
-    }
-
-    
-
     render() {
-        if(this.isLoading && this.props.authStore.info.totalAddresses === 0)
-        {
-            return (
-                <Box f={1} center bg='white'>
-                    <ActivityIndicator color={theme.color.myAppColor} size='large' />
-                </Box>
-            )
-        }
-        return this.renderList()
+        // if(this.isLoading && this.props.authStore.info.totalAddresses === 0)
+        // {
+        //     return (
+        //         <Box f={1} center bg='white'>
+        //             <ActivityIndicator color={theme.color.myAppColor} size='large' />
+        //         </Box>
+        //     )
+        // }
+
+        // if( this.props.authStore.info.totalAddresses === 0 ){
+        //     return this.renderIfEmpty();
+        // }
+
+        return (
+            <AddressFlatList/>
+        )
     }
 }
 
