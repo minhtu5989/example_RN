@@ -8,7 +8,7 @@ import { NavigationService } from '../api/NavigationService';
 
 import { observer } from 'mobx-react/native';
 @observer
-class AddressListItem extends Component {
+export class AddressListItem extends Component {
     handlePress = () => {
         NavigationService.navigate('AutoCompleteAddress',{ 
             goToEdit: true,
@@ -26,14 +26,12 @@ class AddressListItem extends Component {
                     borderBottomColor: theme.color.grey,
                 }}
             >
-                <MyButton onPress={this.handlePress} style={{alignItems: 'flex-start'}}>
-                        <Text color={theme.color.black} size='sm' >
+                {/* <MyButton onPress={this.handlePress} style={{alignItems: 'flex-start'}}> */}
+                        <Text color={theme.color.black} size='sm' alignSelf= 'flex-start' >
                             {address.street}, {address.town}, {address.city}, {address.province}, Việt Nam
                         </Text>
-                </MyButton>
+                {/* </MyButton> */}
             </Box>
         );
     }
 }
-
-export default AddressListItem;

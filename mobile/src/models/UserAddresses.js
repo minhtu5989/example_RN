@@ -33,7 +33,7 @@ export const UserAddressModel = types
 
     update(newData){
         applySnapshot(self, newData)
-        return console.log('Update Address Successful');
+        return console.log('Update Successful');
     },
 
     updateAddress: flow(function*(data){
@@ -55,9 +55,6 @@ export const UserAddressModel = types
 
     deleteAddress: flow(function*(_id){
         try {
-            console.log('_id', _id);
-            console.log('self_id', self._id);
-            
             const res = yield baseApi
                 .url(`/addresses/${self._id}`)
                 .auth(`Bearer ${self.parent.authToken}`) 
@@ -65,10 +62,9 @@ export const UserAddressModel = types
                 .res();
             
             if(res.status === 209){ 
-                destroy(self)
-                return console.log('Delete Address Successful');
+                console.log('Delete Address Successful');
+                destroy(self)   
             }
-    
         } catch (error) {
             throw error;
         }

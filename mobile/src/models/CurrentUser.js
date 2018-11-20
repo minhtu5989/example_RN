@@ -20,10 +20,6 @@ export const CurrentUserModel = types
       return self.addresses.slice();
     },
 
-    get userAddresses(){
-      return self.addresses;
-    },
-
     get parent(){
       return getParent(self)
     },
@@ -75,19 +71,18 @@ export const CurrentUserModel = types
               return el.updateAddress(data)
           }
         })
-        
       } catch (error) {
         throw error;
       }
     }),
 
   removeAddress(_id){
-    const addresses = self.addresses.toJSON()
-    addresses.forEach(el => {
-      if( el._id === _id ){
-          return el.deleteAddress(_id)
-      }
-    })
+      const addresses = self.addresses.toJSON()
+      addresses.forEach(el => {
+        if( el._id === _id ){
+            return el.deleteAddress(_id)
+        }
+      })
   },
 
 }))

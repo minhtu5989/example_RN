@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Box } from 'react-native-design-utility'
 import { Alert, Animated, Easing} from 'react-native';
-import { inject } from "mobx-react/native";
+import { inject,observer } from "mobx-react/native";
 
 import { OnBoadingLogo } from '../../commons/OnBoadingLogo'
 import { LoginButton } from '../../commons/LoginButton';
@@ -10,7 +10,7 @@ import { GoogleApi} from '../../api/Google'
 
 const BoxAnimated = Animated.createAnimatedComponent(Box);
 @inject('authStore')
-
+@observer
 class LoginScreen extends Component {
     state={
         opacity: new Animated.Value(0),
@@ -44,8 +44,8 @@ class LoginScreen extends Component {
     onPressGoogle = async() =>{ 
         try {
             const token = await GoogleApi.loginAsync();
-
-            await this.props.currentUser.login(token, 'GOOGLE')
+            
+            await this.props.authStore.login(token, 'GOOGLE')
         } catch (error) {
             console.log('error', error);            
         }
@@ -55,7 +55,7 @@ class LoginScreen extends Component {
         try {
             const token = await FacebookApi.loginAsync();
 
-            await this.props.currentUser.login(token, 'FACEBOOK')
+            await this.props.authStore.login(token, 'FACEBOOK')
         } catch (error) {
             console.log('error', error);            
         }

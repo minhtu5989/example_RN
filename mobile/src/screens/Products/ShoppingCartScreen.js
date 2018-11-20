@@ -40,7 +40,7 @@ class ShoppingCartScreen extends Component {
                 <FlatList 
                     data={shoppingCartStore.productsList} 
                     renderItem={this.renderItem} 
-                    keyExtractor={this.keyExtractor} 
+                    keyExtractor={({item}) => String(item._id)} 
                     extraData={shoppingCartStore}    
                 />
             </Box>
