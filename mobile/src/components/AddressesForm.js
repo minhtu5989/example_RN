@@ -89,7 +89,8 @@ class AddressesForm extends Component {
             }
             
             navigation.dismiss()
-            return await authStore.info.createAddress(this.address)   
+             await authStore.info.createAddress(this.address)   
+
 
         } catch (error) {
             console.log('error', error);

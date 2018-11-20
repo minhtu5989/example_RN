@@ -4,10 +4,10 @@ import {
 	StyleSheet,
 	TouchableOpacity,
 	TouchableHighlight,
-	View } from 'react-native';
+} from 'react-native';
 import { Box, Text } from 'react-native-design-utility'
 import { theme } from '../constants/theme';
-import { SwipeListView, SwipeRow } from 'react-native-swipe-list-view';
+import { SwipeListView } from 'react-native-swipe-list-view';
 import { inject, observer } from 'mobx-react/native';
 import { observable, action } from 'mobx'
 
@@ -18,12 +18,6 @@ import AddressListItem from './AddressListItem';
 @observer
 
 export class AddressFlatList extends Component {
-    constructor(props) {
-        super(props);
-		this.state = {
-			sectionListData: Array(5).fill('').map((_,i) => ({title: `title${i + 1}`, data: [...Array(5).fill('').map((_, j) => ({key: `${i}.${j}`, text: `item #${j}`}))]})),
-		};
-    }
 
     @observable
     data = this.props.data
@@ -50,16 +44,16 @@ export class AddressFlatList extends Component {
                     {
                         text: 'Yes',
                         onPress: async () => {
-                        this.closeRow(rowMap, rowKey);
-                        await this.props.authStore.info.removeAddress(rowKey);
-                        const newData = this.data
-                        const prevIndex = this.data.findIndex(item => item._id === rowKey);
-                        this.newData.splice(prevIndex, 1);
-                        this.data = newData
-                        console.log('this.data',this.data.toJSON());
-                        console.log('index',prevIndex);
-                        
-                    },
+                            this.closeRow(rowMap, rowKey);
+                            const _id = this.data.findIndex(item => item._id === rowKey);
+                            await this.props.authStore.info.removeAddress(_id);
+                            const newData = [...this.data];
+                            const prevIndex = this.data.findIndex(item => item._id === rowKey);
+                            newData.splice(prevIndex, 1);
+                            this.data = newData
+                            console.log('newData', newData);
+                            
+                        },
                     },
                     
                     {
@@ -75,30 +69,21 @@ export class AddressFlatList extends Component {
         }
     }
 
-	// deleteSectionRow(rowMap, rowKey) {
-	// 	this.closeRow(rowMap, rowKey);
-	// 	var [section, row] = rowKey.split('.');
-	// 	const newData = [...this.state.sectionListData];
-	// 	const prevIndex = this.state.sectionListData[section].data.findIndex(item => item.key === rowKey);
-	// 	newData[section].data.splice(prevIndex, 1);
-	// 	this.setState({sectionListData: newData});
-	// }
-
 	onRowDidOpen = (rowKey, rowMap) => {
 		console.log('This row opened', rowKey);
 		setTimeout(() => {
 			this.closeRow(rowMap, rowKey);
-		}, 5000);
+		}, 1500);
     }
 
     render() {
         return (
             <Box bg='white' f={1}>
-                
+
                 <SwipeListView
                     useFlatList
                     data={this.data}
-                    keyExtractor={item => item._id} 
+                    keyExtractor={({item}) => String(item._id)} 
                     renderItem={ ({item}, rowMap) => (
                         <TouchableHighlight
                             onPress={ () => console.log('You touched me') }
