@@ -1,22 +1,34 @@
 import React, { Component } from 'react'
 import { Box, Text } from 'react-native-design-utility'
-import { StatusBar, Dimensions, FlatList, ActivityIndicator, TouchableHighlight} from 'react-native'
+import { 
+    StatusBar, 
+    Dimensions, 
+    ScrollView, 
+    FlatList,
+    ActivityIndicator, 
+    StyleSheet,
+    TouchableHighlight
+} from 'react-native'
 import { EvilIcons } from '@expo/vector-icons';
 import { inject, observer } from 'mobx-react/native'
-import { observable, action, when, reaction } from 'mobx'
+import { observable, action, when } from 'mobx'
 
 import { theme } from '../../constants/theme';
 import { MyButton } from '../../commons/MyButton';
-import { AddressFlatList } from "../../components/AddressFlatList";
+import { store } from "../../stores";
 
 const {width} = Dimensions.get('window')
+
 @inject('authStore')
 @observer
+
 
 class AddressesScreen extends Component {
 
     @observable isLoading = false
-    
+    @observable data = this.props.authStore.info.addressList
+
+
     static navigationOptions = ({navigation}) => {
         const headerRight = navigation.getParam('showAddBtn') 
         ?
@@ -35,8 +47,6 @@ class AddressesScreen extends Component {
     }
     constructor(props){
         super(props);
-        //value 2 sẽ chạy chỉ 1 lần khi value 1 đúng  (when)
-
         when(
             () => !this.props.authStore.info.addressesIsEmpty,
             () => {
@@ -45,18 +55,10 @@ class AddressesScreen extends Component {
                 }, 1500); 
             }
         )
-
-        //value 2 sẽ đc chạy mỗi lần value 1 đúng   (reaction)
-        // reaction(
-        //     () => !this.props.authStore.info.addressesIsEmpty,
-        //     () => {
-        //         this.setAddBtn()
-        //     }
-        // )
     }
 
 
-    componentDidMount() {
+    componentDidMount = () => {
         this.fetchAddresses();
     }
 
@@ -64,7 +66,7 @@ class AddressesScreen extends Component {
     async fetchAddresses()  {
         try {
             this.isLoading = true
-            await this.props.authStore.info.getAddresses()
+            const res = await this.props.authStore.info.getAddresses()
             this.isLoading = false
         } catch (error) {
             throw error
@@ -106,12 +108,37 @@ class AddressesScreen extends Component {
         </Box>
     )
 
-    render() {
-        if( this.props.authStore.info.totalAddresses === 0 ){
-                    return this.renderIfEmpty();
-                }
+    renderSeparator = () => {
+        <Box style={{
+            justifyContent: 'center',
+            borderBottomWidth: StyleSheet.hairlineWidth, 
+            borderBottomColor: theme.color.grey,
+        }} />
+    }
 
-        if(this.isLoading && this.props.authStore.info.totalAddresses === 0)
+    renderItem = (item) => {
+        return (
+            <Box h={80} px='sm' 
+                style={{
+                    justifyContent: 'center',
+                    borderBottomWidth: StyleSheet.hairlineWidth, 
+                    borderBottomColor: theme.color.grey,
+                }}
+                key= {item._id}
+            >
+                {/* <MyButton onPress={this.handlePress} style={{alignItems: 'flex-start'}}> */}
+                        <Text color={theme.color.black} size='sm' alignSelf= 'flex-start' >
+                            {item.street}, {item.town}, {item.city}, {item.province}, Việt Nam
+                        </Text>
+                {/* </MyButton> */}
+            </Box>
+        )
+    }
+
+    render() {  
+        const {info} = this.props.authStore
+
+        if(this.isLoading && info.totalAddresses === 0)
         {
             return (
                 <Box f={1} center bg='white'>
@@ -120,12 +147,33 @@ class AddressesScreen extends Component {
             )
         }
 
-        if(this.props.authStore.info.addressList !== 0)
-            return <AddressFlatList data={this.props.authStore.info.addressList}/>
-    
-        return  <Box f={1} center bg='white'>
-                    <ActivityIndicator color={theme.color.myAppColor} size='large' />
-                </Box>
+        if( info.totalAddresses === 0 ){
+            return this.renderIfEmpty();
+        }
+
+        return (
+            <Box f={1} bg='white'>
+                <StatusBar barStyle="dark-content" />
+             
+            {/* <ScrollView>
+                {
+                    info.addresses.map(address => (
+                        this.renderItem(address)
+                    ))
+                }
+            </ScrollView> */}
+            {console.log('data', info.addressList)}
+         
+                <FlatList 
+                        data={info.addressList} 
+                        renderItem={ ({item}) => <Text>{item._id}</Text> } 
+                        keyExtractor={(item, index) => index} 
+                        ItemSeparatorComponent={this.renderSeparator}
+                        extraData={info.addresses} 
+                    />
+
+            </Box>
+        )
     }
 }
 

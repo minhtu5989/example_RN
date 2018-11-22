@@ -16,8 +16,8 @@ export const CurrentUserModel = types
       return self.addresses.length
     },
 
-    get addressList() {
-      return self.addresses.slice();
+    get addressList(){
+      return self.addresses.slice()
     },
 
     get parent(){
