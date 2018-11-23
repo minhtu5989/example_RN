@@ -7,17 +7,19 @@ import {
     FlatList,
     ActivityIndicator, 
     StyleSheet,
-    TouchableHighlight
+    TouchableOpacity
 } from 'react-native'
+import Swipeable from 'react-native-swipeable';
 import { EvilIcons } from '@expo/vector-icons';
 import { inject, observer } from 'mobx-react/native'
 import { observable, action, when } from 'mobx'
 
 import { theme } from '../../constants/theme';
 import { MyButton } from '../../commons/MyButton';
-import { store } from "../../stores";
+import { AddressListItem } from "../../components/AddressListItem";
 
 const {width} = Dimensions.get('window')
+
 
 @inject('authStore')
 @observer
@@ -26,8 +28,6 @@ const {width} = Dimensions.get('window')
 class AddressesScreen extends Component {
 
     @observable isLoading = false
-    @observable data = this.props.authStore.info.addressList
-
 
     static navigationOptions = ({navigation}) => {
         const headerRight = navigation.getParam('showAddBtn') 
@@ -45,8 +45,12 @@ class AddressesScreen extends Component {
         }
         
     }
+
     constructor(props){
         super(props);
+        this.state ={ 
+            currentlyOpenSwipeable: null
+        }
         when(
             () => !this.props.authStore.info.addressesIsEmpty,
             () => {
@@ -56,6 +60,14 @@ class AddressesScreen extends Component {
             }
         )
     }
+
+    handleScroll = () => {
+    const {currentlyOpenSwipeable} = this.state;
+
+    if (currentlyOpenSwipeable) {
+        currentlyOpenSwipeable.recenter();
+    }
+    };
 
 
     componentDidMount = () => {
@@ -108,32 +120,34 @@ class AddressesScreen extends Component {
         </Box>
     )
 
-    renderSeparator = () => {
-        <Box style={{
-            justifyContent: 'center',
-            borderBottomWidth: StyleSheet.hairlineWidth, 
-            borderBottomColor: theme.color.grey,
-        }} />
+    onOpen = (event, gestureState, swipeable) => {
+        const {currentlyOpenSwipeable} = this.state;
+        if (currentlyOpenSwipeable && currentlyOpenSwipeable !== swipeable) {
+        currentlyOpenSwipeable.recenter();
+        }
+
+        this.setState({currentlyOpenSwipeable: swipeable});
     }
 
-    renderItem = (item) => {
-        return (
-            <Box h={80} px='sm' 
-                style={{
-                    justifyContent: 'center',
-                    borderBottomWidth: StyleSheet.hairlineWidth, 
-                    borderBottomColor: theme.color.grey,
-                }}
-                key= {item._id}
-            >
-                {/* <MyButton onPress={this.handlePress} style={{alignItems: 'flex-start'}}> */}
-                        <Text color={theme.color.black} size='sm' alignSelf= 'flex-start' >
-                            {item.street}, {item.town}, {item.city}, {item.province}, Việt Nam
-                        </Text>
-                {/* </MyButton> */}
-            </Box>
-        )
-    }
+    onClose = () => this.setState({currentlyOpenSwipeable: null})
+
+    renderItem = ({item}) => (
+        
+        // <Swipeable  
+        //     rightButtons={[
+        //         <TouchableOpacity style={[styles.rightSwipeItem, {backgroundColor: theme.color.green}]}>
+        //             <Text>Edit</Text>
+        //         </TouchableOpacity>,
+        //         <TouchableOpacity style={[styles.rightSwipeItem, {backgroundColor: theme.color.red}]}>
+        //             <Text>Delete</Text>
+        //         </TouchableOpacity>
+        //     ]}
+        //     onRightButtonsOpenRelease={this.onOpen}
+        //     onRightButtonsCloseRelease={this.onClose}
+        // >
+         <AddressListItem address={item} />
+        // </Swipeable>
+    )
 
     render() {  
         const {info} = this.props.authStore
@@ -154,27 +168,34 @@ class AddressesScreen extends Component {
         return (
             <Box f={1} bg='white'>
                 <StatusBar barStyle="dark-content" />
-             
-            {/* <ScrollView>
-                {
-                    info.addresses.map(address => (
-                        this.renderItem(address)
-                    ))
-                }
-            </ScrollView> */}
-            {console.log('data', info.addressList)}
-         
+}
                 <FlatList 
-                        data={info.addressList} 
-                        renderItem={ ({item}) => <Text>{item._id}</Text> } 
-                        keyExtractor={(item, index) => index} 
-                        ItemSeparatorComponent={this.renderSeparator}
-                        extraData={info.addresses} 
-                    />
+                    onScroll={this.handleScroll}
+                    data={info.addresses} 
+                    renderItem={this.renderItem} 
+                    keyExtractor={ (item) => String(item._id) } 
+                />
 
             </Box>
         )
     }
 }
+
+const styles = StyleSheet.create({
+
+    leftSwipeItem: {
+      flex: 1,
+      alignItems: 'flex-end',
+      justifyContent: 'center',
+      paddingRight: 20
+    },
+    rightSwipeItem: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+    //   paddingHorizontal: 10
+    },
+  
+  });
 
 export default AddressesScreen;
