@@ -1,9 +1,9 @@
 {
-  "expoServerPort": null,
-  "expoServerNgrokUrl": "https://j5-e4a.minhtu5989.mobile.exp.direct",
-  "packagerNgrokUrl": "https://packager.j5-e4a.minhtu5989.mobile.exp.direct",
-  "ngrokPid": 91349,
+  "expoServerPort": 19000,
+  "expoServerNgrokUrl": "https://2c-vh2.minhtu5989.mobile.exp.direct",
+  "packagerNgrokUrl": "https://packager.2c-vh2.minhtu5989.mobile.exp.direct",
+  "ngrokPid": 95271,
   "devToolsPort": 19002,
-  "packagerPort": null,
-  "packagerPid": null
+  "packagerPort": 19005,
+  "packagerPid": 95257
 }

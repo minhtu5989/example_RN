@@ -30,7 +30,7 @@ const {width} = Dimensions.get('window')
 class AddressesScreen extends Component {
 
     @observable isLoading = false
-    @observable data = this.props.authStore.info.addresses
+    // @observable data = this.props.authStore.info.addresses
 
     static navigationOptions = ({navigation}) => {
         const headerRight = navigation.getParam('showAddBtn') 
@@ -52,12 +52,14 @@ class AddressesScreen extends Component {
     constructor(props){
         super(props);
         this.state ={ 
+            data : this.props.authStore.info.addresses,
+            refresh: false,
             currentlyOpenSwipeable: null,
             toggle: false,
             leftActionActivated: false,
         }
         when(
-            () => !this.props.authStore.info.addressesIsEmpty,
+            () => this.props.authStore.info.totalAddresses !== 0,
             () => {
                 setTimeout(() => {
                     this.setAddBtn()
@@ -78,10 +80,11 @@ class AddressesScreen extends Component {
                         text: 'Yes',
                         onPress: async () => {
                             await info.removeAddress(rowId);
-                            const newData = [...this.data];
-                            const prevIndex = this.data.findIndex(item => item._id === rowId);
-                            newData.splice(prevIndex, 1);
-                            this.data = newData
+                            // const newData = [...this.data];
+                            // const prevIndex = this.data.findIndex(item => item._id === rowId);
+                            // newData.splice(prevIndex, 1);
+                            // this.data = newData
+
                         },
                     },
                     
@@ -111,10 +114,10 @@ class AddressesScreen extends Component {
         }
     };
 
-
     componentDidMount = () => {
         this.fetchAddresses();
     }
+    
 
     @action.bound
     async fetchAddresses()  {
@@ -180,7 +183,10 @@ class AddressesScreen extends Component {
             <Swipeable  
                 rightButtons={[
                     <TouchableOpacity style={[styles.rightSwipeItem, {backgroundColor: theme.color.greenLight }]}
-                        onPress={ () => this.editRow(item) }
+                        onPress={ () => {
+                            this.editRow(item)
+                            this.setState({refresh: !this.state.refresh })
+                        }}
                     >
                         <Box  w={widthButton} center
                         >
@@ -189,7 +195,10 @@ class AddressesScreen extends Component {
                     </TouchableOpacity>,
 
                     <TouchableOpacity style={[styles.rightSwipeItem, {backgroundColor:theme.color.redLight }]}
-                        onPress={() => this.deleteRow(item._id)}
+                        onPress={() => {
+                            this.deleteRow(item._id)
+                            this.setState({refresh: !this.state.refresh})
+                        }}
                     >
                         <Box alignItems='flex-start' w={widthButton}  center
                         >
@@ -240,9 +249,10 @@ class AddressesScreen extends Component {
 }
                 <FlatList 
                     onScroll={this.handleScroll}
-                    data={this.data} 
+                    data={this.state.data} 
                     renderItem={this.renderItem} 
                     keyExtractor={ (item) => String(item._id) } 
+                    extraData={this.state.refresh}
                 />
 
             </Box>

@@ -37,12 +37,6 @@ class AutoCompleteAddressScreen extends Component {
           renderDescription={row => row.description} // custom description render
           onPress={ async(data, details = null) => {
             let address = buildAddress(details)
-            const _id = this.props.navigation.getParam('_id')
-            const goToEdit = this.props.navigation.getParam('goToEdit')
-            if(goToEdit && _id){
-              address._id = _id
-              return NavigationService.navigate('EditAddress', { address }) 
-            }
             return NavigationService.navigate('CreateAddress', { address }) 
           }}
           getDefaultValue={() => {

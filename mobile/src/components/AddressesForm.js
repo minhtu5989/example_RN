@@ -31,39 +31,38 @@ class AddressesForm extends Component {
     @observable 
     street = get(this.address, 'street', '')
 
-    @computed 
-    get town(){
-        return get(this.address, 'town', '')
-    }
+    @observable 
+    town = get(this.address, 'town', '')
 
-    @computed 
-    get city(){
-        return get(this.address, 'city', '')
-    }
+    @observable 
+    city = get(this.address, 'city', '')
 
-    @computed 
-    get province(){
-        return get(this.address, 'province', '')
-    }
+    @observable 
+    province = get(this.address, 'province', '')
 
+    @observable
+    instructions = get(this.address, 'instructions', '')
+    
     // @action.bound
     saveAddress = async() => {
         try {
             const { editMode, authStore, navigation } = this.props
 
             this.isSaving = true
+            var newAddress = Object.assign({}, this.address);
+            newAddress.street = this.street
+            newAddress.town = this.town
+            newAddress.city = this.city
+            newAddress.province = this.province
+            newAddress.instructions = this.instructions
 
             if(editMode){
                 navigation.dismiss()
-                // this.address.street = this.street
-                console.log('edit street', this.street);
-                console.log('edit address', this.address);
-                // return await authStore.info.editAddress(this.address)
+                return await authStore.info.editAddress(newAddress)
             }
             
             navigation.dismiss()
-             await authStore.info.createAddress(this.address)   
-
+            return await authStore.info.createAddress(newAddress)   
 
         } catch (error) {
             console.log('error', error);
@@ -110,7 +109,7 @@ class AddressesForm extends Component {
                             <Box f={1} >
                                 <Sae
                                     value={this.town}
-                                    onChangeText={ town => this.address.town = town }
+                                    onChangeText={ town => this.town = town }
 
                                     label='Town:'
                                     iconClass={Entypo}
@@ -134,6 +133,7 @@ class AddressesForm extends Component {
                             <Box f={1}>
                                 <Sae
                                     value={this.city}
+                                    onChangeText={ city => this.city = city }
 
                                     editable={false}
                                     label='City:'
@@ -160,6 +160,7 @@ class AddressesForm extends Component {
                             <Box f={1}>
                                 <Sae
                                     value={this.province}
+                                    onChangeText={ province => this.province = province }
 
                                     editable={false}
                                     label='Province:'
@@ -206,6 +207,9 @@ class AddressesForm extends Component {
                             </Box>
                         </Box>
                             <Sae
+                                value={this.instructions}
+                                onChangeText={ instructions => this.instructions = instructions }
+
                                 label='Notice for delivery :'
                                 iconClass={MaterialCommunityIcons}
                                 iconName={'truck-delivery'}
@@ -227,7 +231,7 @@ class AddressesForm extends Component {
                 </ScrollView>
                 <Box  mb='sm' justify='end'>
                     <MyButton 
-                        disabled={!this.address.street}
+                        disabled={!this.street && !this.town}
                         type='success'
                         style={{height: 50,}}
                         onPress={this.saveAddress}
