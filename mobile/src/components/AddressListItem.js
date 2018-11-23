@@ -15,7 +15,7 @@ export class AddressListItem extends Component {
                 <TouchableOpacity
                     style={{
                         paddingHorizontal: 16,
-                        height: 80,
+                        height: 70,
                         justifyContent: 'center',
                         borderBottomWidth: StyleSheet.hairlineWidth, 
                         borderBottomColor: theme.color.grey,

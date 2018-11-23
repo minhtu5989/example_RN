@@ -28,10 +28,8 @@ class AddressesForm extends Component {
     @observable 
     isSaving= false
 
-    @computed 
-    get street(){
-        return get(this.address, 'street', '')
-    }
+    @observable 
+    street = get(this.address, 'street', '')
 
     @computed 
     get town(){
@@ -49,34 +47,6 @@ class AddressesForm extends Component {
     }
 
     // @action.bound
-    deleteAddress = () => {
-        try {
-            Alert.alert(
-                'Are you sure?',
-                '',
-                [
-                    {
-                        text: 'Yes',
-                        onPress: async () => {
-                        await this.props.authStore.info.removeAddress(this.address._id);
-                        this.props.navigation.dismiss();
-                        },
-                    },
-                    
-                    {
-                        text: 'Cancel',
-                        style: 'cancel',
-                    },
-
-                ],
-                { cancelable: true },
-            );
-        } catch (error) {
-          console.log('error', error);
-        }
-    }
-
-    // @action.bound
     saveAddress = async() => {
         try {
             const { editMode, authStore, navigation } = this.props
@@ -85,7 +55,10 @@ class AddressesForm extends Component {
 
             if(editMode){
                 navigation.dismiss()
-                return await authStore.info.editAddress(this.address)
+                // this.address.street = this.street
+                console.log('edit street', this.street);
+                console.log('edit address', this.address);
+                // return await authStore.info.editAddress(this.address)
             }
             
             navigation.dismiss()
@@ -114,7 +87,7 @@ class AddressesForm extends Component {
                     <Box mb='sm'>
                         <Sae
                             value={this.street}
-                            onChangeText={ street => this.address.street = street }
+                            onChangeText={ street => this.street = street }
 
                             label='Street Number:'
                             iconClass={FontAwesomeIcon}
@@ -133,7 +106,6 @@ class AddressesForm extends Component {
                             labelStyle={styles._labelStyle}
                             inputStyle={styles._inputStyle}
                         />
-
                         <Box dir='row'>
                             <Box f={1} >
                                 <Sae
@@ -264,18 +236,6 @@ class AddressesForm extends Component {
                             {editMode ? 'Edit' : 'Save'}
                         </Text>
                     </MyButton>
-                    {editMode && (
-                        <MyButton
-                            disabled={!this.address.street}
-                            type='danger'
-                            onPress={this.deleteAddress}
-                            style={{marginTop: 20, height: 50}}
-                            >
-                            <Text bold color="white">
-                                Delete
-                            </Text>
-                        </MyButton>
-                    )}
                 </Box>
 
             </Box>

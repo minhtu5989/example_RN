@@ -15,7 +15,12 @@ import { NavigationService } from '../../api/NavigationService';
 class AutoCompleteAddressScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: 'Search Address',
-    headerLeft: <EvilIcons style={{marginLeft: 8,}} color={theme.color.myAppColor} size={25} name="close" onPress={() => navigation.goBack(null)} />,
+    headerLeft: 
+      <EvilIcons style={{marginLeft: 8,}} 
+        color={theme.color.myAppColor} 
+        size={25} name="close" 
+        onPress={() => navigation.goBack(null)} 
+      />,
   });
 
   render() {
