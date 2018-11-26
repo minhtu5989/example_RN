@@ -19,6 +19,7 @@ import { NavigationService } from '../../api/NavigationService';
 import { theme } from '../../constants/theme';
 import { MyButton } from '../../commons/MyButton';
 import { AddressListItem } from "../../components/AddressListItem";
+import AddModal from '../../components/AddModal';
 
 const {width} = Dimensions.get('window')
 
@@ -52,8 +53,10 @@ class AddressesScreen extends Component {
     constructor(props){
         super(props);
         this.state={
-            refreshKey : null
-        }
+            refreshKey : null,
+        };
+        this.handleAddressesPress = this.handleAddressesPress.bind(this);
+
         when(
             () => this.props.authStore.info.totalAddresses !== 0,
             () => {
@@ -64,37 +67,6 @@ class AddressesScreen extends Component {
         )
     }
 
-    @action.bound
-    deleteRow(rowId) {
-        try {
-            const {info} = this.props.authStore
-            Alert.alert(
-                'Are you sure?',
-                '',
-                [
-                    {
-                        text: 'Yes',
-                        onPress: async () => {
-                            await info.removeAddress(rowId);
-                            // const newData = [...this.data];
-                            // const prevIndex = this.data.findIndex(item => item._id === rowId);
-                            // newData.splice(prevIndex, 1);
-                            // this.data = newData
-                        },
-                    },
-                    
-                    {
-                        text: 'Cancel',
-                        style: 'cancel',
-                    },
-
-                ],
-                { cancelable: true },
-            );
-        } catch (error) {
-            console.log('error', error);
-        }
-    }
 
     @action.bound
     editRow(item) {
@@ -126,7 +98,8 @@ class AddressesScreen extends Component {
     }
 
     handleAddressesPress = () => {
-        this.props.navigation.navigate('AutoCompleteAddress')
+        // this.props.navigation.navigate('AutoCompleteAddress')
+        this.refs.addModal.showAddModal()
     }
 
     renderIfEmpty = () => (
@@ -169,18 +142,24 @@ class AddressesScreen extends Component {
             )
         }
 
-        if( info.totalAddresses === 0 ){
+        if( info.totalAddresses === 0 || this.data === [] ){
             return this.renderIfEmpty();
         }
 
         return (
             <Box f={1} bg='white'>
                 <StatusBar barStyle="dark-content" />
-}
-                <FlatList 
-                    onScroll={this.handleScroll}
-                    data={this.data} 
-                    renderItem={ ({item, index}) => 
+                {
+                    this.data === [] 
+                    ?
+                    <Box f={1} center bg='white'>
+                        <ActivityIndicator color={theme.color.myAppColor} size='large' />
+                    </Box>
+                    :
+                    <FlatList 
+                        // onScroll={this.handleScroll}
+                        data={this.data} 
+                        renderItem={ ({item, index}) => 
                         <AddressListItem 
                             parentFlatlist={this}
                             data={this.data} 
@@ -190,7 +169,11 @@ class AddressesScreen extends Component {
                         /> 
                     } 
                     keyExtractor={ (item) => String(item._id) } 
-                />
+                    />
+                }
+                    <AddModal ref={'addModal'} parentFlatlist={this} >
+                    
+                    </AddModal>
 
             </Box>
         )

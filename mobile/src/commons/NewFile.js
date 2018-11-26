@@ -1,5 +1,13 @@
 import React, { Component } from 'react'
-import { Dimensions, StatusBar, StyleSheet, TouchableOpacity } from 'react-native';
+import { 
+    Dimensions, 
+    StatusBar, 
+    Image,
+    Alert,
+    Platform,
+    StyleSheet, 
+    TouchableOpacity 
+} from 'react-native';
 import { Box, Text } from 'react-native-design-utility'
 import { theme } from '../constants/theme';
 
@@ -10,7 +18,7 @@ import { MyButton } from '../commons/MyButton';
 // import { inject, observer } from 'mobx-react/native';
 
 
-class NewFile extends Component {
+export default class NewFile extends Component {
     constructor(props) {
         super(props);
         this.state = {  };
@@ -29,5 +37,3 @@ class NewFile extends Component {
         );
     }
 }
-
-export default NewFile;

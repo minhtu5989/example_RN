@@ -21,7 +21,7 @@ export class AddressListItem extends Component {
                 }
             },
             onOpen: (secId, rowId, direction) => {
-                this.activeRowKey = address._id
+                this.activeRowKey = address._id 
             },
             right: [  
                 {
