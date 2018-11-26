@@ -140,6 +140,15 @@ const theme = {
       shadowOpacity: 0.6,
       shadowRadius: 5,
     },
+    {
+      shadowColor: color.black,
+      shadowOffset: {
+        width: 10,
+        height: 10,
+      },
+      shadowOpacity: 0.4,
+      shadowRadius: 5,
+    },
   ],
   borders: [
     {

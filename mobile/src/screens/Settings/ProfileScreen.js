@@ -83,14 +83,14 @@ class ProfileScreen extends Component {
               </ListColumn.Right>
             </ListColumn>
           ))}
+        </ScrollView>
 
-            <MyButton type='success' style={{borderRadius: 6, height: 40, width: '90%', marginTop: 20,}} disabled={false}>
+            <MyButton type='success' style={{borderRadius: 6, height: 40, width: '90%', marginBottom: 20,}} disabled={false}>
                 <Text bold color="black">
                     Log out
                 </Text>
             </MyButton>
 
-        </ScrollView>
       </Box>
     );
   }

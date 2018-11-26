@@ -1,6 +1,6 @@
 import { types } from 'mobx-state-tree';
 
-import { store } from '../stores';
+import { store } from '../stores/index';
 
 export const ProductModel = types
   .model('ProductModel', {
@@ -9,7 +9,7 @@ export const ProductModel = types
     imageUrl: types.number,
     unityPrice: types.number,
     kgPrice: types.number,
-    cartQty: 0,
+    cartQty: 0, 
     inCart: false,
   })
   .views(self => ({

@@ -30,7 +30,7 @@ const {width} = Dimensions.get('window')
 class AddressesScreen extends Component {
 
     @observable isLoading = false
-    // @observable data = this.props.authStore.info.addresses
+    @observable data = []
 
     static navigationOptions = ({navigation}) => {
         const headerRight = navigation.getParam('showAddBtn') 
@@ -51,12 +51,8 @@ class AddressesScreen extends Component {
 
     constructor(props){
         super(props);
-        this.state ={ 
-            data : this.props.authStore.info.addresses,
-            refresh: false,
-            currentlyOpenSwipeable: null,
-            toggle: false,
-            leftActionActivated: false,
+        this.state={
+            refreshKey : null
         }
         when(
             () => this.props.authStore.info.totalAddresses !== 0,
@@ -84,7 +80,6 @@ class AddressesScreen extends Component {
                             // const prevIndex = this.data.findIndex(item => item._id === rowId);
                             // newData.splice(prevIndex, 1);
                             // this.data = newData
-
                         },
                     },
                     
@@ -106,14 +101,6 @@ class AddressesScreen extends Component {
         NavigationService.navigate('EditAddress', { address : item })
     }
 
-    handleScroll = () => {
-        const {currentlyOpenSwipeable} = this.state;
-
-        if (currentlyOpenSwipeable) {
-            currentlyOpenSwipeable.recenter();
-        }
-    };
-
     componentDidMount = () => {
         this.fetchAddresses();
     }
@@ -124,6 +111,7 @@ class AddressesScreen extends Component {
         try {
             this.isLoading = true
             const res = await this.props.authStore.info.getAddresses()
+            this.data = res
             this.isLoading = false
         } catch (error) {
             throw error
@@ -164,67 +152,9 @@ class AddressesScreen extends Component {
             </Box>
         </Box>
     )
-
-    onOpen = (event, gestureState, swipeable) => {
-        const {currentlyOpenSwipeable} = this.state;
-        if (currentlyOpenSwipeable && currentlyOpenSwipeable !== swipeable) {
-            currentlyOpenSwipeable.recenter();
-        }
-
-        this.setState({currentlyOpenSwipeable: swipeable});
-    }
-
-    onClose = () => this.setState({currentlyOpenSwipeable: null})
-
-    renderItem = ({item}) => {
-        const { leftActionActivated, toggle } = this.state
-        const widthButton = 70
-        return ( 
-            <Swipeable  
-                rightButtons={[
-                    <TouchableOpacity style={[styles.rightSwipeItem, {backgroundColor: theme.color.greenLight }]}
-                        onPress={ () => {
-                            this.editRow(item)
-                            this.setState({refresh: !this.state.refresh })
-                        }}
-                    >
-                        <Box  w={widthButton} center
-                        >
-                            <FontAwesome name="edit" size={24} color={theme.color.white} />
-                        </Box>
-                    </TouchableOpacity>,
-
-                    <TouchableOpacity style={[styles.rightSwipeItem, {backgroundColor:theme.color.redLight }]}
-                        onPress={() => {
-                            this.deleteRow(item._id)
-                            this.setState({refresh: !this.state.refresh})
-                        }}
-                    >
-                        <Box alignItems='flex-start' w={widthButton}  center
-                        >
-                            <AntDesign name="delete" size={24} color={theme.color.white} />
-                        </Box>
-                    </TouchableOpacity>
-                ]}
-                onRightButtonsOpenRelease={this.onOpen}
-                onRightButtonsCloseRelease={this.onClose}
-                rightButtonWidth={widthButton}
-
-                leftActionActivationDistance={200}
-                leftContent={(
-                <View style={[styles.leftSwipeItem, {backgroundColor: leftActionActivated ? 'lightgoldenrodyellow' : 'steelblue'}]}>
-                    {leftActionActivated ?
-                    <Text>release!</Text> :
-                    <Text>keep pulling!</Text>}
-                </View>
-                )}
-                onLeftActionActivate={() => this.setState({leftActionActivated: true})}
-                onLeftActionDeactivate={() => this.setState({leftActionActivated: false})}
-                onLeftActionComplete={() => this.setState({toggle: !toggle})}
-            >
-                <AddressListItem address={item} />
-            </Swipeable>
-        )
+    
+    refreshFlatlist = (_id) => {
+        this.setState({ refreshKey: _id })
     }
 
     render() {  
@@ -249,10 +179,17 @@ class AddressesScreen extends Component {
 }
                 <FlatList 
                     onScroll={this.handleScroll}
-                    data={this.state.data} 
-                    renderItem={this.renderItem} 
+                    data={this.data} 
+                    renderItem={ ({item, index}) => 
+                        <AddressListItem 
+                            parentFlatlist={this}
+                            data={this.data} 
+                            info={this.props.authStore.info}
+                            address={item} 
+                            index={index} 
+                        /> 
+                    } 
                     keyExtractor={ (item) => String(item._id) } 
-                    extraData={this.state.refresh}
                 />
 
             </Box>

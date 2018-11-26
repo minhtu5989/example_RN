@@ -4,7 +4,7 @@ import get from 'lodash.get';
 import { baseApi } from "../api/Api";
 
 export const UserAddressModel = types
-.model('UserAddressModel', {
+.model( {
     _id: types.identifier,
     street: types.string,
     town: types.string,
