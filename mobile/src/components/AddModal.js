@@ -34,7 +34,7 @@ export default class AddModal extends Component {
                 }}
                 position='center'
                 backdrop={true}
-                onClosed={() => alert('Modal close !') } 
+                onClosed={ () => { } } 
             >
                 <Text>New Address Infomation</Text>
             </Modal>

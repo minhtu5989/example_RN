@@ -4,7 +4,7 @@ import get from 'lodash.get';
 import { baseApi } from "../api/Api";
 
 export const UserAddressModel = types
-.model( {
+.model( 'UserAddressModel', {
     _id: types.identifier,
     street: types.string,
     town: types.string,
@@ -39,34 +39,35 @@ export const UserAddressModel = types
     updateAddress: flow(function*(data){
         try {
             const res = yield baseApi
-                .url(`/addresses/${self._id}`)
+                .url(`/addresses/${data._id}`)
                 .auth(`Bearer ${self.parent.authToken}`) 
                 .put({ data })
                 .json();
     
             if(res.address){
+                console.log('update');
                 return self.update(res.address)
             }
-     
+
         } catch (error) {
             throw error;
         }
     }),
 
-    deleteAddress: flow(function*(_id){
+    deleteAddress: flow(function*(data){
         try {
             const res = yield baseApi
-                .url(`/addresses/${self._id}`)
-                .auth(`Bearer ${self.parent.authToken}`) 
+                .url(`/addresses/${data._id}`)
+                .auth(`Bearer ${data.parent.authToken}`) 
                 .delete()
                 .res();
             
             if(res.status === 209){ 
-                console.log('Delete Address Successful');
-                destroy(self)   
+                self.parent.info.removeAddress(data)
             }
         } catch (error) {
             throw error;
         }
     }),
+
 }))

@@ -17,8 +17,8 @@ class CloseBtn extends Component {
 }
 
 CloseBtn.defaultProps = {
-  color: theme.color.myAppColor,
-  size: 24,
+  color: theme.color.white,
+  size: 32,
 };
 
 export default CloseBtn;

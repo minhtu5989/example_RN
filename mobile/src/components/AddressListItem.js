@@ -6,13 +6,14 @@ import { observer } from 'mobx-react/native';
 import { observable } from 'mobx'
 
 import { theme } from '../constants/theme';
+import { NavigationService } from '../api/NavigationService';
 @observer
 export class AddressListItem extends Component {
     
     @observable activeRowKey = null
 
     render() {
-        const { address, index, data, info, parentFlatlist } = this.props
+        const { address, index, } = this.props
         const swipeSettings = {
             autoClose: true,
             onClose: (secId, rowId, direction) => {
@@ -23,7 +24,13 @@ export class AddressListItem extends Component {
             onOpen: (secId, rowId, direction) => {
                 this.activeRowKey = address._id 
             },
-            right: [  
+            right: [
+                {
+                    onPress: () => {
+                        NavigationService.navigate('EditAddress', { address })
+                    },
+                    text: 'Edit', type: 'primary'  
+                },  
                 {
                     onPress: () => {
                         Alert.alert(
@@ -33,9 +40,8 @@ export class AddressListItem extends Component {
                                 {
                                     text: 'Yes',
                                     onPress: async () => {
-                                        await info.removeAddress(address._id);
-                                        data.splice(index, 1)
-                                        parentFlatlist.refreshFlatlist(address._id)
+                                        await address.deleteAddress(address)
+                                        alert('Delete successful !')
                                     },
                                 },
                                 

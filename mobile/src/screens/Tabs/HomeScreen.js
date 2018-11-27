@@ -33,7 +33,7 @@ const catagories = [
  
 class HomeScreen extends Component {
     static navigationOptions = ({navigation}) => ({
-        title: 'Instore',
+        title: 'In Store',
         headerLeft: (
             <ProfileBtn/>
         )
@@ -60,7 +60,6 @@ class HomeScreen extends Component {
     render() {
         return (
             <Box f={1}>
-                <StatusBar barStyle="dark-content"/>
                 <Box w='100%' h={200} bg='black' center>
                     <DealCarousel/>
                 </Box>

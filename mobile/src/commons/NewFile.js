@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { 
     Dimensions, 
-    StatusBar, 
     Image,
     Alert,
     Platform,
@@ -31,7 +30,6 @@ export default class NewFile extends Component {
     render() {
         return (
             <Box f={1} bg='white'>
-                <StatusBar barStyle='dark-content'/>
                 <Text>this is NewFile</Text>
             </Box>
         );

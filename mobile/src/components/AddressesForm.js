@@ -46,19 +46,21 @@ class AddressesForm extends Component {
     // @action.bound
     saveAddress = async() => {
         try {
-            const { editMode, authStore, navigation } = this.props
+            const { editMode, authStore, navigation, address } = this.props
 
             this.isSaving = true
-            var newAddress = Object.assign({}, this.address);
+            let newAddress = Object.assign({}, this.address);
             newAddress.street = this.street
             newAddress.town = this.town
             newAddress.city = this.city
             newAddress.province = this.province
             newAddress.instructions = this.instructions
+            console.log('new', newAddress);
 
             if(editMode){
-                navigation.dismiss()
-                return await authStore.info.editAddress(newAddress)
+                await address.updateAddress(newAddress)
+                await alert('Update successful !')
+                return navigation.dismiss()
             }
             
             navigation.dismiss()

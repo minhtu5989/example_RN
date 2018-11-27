@@ -17,7 +17,7 @@ export const CurrentUserModel = types
     },
 
     get addressList(){
-      return self.addresses
+      return self.addresses.slice()
     },
 
     get parent(){
@@ -62,28 +62,22 @@ export const CurrentUserModel = types
       }
     }),
 
-    editAddress: flow(function*(data){
-      try {
-        
-        const addresses = self.addresses.toJSON()
-        addresses.forEach(el => {
-          if( el._id === data._id ){
-              return el.updateAddress(data)
-          }
-        })
-      } catch (error) {
-        throw error;
-      }
-    }),
+    // editAddress(data){
+    //   self.addresses.forEach(el => {
+    //     if( el._id === data._id ){
+    //         return el = data
+    //     }
+    //   })
+    // },
 
-  removeAddress(_id){
-      const addresses = self.addresses.toJSON()
-      addresses.forEach(el => {
-        if( el._id === _id ){
-            return el.deleteAddress(_id)
-        }
-      })
-  },
+
+    removeAddress(address){
+        // self.addresses = self.addresses.filter(
+        //   el => el._id !== address._id
+        // )
+        destroy(address)
+        console.log('Delete Address Successful');
+    },
 
 }))
   

@@ -2,26 +2,34 @@ import React, { Component } from 'react'
 import { createBottomTabNavigator, createSwitchNavigator, createStackNavigator } from 'react-navigation'
 import { NavigationService } from '../api/NavigationService';
 import { FontAwesome } from '@expo/vector-icons';
+import { Platform } from 'react-native';
 
 import ShoppingCartIcon from '../components/ShoppingCartIcon';
 import { theme } from "../constants/theme";
 
 const primaryHeader = { 
     headerStyle: {
-        backgroundColor: theme.color.myAppColor
+        backgroundColor: theme.color.myAppColor,
+        // height: Platform.OS === 'ios' ? 50 : 60,
+        paddingBottom: Platform.OS === 'ios' ? 16 : 0,
     },
-    headerTintColor: 'white',
-    headerTitleStyle:{ fontWeight: '400' },
+    headerTintColor: theme.color.white,
+    headerTitleStyle:{ 
+        // fontWeight: '400', 
+        fontSize: 22, 
+    },
 }
 
 const modelHeader = {
     headerBackTitle: null,
-    headerTintColor: theme.color.myAppColor,
+    headerTintColor: theme.color.white,
     headerStyle: {
-        backgroundColor: theme.color.white,
+        backgroundColor: theme.color.myAppColor,
+        paddingBottom: Platform.OS === 'ios' ? 16 : 0,
     },
     headerTitleStyle: {
-        color: theme.color.black,
+        fontWeight: '700', 
+        color: theme.color.white,
     },
 }
 
@@ -156,9 +164,10 @@ const TabNavigator = createBottomTabNavigator(
             activeTintColor: 'blue', 
             inactiveTintColor: 'black',
             style:{
-                backgroundColor: 'lightblue',
+                height: 60,
+                paddingBottom: 5,
+                backgroundColor: theme.color.greyLightest,
                 borderTopWidth: 0.3,
-                height: 50,
                 borderTopColor:'gray',
                 shadowColor: 'black',
                 shadowOffset: {

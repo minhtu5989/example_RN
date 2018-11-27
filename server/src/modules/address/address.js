@@ -41,8 +41,9 @@ export const updateAdd = async (addressId, newAddressValues, userId) => {
       
       /*
         Object.keys trả về một mảng có value từng phần tử là String
-        => Object.key(newAddressValues) = ['street', 'town', 'city', 'province', 'city', 'instructions', 'geo','user']
+        => Object.keys(newAddressValues) = ['street', 'town', 'city', 'province', 'city', 'instructions', 'geo','user']
       */
+     
       Object.keys(newAddressValues).forEach(key => {
         if (key === 'geo') {
           address.geo.coords = [

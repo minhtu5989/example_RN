@@ -46,14 +46,13 @@ const LINKS = [
 class ProfileScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: 'My Profile',
-    headerLeft: <CloseBtn left size={25} onPress={() => navigation.goBack(null)} /> ,
+    headerLeft: <CloseBtn left size={32} onPress={() => navigation.goBack(null)} /> ,
   });
   state = {};
   render() {
     const { authStore } = this.props;
     return (
       <Box f={1} bg="white">
-        <StatusBar barStyle="dark-content" />
         <ScrollView>
           <ListColumn>
             <ListColumn.Left>

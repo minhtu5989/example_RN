@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActivityIndicator } from 'react-native';
+import { ActivityIndicator, SafeAreaView, StatusBar } from 'react-native';
 import { UtilityThemeProvider, Box, Text } from 'react-native-design-utility';
 import { Provider } from 'mobx-react/native';
 
@@ -40,7 +40,10 @@ export default class App extends React.Component {
     return (
       <Provider {...store}>
         <UtilityThemeProvider theme={theme}>
-          <Navigation/>
+          <SafeAreaView style={{flex:1, backgroundColor: theme.color.black}}>
+            <StatusBar barStyle='light-content'/>
+            <Navigation/>
+          </SafeAreaView>
         </UtilityThemeProvider>
       </Provider>
     );
