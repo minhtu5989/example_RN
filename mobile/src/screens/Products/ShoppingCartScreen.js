@@ -19,10 +19,6 @@ class ShoppingCartScreen extends Component {
         headerLeft: <CloseBtn left size={25} onPress={() => navigation.goBack(null)} />
     }); 
 
-    renderItem = ({item}) => <CartItem product={item}/>
-
-    keyExtractor = item => String(item._id)
-
     renderList(){
         const { shoppingCartStore } = this.props
 
@@ -39,8 +35,10 @@ class ShoppingCartScreen extends Component {
             <Box f={1}>
                 <FlatList 
                     data={shoppingCartStore.productsList} 
-                    renderItem={this.renderItem} 
-                    keyExtractor={({item}) => String(item._id)} 
+                    renderItem={({item}) => 
+                        <CartItem product={item}/>
+                    } 
+                    keyExtractor={(item) => String(item.id)} 
                     extraData={shoppingCartStore}    
                 />
             </Box>

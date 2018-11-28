@@ -10,14 +10,14 @@ const shoppingCartStore = ShoppingCartStore.create({ products: [] });
 const productsStore = ProductsStore.create({
   data: [
     ProductModel.create({
-      _id: '1',
+      id: '1aaa',
       name: 'Red Apple',
       imageUrl: require('../../assets/img/products/apple.png'),
       kgPrice: 10.12,
       unityPrice: 1.9,
     }),
     ProductModel.create({
-      _id: "2",
+      id: '2bbb',
       name: 'Tomato',
       imageUrl: require('../../assets/img/products/tomato.png'),
       kgPrice: 9.51,

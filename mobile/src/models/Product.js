@@ -1,10 +1,10 @@
 import { types } from 'mobx-state-tree';
 
-import { store } from '../stores/index';
+import { store } from '../stores';
 
 export const ProductModel = types
   .model('ProductModel', {
-    _id: types.identifier,
+    id: types.identifier,
     name: types.string,
     imageUrl: types.number,
     unityPrice: types.number,
@@ -29,6 +29,8 @@ export const ProductModel = types
     },
     addToCart() {
       store.shoppingCartStore.addProduct(self);
+      console.log('shop', store.shoppingCartStore.productsList);
+      
       self.inCart = true;
       self.incCartQty();
     },

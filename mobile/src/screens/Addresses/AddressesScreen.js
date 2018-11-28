@@ -93,7 +93,6 @@ class AddressesScreen extends Component {
 
     renderIfEmpty = () => (
         <Box f={1} center bg='white'>
-            <StatusBar barStyle='dark-content'/>
             <Box  center px='md'>
                 <Box center mb='md'>
                     <EvilIcons name='location' color={theme.color.black} size={200}/>

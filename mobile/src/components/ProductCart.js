@@ -105,7 +105,7 @@ class ProductCard extends Component {
                 borderWidth: 1,
               }}
               center
-              bg={product.cartQty > 0 ? 'myAppColor' : 'white'}
+              bg={product.cartQty > 0 ? theme.color.myAppColor : 'white'}
             >
               {product.cartQty > 0 ? (
                 <Text color="white" size="sm">

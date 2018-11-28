@@ -12,16 +12,20 @@ class CategoryScreen extends Component {
         title: navigation.getParam('name', 'InStore'),
       });
 
+    handle(){
+        const data = this.props.productsStore.data.map(el => <Text>{el.id}</Text>)
+    }
+
     render() {
         const { productsStore } = this.props
         return (
-            <Box>   
-                
+            <Box>    
                 <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                     {
-                        productsStore.data.map(product => (
-                            <ProductCart product={product} key={product._id}  />
-                        ))
+                        // productsStore.data.map(product => (
+                        //     <ProductCart product={product} key={product.id}  />
+                        // ))
+                        this.handle()                        
                     }
                 </ScrollView>
             </Box>

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Box, Text } from 'react-native-design-utility'
-import { StatusBar, FlatList } from 'react-native'
-import CategoryCard from '../../components/CategoryCard';
+import { FlatList } from 'react-native'
 
+import CategoryCard from '../../components/CategoryCard';
 import { theme } from "../../constants/theme";
 import DealCarousel from '../../components/DealCarousel';
 import { ProfileBtn } from "../../commons/ProfileBtn";
@@ -32,13 +32,13 @@ const catagories = [
 ]
  
 class HomeScreen extends Component {
+
     static navigationOptions = ({navigation}) => ({
         title: 'In Store',
         headerLeft: (
             <ProfileBtn/>
         )
     });
-
 
     _renderItem= ({item, index}) => {
         let styleItem = {};
