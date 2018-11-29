@@ -1,9 +1,15 @@
 import mongoose, { Schema } from 'mongoose';
+import { types } from 'util';
 
 export const PROVIDER_ENUM = ['FACEBOOK', 'GOOGLE'];
 
 const CustomerSchema = new Schema(
   {
+    notifiToken: [
+      {
+        token: { type: String }
+      }
+    ],
     firstName: String,
     lastName: String,
     email: {

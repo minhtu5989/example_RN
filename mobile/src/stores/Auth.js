@@ -33,7 +33,7 @@ export const AuthStore = types
     try {
       if(self.authToken){
         const res = yield customersApi
-        .url('/me')
+        .url('/user')
         .headers({ Authorization: `Bearer ${self.authToken}` })
         .get()
         .json();

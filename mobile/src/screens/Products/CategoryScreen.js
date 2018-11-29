@@ -13,7 +13,7 @@ class CategoryScreen extends Component {
       });
 
     handle(){
-        const data = this.props.productsStore.data.map(el => <Text>{el.id}</Text>)
+        const data = this.props.productsStore.data
     }
 
     render() {

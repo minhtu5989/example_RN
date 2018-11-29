@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 
 import { PROVIDER_ENUM } from './customer.model';
 import { AuthProvider } from '../../services/authProvider';
-import { getOrCreateCustomer, me } from './customer';
+import * as CustomerServices from './customer';
 import { AuthServices } from '../../services/Auth';
 
 export const create = async (req, res) => {
@@ -28,7 +28,7 @@ export const create = async (req, res) => {
       res.sendStatus(400);
     }
 
-    const customer = await getOrCreateCustomer(data, provider);
+    const customer = await CustomerServices.getOrCreateCustomer(data, provider);
 
     const jwtToken = AuthServices.createToken(customer);
 
@@ -41,7 +41,7 @@ export const create = async (req, res) => {
 export const getUserInfo = async (req, res) => {
   try {
     if (req.user) {
-      const userInfo = await me(req.user._id);
+      const userInfo = await CustomerServices.me(req.user._id);
 
       res.status(200).json(userInfo);
     } else {
@@ -51,3 +51,20 @@ export const getUserInfo = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
+export const saveNotifiToken = async (req, res) => {
+  try {
+    const result = await CustomerServices.getNotifiToken(req.body._id, req.body.token);
+
+    if(result === 205){
+      res.status(205).json({ message: 'Notification token existed !' });
+    }
+
+    return res.status(202).json({ message: 'Save token successful !' });
+
+  } catch (error) {
+    console.log('error', error);
+    throw error;
+  }
+};
+
