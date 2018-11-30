@@ -7,7 +7,8 @@ import { Platform } from 'react-native';
 import ShoppingCartIcon from '../components/ShoppingCartIcon';
 import { theme } from "../constants/theme";
 
-const primaryHeader = { 
+const primaryHeader = {
+    headerBackTitle: null,
     headerStyle: {
         backgroundColor: theme.color.myAppColor,
         // height: Platform.OS === 'ios' ? 50 : 60,

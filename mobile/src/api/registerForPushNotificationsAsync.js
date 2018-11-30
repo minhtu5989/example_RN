@@ -27,10 +27,10 @@ export const registerForPushNotificationsAsync = async(_id) => {
   // POST the token to your backend server from where you can retrieve it to send push notifications.
   return await PUSH_ENDPOINT
     .url('/user/notifiToken')
-    .headers({ 
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    })
+    // .headers({ 
+    //   Accept: 'application/json',
+    //   'Content-Type': 'application/json',
+    // })
     .post({
       token,
       _id: _id

@@ -33,6 +33,7 @@ export const ProductModel = types
       
       self.inCart = true;
       self.incCartQty();
+      
     },
     removeFromCart() {
       store.shoppingCartStore.removeProduct(self);

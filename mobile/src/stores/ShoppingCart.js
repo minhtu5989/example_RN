@@ -4,7 +4,7 @@ import { ProductModel } from '../models/Product';
 
 export const ShoppingCartStore = types
   .model('ShoppinCartStore', {
-    products: types.array(types.reference(ProductModel)),
+    products: types.array( types.maybeNull(ProductModel))
   })
   .views(self => ({
     get totalProducts() {
@@ -21,13 +21,15 @@ export const ShoppingCartStore = types
   }))
   .actions(self => ({
     addProduct(product) {
-      const entry = self.products.find(el => el._id === product._id);
-
-      if (!entry) {
+      
+      const check = self.products.find(el => el.id === product.id);
+      
+      if (!check) {
         self.products.push(product);
       }
     },
     removeProduct(product) {
-      self.products = self.products.filter(el => el._id !== product._id);
+      self.products = self.products.filter(el => el.id !== product.id);
     },
+
   }));

@@ -80,6 +80,13 @@ export const AuthStore = types
       console.log('error', error);
     }
   }),
+
+  logOut(){
+    AsyncStorage.removeItem(TOKEN_KEY)
+    setTimeout(() => {
+      NavigationService.navigate('Auth')
+    }, 500); 
+  },
   
 }))
 

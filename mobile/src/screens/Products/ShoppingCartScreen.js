@@ -16,7 +16,7 @@ const {width} = Dimensions.get('window')
 class ShoppingCartScreen extends Component {
     static navigationOptions = ({navigation}) => ({
         title: 'My cart',
-        headerLeft: <CloseBtn left size={25} onPress={() => navigation.goBack(null)} />
+        headerLeft: <CloseBtn left color={theme.color.myAppColor} onPress={() => navigation.goBack(null)} />
     }); 
 
     renderList(){

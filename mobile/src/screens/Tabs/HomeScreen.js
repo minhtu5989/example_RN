@@ -60,7 +60,7 @@ class HomeScreen extends Component {
     render() {
         return (
             <Box f={1}>
-                <Box w='100%' h={200} bg='black' center>
+                <Box w='100%' h={220} bg='black' center>
                     <DealCarousel/>
                 </Box>
                 <Box f={1} p={10}>

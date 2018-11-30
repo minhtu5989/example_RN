@@ -76,7 +76,7 @@ export class AddressListItem extends Component {
                                 {address.street}, {address.town}, {address.city}, {address.province}, Việt Nam
                             </Text>     
                 </TouchableOpacity>
-            // </Swipeout>
+            </Swipeout>
         );
     }
 }

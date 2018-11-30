@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Box } from 'react-native-design-utility'
-import { Alert, Animated, Easing} from 'react-native';
+import { Alert, Animated, Easing, Dimensions} from 'react-native';
 import { inject,observer } from "mobx-react/native";
 
 import { OnBoadingLogo } from '../../commons/OnBoadingLogo'
@@ -8,6 +8,7 @@ import { LoginButton } from '../../commons/LoginButton';
 import { FacebookApi} from '../../api/Facebook'
 import { GoogleApi} from '../../api/Google'
 
+const screen = Dimensions.get('window')
 const BoxAnimated = Animated.createAnimatedComponent(Box);
 @inject('authStore')
 @observer
@@ -63,9 +64,9 @@ class LoginScreen extends Component {
 
     render() {
         const { opacity } = this.state;
-        const translateY = this.state.position.interpolate({
+        const translateX = this.state.position.interpolate({
             inputRange: [0, 1],
-            outputRange: [200, 0]
+            outputRange: [-300, 0]
         })
         console.log(`props`, this.props);
         
@@ -73,17 +74,17 @@ class LoginScreen extends Component {
             <Box f={1} center bg='white'>
 
                 <BoxAnimated
-                    f={1}
+                    f={4/5}
                     style={{
-                        transform: [ {translateY} ]
+                        transform: [ {translateX} ]
                     }} 
                 >
-                    <Box f={1} center>
+                    <Box center style={{marginTop: (screen.height / 5.3 ) }} >
                         <OnBoadingLogo/>
                     </Box>
                 </BoxAnimated>
                 
-                <BoxAnimated f={1} w='100%' style={{ opacity }}>
+                <BoxAnimated f={1/5} w='100%' style={{ opacity }}>
                         <LoginButton 
                             type='google' 
                             title='Continue with Google'

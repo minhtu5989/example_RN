@@ -1,5 +1,5 @@
 export const images = {
-    logo: require('../../assets/img/splashh.jpg'),
+    logo: require('../../assets/img/splashh.png'),
     googleColorIcon: require('../../assets/img/googleIcon.png'),
     shoppingCart: require('../../assets/img/shoppingCart.png'),
   };

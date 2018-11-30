@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StatusBar, ScrollView, Image } from 'react-native';
+import { ScrollView, Image, } from 'react-native';
 import { Box, Text } from 'react-native-design-utility';
 import { inject } from 'mobx-react/native';
 import {
@@ -84,7 +84,11 @@ class ProfileScreen extends Component {
           ))}
         </ScrollView>
 
-            <MyButton type='success' style={{borderRadius: 6, height: 40, width: '90%', marginBottom: 20,}} disabled={false}>
+            <MyButton 
+              type='success' 
+              style={{borderRadius: 6, height: 40, width: '90%', marginBottom: 20,}} 
+              onPress={ () => this.props.authStore.logOut() }
+            >
                 <Text bold color="black">
                     Log out
                 </Text>

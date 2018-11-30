@@ -9,12 +9,8 @@ import ProductCart from '../../components/ProductCart';
 
 class CategoryScreen extends Component {
     static navigationOptions = ({ navigation }) => ({
-        title: navigation.getParam('name', 'InStore'),
+        title: navigation.getParam('name'),
       });
-
-    handle(){
-        const data = this.props.productsStore.data
-    }
 
     render() {
         const { productsStore } = this.props
@@ -22,10 +18,9 @@ class CategoryScreen extends Component {
             <Box>    
                 <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                     {
-                        // productsStore.data.map(product => (
-                        //     <ProductCart product={product} key={product.id}  />
-                        // ))
-                        this.handle()                        
+                        productsStore.data.map(product => (
+                            <ProductCart product={product} key={product.id}  />
+                        ))
                     }
                 </ScrollView>
             </Box>

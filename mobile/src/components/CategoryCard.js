@@ -12,7 +12,7 @@ class CategoryCard extends PureComponent {
     } 
 
     _handlePress(){
-        NavigationService.navigate('Category', { name: this.props.title})
+        NavigationService.navigate('Category', { name: this.props.item.title})
     }
 
     render() {

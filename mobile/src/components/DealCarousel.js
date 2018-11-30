@@ -14,7 +14,7 @@ const SLIDER = [
         },
         {
             title: 'image 2',
-            image: require('../../assets/img/slider2.jpg')
+            image: require('../../assets/img/slider2.png')
         },
         {
             title: 'image 3', 
@@ -46,7 +46,7 @@ class DealCarousel extends PureComponent {
                                 source = { slider.image } 
                                 shadow={1} 
                                 center
-                                style={{ resizeMode: 'cover', borderRadius: 10, width: width-20, height: 180 }}
+                                style={{ resizeMode: 'cover', borderRadius: 10, width: width-20, height: 200 }}
                             />
                         </Box>
                     </TouchableOpacity>
