@@ -51,7 +51,6 @@ class HomeScreen extends Component {
 
     componentDidMount() {
         registerForPushNotificationsAsync(this.props.authStore.info._id)
-        console.log('id', this.props.authStore.info._id);
         this._notificationSubscription = Notifications.addListener(this._handleNotification);
     }
 
@@ -96,6 +95,8 @@ class HomeScreen extends Component {
 
                 <Box style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
                     <Text>Origin: {this.state.notification.origin}</Text>
+                    {console.log('Origin:',this.state.notification.origin)}
+                    
                     <Text>Data: {JSON.stringify(this.state.notification.data)}</Text>
                 </Box>
             </Box>            

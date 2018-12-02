@@ -7,25 +7,21 @@ export const registerForPushNotificationsAsync = async(_id) => {
   let finalStatus = status;
   
     //check if no existing permission, ask user for permission...
-
   if(status !== 'granted') {
     const { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS)
     finalStatus = status;
   }
   
     //check if no permission, exit the function
-
-  // if(finalStatus !== 'granted'){ 
-  //   return ;
-  // }
+  if(finalStatus !== 'granted'){ 
+    return ;
+  }
   
     // get push notification token
-
-  // let token = await Notifications.getExpoPushTokenAsync() 
-  let token = 'ExponentPushToken[eeibY_Guux8zYPa6kGyW3l]22zzz'
+  let token = await Notifications.getExpoPushTokenAsync() 
+  console.log('__token-Notifi', token);
   
     //POST the token to your backend server from where you can retrieve it to send push notifications.
-    
   return await customersApi
     .url('/user/notifiToken')
     .headers({ 
