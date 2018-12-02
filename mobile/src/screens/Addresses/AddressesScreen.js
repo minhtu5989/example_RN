@@ -36,7 +36,7 @@ class AddressesScreen extends Component {
         const headerRight = navigation.getParam('showAddBtn') 
         ?
         <Box mr='xs'>
-            <MyButton onPress={navigation.getParam('handleAddressesPress')} >
+            <MyButton onPress={navigation.getParam('handleAddAddress') } >
                 <MaterialIcons color={theme.color.white} name="add-circle-outline" size={30} />
             </MyButton>
         </Box>

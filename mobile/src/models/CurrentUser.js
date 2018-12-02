@@ -28,6 +28,7 @@ export const CurrentUserModel = types
 
     createAddress: flow(function*(data){
       try {
+        console.log('dataaa0',data);
         const res = yield baseApi
         .url('/addresses')
         // .auth(`Bearer ${self.parent.authToken}`)

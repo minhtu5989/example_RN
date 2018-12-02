@@ -19,7 +19,7 @@ export const AuthStore = types
 
       if(token){
         self.authToken = token
-        console.log('get AuthToken !!');
+        console.log('get AuthToken !!', token);
       }
       else{
         NavigationService.navigate('Auth')

@@ -9,6 +9,7 @@ import {
   Feather,
 } from '@expo/vector-icons';
 
+
 import CloseBtn from '../../commons/CloseBtn';
 import ListColumn from '../../commons/ListColumn';
 import { theme } from '../../constants/theme';
@@ -48,7 +49,7 @@ class ProfileScreen extends Component {
     title: 'My Profile',
     headerLeft: <CloseBtn left size={32} onPress={() => navigation.goBack(null)} /> ,
   });
-  state = {};
+
   render() {
     const { authStore } = this.props;
     return (

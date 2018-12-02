@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import { Box, Text } from 'react-native-design-utility'
 import { FlatList } from 'react-native'
+import { Notifications } from 'expo';
+import { inject } from 'mobx-react/native';
 
 import CategoryCard from '../../components/CategoryCard';
 import { theme } from "../../constants/theme";
 import DealCarousel from '../../components/DealCarousel';
 import { ProfileBtn } from "../../commons/ProfileBtn";
+import { registerForPushNotificationsAsync } from '../../../src/api/registerForPushNotificationsAsync';
 
 const NUMBER_COLUMN = 3;
 
@@ -31,6 +34,8 @@ const catagories = [
     }
 ]
  
+@inject('authStore')
+
 class HomeScreen extends Component {
 
     static navigationOptions = ({navigation}) => ({
@@ -39,6 +44,20 @@ class HomeScreen extends Component {
             <ProfileBtn/>
         )
     });
+
+    state = {
+        notification: {},
+    };
+
+    componentDidMount() {
+        registerForPushNotificationsAsync(this.props.authStore.info._id)
+        console.log('id', this.props.authStore.info._id);
+        this._notificationSubscription = Notifications.addListener(this._handleNotification);
+    }
+
+    _handleNotification = (notification) => {
+    this.setState({notification: notification});
+    };
 
     _renderItem= ({item, index}) => {
         let styleItem = {};
@@ -60,9 +79,11 @@ class HomeScreen extends Component {
     render() {
         return (
             <Box f={1}>
+            
                 <Box w='100%' h={220} bg='black' center>
                     <DealCarousel/>
                 </Box>
+
                 <Box f={1} p={10}>
                     <FlatList
                         data={catagories}
@@ -71,6 +92,11 @@ class HomeScreen extends Component {
                         numColumns={NUMBER_COLUMN}
                         ItemSeparatorComponent={this.separator}
                     />
+                </Box>
+
+                <Box style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                    <Text>Origin: {this.state.notification.origin}</Text>
+                    <Text>Data: {JSON.stringify(this.state.notification.data)}</Text>
                 </Box>
             </Box>            
         );

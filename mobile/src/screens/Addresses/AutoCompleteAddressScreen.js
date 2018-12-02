@@ -17,8 +17,8 @@ class AutoCompleteAddressScreen extends Component {
     title: 'Search Address',
     headerLeft: 
       <EvilIcons style={{marginLeft: 8,}} 
-        color={theme.color.myAppColor} 
-        size={25} name="close" 
+        color={theme.color.white} 
+        size={32} name="close" 
         onPress={() => navigation.goBack(null)} 
       />,
   });

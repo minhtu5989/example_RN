@@ -86,7 +86,7 @@ export const getNotifiToken = async (userId, tokenValue) => {
     const TokenExisted = user.notifiToken.find(el => el.token === tokenValue)
     if(TokenExisted)
     {
-      return 205;
+      return 303;
     }
 
     user.notifiToken.push({ token: tokenValue })
@@ -95,10 +95,10 @@ export const getNotifiToken = async (userId, tokenValue) => {
       Tránh việc trong mảng bị lặp phần tử
       vì có thể người dùng delete app và register lại lần nữa
 
-      token từ Register có thể bị trùng vì mỗi thiết bị chỉ có 1 token riêng, không thay đổi
+      token từ Register ko thể bị trùng vì mỗi thiết bị chỉ có 1 token riêng, không thay đổi dc
       cho nên một thiết bị có thể đky với nhiều user dưới cùng một token Notifi
 
-      notifiToken dạng mảng để user vì user có thể sử dụng nhiều thiết bị 
+      notifiToken dạng mảng vì user có thể sử dụng nhiều thiết bị 
     */ 
 
     await user.save();

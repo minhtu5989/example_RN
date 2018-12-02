@@ -18,7 +18,7 @@ class EditAddressScreen extends Component {
                 <MyButton 
                     onPress={() => navigation.dismiss()} 
                 >
-                    <EvilIcons color={theme.color.myAppColor} size={24} name="close" />
+                    <EvilIcons color={theme.color.white} size={32} name="close" />
                 </MyButton>
             </Box>
             

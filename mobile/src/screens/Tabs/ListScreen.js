@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Box, Text } from 'react-native-design-utility'
-import { StatusBar } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons';
 
 class ListScreen extends Component {
@@ -13,7 +12,7 @@ class ListScreen extends Component {
     render() {
         return (
             <Box f={1} center>
-                <Text>This is List screen</Text>
+                <Text>List Screenn</Text>
             </Box>            
         );
     }

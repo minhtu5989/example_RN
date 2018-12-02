@@ -8,14 +8,10 @@ import { theme } from './src/constants/theme'
 import { Navigation } from './src/screens/index';
 import { images, tabBarIcons  } from './src/constants/images';
 import { cacheImages } from './src/utils/cacheImages'
-import { registerForPushNotificationsAsync } from './src/api/registerForPushNotificationsAsync';
+
 export default class App extends React.Component {
   state = {
     isReady: false,
-  }
-
-  componentWillMount = () => {
-    registerForPushNotificationsAsync()
   }
 
   componentDidMount(){
