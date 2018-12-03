@@ -4,13 +4,13 @@ import { ProductModel } from '../models/Product';
 
 export const ShoppingCartStore = types
   .model('ShoppinCartStore', {
-    products: types.array( types.maybeNull(ProductModel))
+    products: types.array(ProductModel),
   })
   .views(self => ({
     get totalProducts() {
       return self.products.length;
     },
-    get totalAmount() {
+    get totalAmsount() {
       return self.products
         .reduce((acc, current) => acc + parseFloat(current.totalPrice), 0)
         .toFixed(2);
@@ -25,7 +25,9 @@ export const ShoppingCartStore = types
       const check = self.products.find(el => el.id === product.id);
       
       if (!check) {
-        self.products.push(product);
+        self.products.push(
+          { ...product }
+        );
       }
     },
     removeProduct(product) {

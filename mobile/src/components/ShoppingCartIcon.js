@@ -8,7 +8,6 @@ import { NavigationService } from '../api/NavigationService';
 
 @inject('shoppingCartStore')
 @observer
-
 class ShoppingCartIcon extends Component {
   handlePress = () => {
     NavigationService.navigate('ShoppingCart');

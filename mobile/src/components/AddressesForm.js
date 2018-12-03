@@ -16,7 +16,6 @@ import { MyButton } from "../commons/MyButton";
 
 @inject('authStore')
 @observer
-
 class AddressesForm extends Component {
 
     @observable 

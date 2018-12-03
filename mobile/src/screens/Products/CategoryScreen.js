@@ -6,7 +6,6 @@ import { inject } from 'mobx-react/native';
 import ProductCart from '../../components/ProductCart';
 
 @inject('productsStore')
-
 class CategoryScreen extends Component {
     static navigationOptions = ({ navigation }) => ({
         title: navigation.getParam('name'),

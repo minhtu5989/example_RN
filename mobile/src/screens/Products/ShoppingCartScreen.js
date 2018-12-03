@@ -12,11 +12,18 @@ const {width} = Dimensions.get('window')
 
 @inject('shoppingCartStore')
 @observer
- 
 class ShoppingCartScreen extends Component {
     static navigationOptions = ({navigation}) => ({
         title: 'My cart',
-        headerLeft: <CloseBtn left color={theme.color.myAppColor} onPress={() => navigation.goBack(null)} />
+        headerTitleStyle: {
+            fontWeight: '700', 
+            color: theme.color.white,
+        },
+        headerStyle: {
+            backgroundColor: theme.color.myAppColor,
+            paddingBottom: Platform.OS === 'ios' ? 16 : 0,
+        },
+        headerLeft: <CloseBtn left color={theme.color.white} onPress={() => navigation.goBack(null)} style={{marginBottom: 16}} />
     }); 
 
     renderList(){
@@ -38,7 +45,7 @@ class ShoppingCartScreen extends Component {
                     renderItem={({item}) => 
                         <CartItem product={item}/>
                     } 
-                    keyExtractor={(item) => String(item.id)} 
+                    keyExtractor={(item) => item.id} 
                     extraData={shoppingCartStore}    
                 />
             </Box>
