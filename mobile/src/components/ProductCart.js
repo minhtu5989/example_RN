@@ -22,7 +22,7 @@ class ProductCard extends Component {
     isHover: false,
     cardOpacity: new Animated.Value(1),
   };
-
+  
   handlePlusPress = () => {
     this.fadeIn();
     this.setState({ isHover: true });

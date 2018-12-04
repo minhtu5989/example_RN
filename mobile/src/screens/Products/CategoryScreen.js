@@ -9,7 +9,7 @@ import ProductCart from '../../components/ProductCart';
 class CategoryScreen extends Component {
     static navigationOptions = ({ navigation }) => ({
         title: navigation.getParam('name'),
-      });
+    });
 
     render() {
         const { productsStore } = this.props

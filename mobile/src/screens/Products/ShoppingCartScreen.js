@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Box, Text } from 'react-native-design-utility'
-import { StatusBar, FlatList, TouchableOpacity, Dimensions } from 'react-native'
+import { StatusBar, FlatList, TouchableOpacity, Dimensions, Platform } from 'react-native'
 import { inject, observer } from 'mobx-react/native';
 
 import CartItem from '../../components/CartItem';
@@ -35,9 +35,6 @@ class ShoppingCartScreen extends Component {
                     <Text>Cart Empty</Text>
                 </Box>
             )
-        console.log('products: ', shoppingCartStore.totalProducts);
-        console.log('productsList: ', shoppingCartStore.productsList);
-        
         return(
             <Box f={1}>
                 <FlatList 
