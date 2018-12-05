@@ -9,21 +9,39 @@ const {width, height} = Dimensions.get('screen');
 
 const SLIDER = [
     {
-        title: 'image 3', 
-        image: require('../../assets/img/slider3.jpg')
+        title: 'image 2',
+        image: require('../../assets/img/slider/slider2.jpg')    
+    },
+    {
+        title: 'image 1', 
+        image: require('../../assets/img/slider/slider1.jpg')
+    },
+    
+    {
+        title: 'image 3',
+        image: require('../../assets/img/slider/slider3.jpg')   
     },
     {
         title: 'image 4',
-        image: require('../../assets/img/slider4.jpg')
+        image: require('../../assets/img/slider/slider4.jpg')    
     },
-    {
-        title: 'image 1',
-        image: require('../../assets/img/slider1.jpg')
-    },
-    {
-        title: 'image 2',
-        image: require('../../assets/img/slider2.png')
-    },
+    // {
+    //     title: 'image 5',
+    //     image: require('../../assets/img/slider/slider5.jpg')    
+    // },
+    // {
+    //     title: 'image 6',
+    //     image: require('../../assets/img/slider/slider6.jpg')    
+    // },
+    // {
+    //     title: 'image 7',
+    //     image: require('../../assets/img/slider/slider7.jpg')    
+    // },
+    // {
+    //     title: 'image 8',
+    //     image: require('../../assets/img/slider/slider8.jpg')    
+    // }
+
 ]
 
 class DealCarousel extends PureComponent {

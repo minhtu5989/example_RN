@@ -15,22 +15,30 @@ const NUMBER_COLUMN = 3;
 const catagories = [
     {
         _id: 1,
-        title: 'Grocery',
+        title: 'Quần đùi',
         image: require('../../../assets/img/cart.png')
     },
     {
         _id: 2,
-        title: 'Drugs',
+        title: 'Quần dài',
         image: require('../../../assets/img/drugs.png')
     },
     {
         _id: 3,
-        title: 'Pets',
+        title: 'Áo khoát',
         image: require('../../../assets/img/pets.png')
     },
     {
         _id: 4,
-        title: 'video games',
+        title: 'Balo',
+    },
+    {
+        _id: 5,
+        title: 'Mắt kính',
+    },
+    {
+        _id: 6,
+        title: 'Đồng hồ',
     }
 ]
  
@@ -93,7 +101,7 @@ class HomeScreen extends Component {
                     />
                 </Box>
 
-                <Box style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                <Box style={{ justifyContent: 'center', alignItems: 'center'}}>
                     <Text>Origin: {this.state.notification.origin}</Text>
                     <Text>Data: {JSON.stringify(this.state.notification.data)}</Text>
                 </Box>
