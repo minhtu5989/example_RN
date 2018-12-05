@@ -1,14 +1,14 @@
-import express from 'express';
 
+import express from 'express';
 import middlewaresConfig from './config/middlewares';
-import './config/db';
 import { CustomerRoutes, AddressRoutes } from './modules';
+import './config/db'
 
 const app = express();
 
 middlewaresConfig(app);
 
-app.get('/', (req, res) => {
+app.get('/test', (req, res) => {
   res.send('Welcome');
 });
 
