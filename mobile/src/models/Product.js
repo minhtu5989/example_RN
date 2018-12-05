@@ -28,10 +28,8 @@ export const ProductModel = types
     },
     addToCart() {
       store.shoppingCartStore.addProduct(self);
-      console.log('shop', store.shoppingCartStore.productsList);
       self.inCart = true;
       self.incCartQty();    
-      console.log('xxx', self.cartQty);
       
     },
     removeFromCart() {
