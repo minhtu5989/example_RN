@@ -1,10 +1,11 @@
-import axios from 'axios';
+// import axios from 'axios';
+const axios = require('axios')
 
 const FIELDS = 'email,name,picture';
 
 const BASE_URL = `https://graph.facebook.com/me?fields=${FIELDS}`;
 
-export const authAsync = async token => {
+const authAsync = async token => {
   try {
     const res = await axios.get(`${BASE_URL}&access_token=${token}`);
 
@@ -18,6 +19,14 @@ export const authAsync = async token => {
   }
 };
 
-export const Facebook = {
-  authAsync,
-};
+// export const Facebook = {
+//   authAsync,
+// };
+
+module.exports ={
+  authAsync
+}
+
+module.exports.Facebook = {
+  authAsync
+}

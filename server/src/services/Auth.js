@@ -1,4 +1,5 @@
-import jwt from 'jsonwebtoken';
+// import jwt from 'jsonwebtoken';
+const jwt = require('jsonwebtoken')
 
 const JWT_SECRET = 'DanileLuong';
 
@@ -40,8 +41,14 @@ const getTokenFromHeaders = req => {
   return null;
 };
 
-export const AuthServices = {
+// export const AuthServices = {
+//   createToken,
+//   verifyToken,
+//   getTokenFromHeaders,
+// };
+
+module.exports.AuthServices ={
   createToken,
   verifyToken,
   getTokenFromHeaders,
-};
+}

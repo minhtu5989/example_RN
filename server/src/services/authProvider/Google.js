@@ -1,8 +1,9 @@
-import axios from 'axios';
+// import axios from 'axios';
+const axios = require('axios')
 
 const BASE_URL = 'https://www.googleapis.com/userinfo/v2/me';
 
-export const authAsync = async token => {
+const authAsync = async token => {
   try {
     const res = await axios.get(BASE_URL, {
       headers: {
@@ -20,6 +21,14 @@ export const authAsync = async token => {
   }
 };
 
-export const Google = {
-  authAsync,
-};
+// export const Google = {
+//   authAsync,
+// };
+
+module.exports ={
+  authAsync
+}
+
+module.exports.Google = {
+  authAsync
+}

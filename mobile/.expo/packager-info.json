@@ -1,8 +1,8 @@
 {
   "expoServerPort": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
+  "expoServerNgrokUrl": "https://ek-794.minhtu5989.mobile.exp.direct",
+  "packagerNgrokUrl": "https://packager.ek-794.minhtu5989.mobile.exp.direct",
+  "ngrokPid": 707,
   "devToolsPort": 19002,
   "packagerPort": null,
   "packagerPid": null
