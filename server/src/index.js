@@ -1,10 +1,10 @@
+var app = require('express')();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 
-import express from 'express';
 import middlewaresConfig from './config/middlewares';
 import { CustomerRoutes, AddressRoutes } from './modules';
 import './config/db'
-
-const app = express();
 
 middlewaresConfig(app);
 
@@ -15,10 +15,18 @@ app.get('/test', (req, res) => {
 app.use('/api/v1/customers', CustomerRoutes);
 app.use('/api/v1/addresses', AddressRoutes);
 
-app.listen( process.env.PORT || 3000, err => {
+
+server.listen( process.env.PORT || 3000, err => {
   if (err) {
     console.error(err);
   } else {
     console.log(`Server is running`);
   }
 });
+
+io.on('connection', socket => {
+  socket.on('CLIENT_SEND_MESSAGE', message => {
+      io.emit('SERVER_SEND_MESSAGE', message )
+  });
+});
+console.log("Socket started");

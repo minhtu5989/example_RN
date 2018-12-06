@@ -1,11 +1,11 @@
 // import axios from 'axios';
 const axios = require('axios')
 
-const BASE_URL = 'https://www.googleapis.com/userinfo/v2/me';
+const Google_URL = 'https://www.googleapis.com/userinfo/v2/me';
 
 const authAsync = async token => {
   try {
-    const res = await axios.get(BASE_URL, {
+    const res = await axios.get(Google_URL, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
