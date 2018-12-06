@@ -21,6 +21,7 @@ class MessageBox extends Component {
 
     state = {
         messages: [],
+        mess: ''
     }
 
     componentWillMount() {
@@ -70,8 +71,12 @@ class MessageBox extends Component {
         socket.on('SERVER_SEND_MESSAGE', mess => alert(mess))
     }
     
+    textInputProps(){
+        returnKeyType:'send'
+    }
 
     render() {
+        
         return (
             <Box f={1}>
                 {/* <Box h={40} w={150}>
@@ -87,12 +92,23 @@ class MessageBox extends Component {
                 <Box f={1} >
                     <GiftedChat
                         // showUserAvatar={true}
+                        // keyboardShouldPersistTaps={'never'}
+                        isAnimated={true}
                         messages={this.state.messages}
                         onSend={messages => this.onSend(messages)}
                         user={{
                             _id: 12,
+                        }}ß
+                        textInputProps={{
+                            returnKeyType:'send',
+                            underlineColorAndroid:'transparent',
+                            // style:{borderRadius: 6, borderColor: theme.color.greenLightest, borderWidth: 1,}
+                            // value: this.state.mess,
+                            // onChangeText: mess => this.setState({mess}), 
+                            // onSubmitEditing: ( () => this.onSend(this.state.mess))
                         }}
                     />
+                    
                 </Box>
                 
             </Box>            
