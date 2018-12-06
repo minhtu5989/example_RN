@@ -73,6 +73,7 @@ const ProfileStack = createStackNavigator(
         },
     },
     { 
+        mode: 'modal',
         navigationOptions: {
             ...modelHeader,
         }
@@ -127,6 +128,23 @@ HomeStack.navigationOptions = ({navigation}) => {
     return { tabBarVisible }
 }
 
+const MessengerStack = createStackNavigator(
+    {
+        Messenger: {
+            getScreen: () => require('./Tabs/Messenger').default,
+        },
+        AdminBox: {
+            getScreen: () => require('../components/MessageBox').default,
+        },
+    },
+    { 
+        mode: 'modal',
+        navigationOptions:{ 
+            ...primaryHeader, 
+        } 
+    }
+)
+
 const TabNavigator = createBottomTabNavigator(
     {
         Home: { 
@@ -137,8 +155,9 @@ const TabNavigator = createBottomTabNavigator(
                     <FontAwesome name='home' size={25} color={tintColor} />,
             }
         },
-        List: {
-            getScreen: () => require('./Tabs/ListScreen').default,
+        Messenger: {
+            getScreen: () => require('./Tabs/Messenger').default,
+            
         },
         Stores: {  
             getScreen: () => require('./Tabs/StoresScreen').default,
@@ -149,7 +168,7 @@ const TabNavigator = createBottomTabNavigator(
     },
     {
         initialRouteName: 'Home',
-        order: ['Home', 'Order', 'List', 'Stores'],
+        order: ['Home', 'Order', 'Messenger', 'Stores'],
         animationEnabled: true,
         swipeEnabled: false,
         lazy: true,
@@ -187,6 +206,7 @@ const MainNavigator = createStackNavigator(
     {
         Tab: TabNavigator,
         Profile: ProfileStack,
+        Messenger: MessengerStack,
         AddressesForm: AddressesFormStack,
     },
     {

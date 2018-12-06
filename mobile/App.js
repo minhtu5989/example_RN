@@ -1,7 +1,7 @@
 import React from 'react';
 import { ActivityIndicator, SafeAreaView, StatusBar } from 'react-native';
 import { UtilityThemeProvider, Box, Text } from 'react-native-design-utility';
-import { Provider } from 'mobx-react/native';
+import { Provider, } from 'mobx-react/native';
 
 import { store } from './src/stores';
 import { theme } from './src/constants/theme'
@@ -50,3 +50,4 @@ export default class App extends React.Component {
   }
 }
 
+console.ignoredYellowBox = ['Unrecognized WebSocket'];

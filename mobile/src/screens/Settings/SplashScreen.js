@@ -17,10 +17,10 @@ class SplashScreen extends Component {
         Animated.timing(
             this.state.position, 
             {
-                toValue: 3,
-                duration: 3000, 
+                toValue: 2,
+                duration: 2000, 
                 // useNativeDriver: true,
-                // easing: Easing.bounce 
+                easing: Easing.bounce 
             }
         ).start()
 
@@ -30,13 +30,13 @@ class SplashScreen extends Component {
     checkAuth = () => {
         setTimeout( async() => {
             await this.props.authStore.setupAuth()
-        }, 2500 );
+        }, 2000 );
     }
 
     render() {
         const translateX = this.state.position.interpolate({
-            inputRange: [0, 1, 3],
-            outputRange: [0, 0, 450]
+            inputRange: [0, 2],
+            outputRange: [-450, 0]
         })
         return (
             <Box f={1} bg='white'>
