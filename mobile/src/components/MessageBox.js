@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { Box, Text } from 'react-native-design-utility'
 import { GiftedChat } from 'react-native-gifted-chat'
 import { inject } from 'mobx-react/native';
@@ -9,11 +10,12 @@ import {socket} from './SocketIO'
 import { MyButton } from '../commons/MyButton';
 import { theme } from '../constants/theme';
 import { registerForPushNotificationsAsync } from '../api/registerForPushNotificationsAsync';
+import { PushNotification } from '../api/PushNotification';
 
 @inject('authStore')
 class MessageBox extends Component {
     static navigationOptions = ({ navigation }) => ({
-        title: 'Chat chit',
+        title: 'Chat sex',
         headerLeft: (
             <Box mr='xs'>
                 <MyButton onPress={() => navigation.goBack(null)} >
@@ -28,7 +30,7 @@ class MessageBox extends Component {
 
     state = {
         messages: [],
-        mess: '',
+        mess: {},
         notification: {},
     }
     
@@ -40,49 +42,50 @@ class MessageBox extends Component {
         registerForPushNotificationsAsync(this.props.authStore.info)
         this._notificationSubscription = Notifications.addListener(this._handleNotification);
         //fetch data
-        console.log('Origin:', this.state.notification3.origin);
+        console.log('Origin:', this.state.notification.origin);
         console.log('Data:', this.state.notification.data);        
     }
 
-    onSend(messages) {
-        socket.emit('CHAT_SEX', messages)
-        console.log('Messages:', messages);
+    onSend = async(messages) => {
+        await socket.emit('CHAT_SEX', messages)
+        this.setState(({
+            mess: messages,
+        }))
     }
-
-    componentDidMount() {
-        socket.on('SERVER_REPLY', mess => {
+    
+    componentDidMount = async() => {
+        await socket.on('SERVER_REPLY', mess => {
             this.setState(previousState => ({
                 messages: GiftedChat.append(previousState.messages, mess),
             }))
         })
+        await PushNotification(this.props.authStore.info, this.state.mess)
     }
     
     render() {
         const { info } = this.props.authStore
         return (
-            <Box f={1}>000
-                <Box f={1} >
-                    <GiftedChat
-                        showUserAvatar={true}
-                        keyboardShouldPersistTaps={'never'}
-                        isAnimated
-                        messages={this.state.messages}
-                        onSend={messages => this.onSend(messages)}
-                        user={{
-                            _id: info._id,
-                            name: info.firstName,
-                            avatar: info.avatarUrl,
-                        }}
-                        textInputProps={{
-                            autoFocus: true,
-                            returnKeyType:'send',
-                            underlineColorAndroid:'transparent',
-                        }}
-                    />
-                    
-                </Box>
-                
-            </Box>            
+                <TouchableWithoutFeedback onPress={Keyboard.dismiss} >
+                    <Box f={1} >
+                        <GiftedChat
+                            showUserAvatar={true}
+                            keyboardShouldPersistTaps={'never'}
+                            isAnimated
+                            messages={this.state.messages}
+                            onSend={messages => this.onSend(messages)}
+                            user={{
+                                _id: info._id,
+                                name: info.firstName,
+                                avatar: info.avatarUrl,
+                            }}
+                            textInputProps={{
+                                // autoFocus: true,
+                                returnKeyType:'send',
+                                underlineColorAndroid:'transparent',
+                            }}
+                        />
+                    </Box>
+                </TouchableWithoutFeedback>
         );
     }
 }

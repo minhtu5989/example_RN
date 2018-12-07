@@ -1,10 +1,10 @@
 import wretch from 'wretch';
 
-export const PushNotification = async(info, mess) => {
-    return (
-        info.notifiToken.forEach( el => {
-            await wretch(`https://exp.host`)
-            .url('/--/api/v2/push/send')
+export const PushNotification = (info, mess) => {
+    if(info._id !== mess.user._id){
+        info.notifiToken.forEach( async (el) => (
+            await wretch(`https://exp.host/--/api/v2`)
+            .url('/push/send')
             .headers({ 
                 Accept: 'application/json',
                 'Accept-Encoding': 'gzip, deflate',
@@ -12,15 +12,16 @@ export const PushNotification = async(info, mess) => {
             })
             .post(
                 {
-                    to: el.token,
-                    sound: "default",
-                    title: `Tin nhắn từ ${info.firstName} ${info.lastName}`,
-                    body: mess.text,
-                    data: mess,
-                    priority: 'hight'
+                    "to": el.token,
+                    "sound": "default",
+                    "title": `Tin nhắn từ ${info.firstName} ${info.lastName}`,
+                    "body": mess.text,
+                    "data": {mess},
+                    "priority": "default"
                 }
             )
             .json()
-        })
-    )
+            ))
+    }
+    return
 }

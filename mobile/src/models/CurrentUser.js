@@ -10,6 +10,7 @@ export const CurrentUserModel = types
     lastName: types.maybeNull(types.string),
     avatarUrl: types.maybeNull(types.string),
     addresses: types.optional(types.array(UserAddressModel), [] ),
+    notifiToken: types.optional(types.array(types.model({token: types.string})), [] ),
   })
   .views(self => ({
     get totalAddresses(){

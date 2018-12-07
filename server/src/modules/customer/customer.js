@@ -86,7 +86,7 @@ export const getNotifiToken = async (userId, tokenValue) => {
     const TokenExisted = user.notifiToken.find(el => el.token === tokenValue)
     if(TokenExisted)
     {
-      return 303;
+      return 203;
     }
 
     user.notifiToken.push({ token: tokenValue })

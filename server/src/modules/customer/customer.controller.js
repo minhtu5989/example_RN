@@ -57,8 +57,8 @@ export const saveNotifiToken = async (req, res) => {
     
     const result = await CustomerServices.getNotifiToken(req.body._id, req.body.token);
 
-    if(result === 303){
-      res.status(303).json({ message: 'Notification token existed !' });
+    if(result === 203){
+      res.status(203).json({ message: 'Notification token existed !' });
     }
 
     return res.status(202).json({ message: 'Save token successful !' });

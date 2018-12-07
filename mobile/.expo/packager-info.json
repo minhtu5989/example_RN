@@ -2,8 +2,8 @@
   "expoServerPort": 19000,
   "expoServerNgrokUrl": "https://s3-efh.minhtu5989.mobile.exp.direct",
   "packagerNgrokUrl": "https://packager.s3-efh.minhtu5989.mobile.exp.direct",
-  "ngrokPid": 19187,
+  "ngrokPid": 26625,
   "devToolsPort": 19002,
   "packagerPort": 19001,
-  "packagerPid": 19173
+  "packagerPid": 26604
 }
