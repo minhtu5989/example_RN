@@ -67,11 +67,11 @@ class HomeScreen extends Component {
 
     _renderItem= ({item, index}) => {
         let styleItem = {
-            borderBottomWidth: 4, 
+            borderBottomWidth: 8, 
             borderBottomColor: theme.color.greyLight,
         };
         if(index % NUMBER_COLUMN !== 0) {
-            styleItem.borderLeftWidth = 4;
+            styleItem.borderLeftWidth = 8;
             styleItem.borderLeftColor = theme.color.greyLight;
         }
         return(

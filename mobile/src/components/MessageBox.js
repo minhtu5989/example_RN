@@ -30,7 +30,6 @@ class MessageBox extends Component {
 
     state = {
         messages: [],
-        mess: {},
         notification: {},
     }
     
@@ -42,24 +41,19 @@ class MessageBox extends Component {
         registerForPushNotificationsAsync(this.props.authStore.info)
         this._notificationSubscription = Notifications.addListener(this._handleNotification);
         //fetch data
-        console.log('Origin:', this.state.notification.origin);
-        console.log('Data:', this.state.notification.data);        
     }
 
     onSend = async(messages) => {
         await socket.emit('CHAT_SEX', messages)
-        this.setState(({
-            mess: messages,
-        }))
     }
     
     componentDidMount = async() => {
         await socket.on('SERVER_REPLY', mess => {
+            PushNotification(this.props.authStore.info, mess)
             this.setState(previousState => ({
                 messages: GiftedChat.append(previousState.messages, mess),
             }))
         })
-        await PushNotification(this.props.authStore.info, this.state.mess)
     }
     
     render() {
@@ -84,6 +78,8 @@ class MessageBox extends Component {
                                 underlineColorAndroid:'transparent',
                             }}
                         />
+                    <Text>Origin: {this.state.notification.origin}</Text>
+                    <Text>Data: {JSON.stringify(this.state.notification.data)}</Text>
                     </Box>
                 </TouchableWithoutFeedback>
         );
