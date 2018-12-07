@@ -66,7 +66,7 @@ class CategoryScreen extends Component {
                             - Bố trí file và thư mục gọn gàng, logic
                         </Text>
                         <Text>
-                            ==> App chưa hoàn thành vì tôi chỉ muốn show đầy đủ những kỹ năng về React Native, và không muốn mất quá nhiều thời gian vào example project này.
+                            ==> App chưa hoàn thành vì tôi chỉ muốn show off những kỹ năng về React Native của tôi. Mong bạn thông cảm ! Cảm ơn vì đã theo dõi.
                         </Text>
                     </ScrollView>
                 </Box>
