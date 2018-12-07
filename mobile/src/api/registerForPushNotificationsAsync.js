@@ -1,7 +1,7 @@
 import { Permissions, Notifications } from 'expo';
 import { customersApi } from './Api';
 
-export const registerForPushNotificationsAsync = async(_id) => {
+export const registerForPushNotificationsAsync = async(info) => {
     // check for existing permissions ...
   const { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS)
   let finalStatus = status;
@@ -29,7 +29,7 @@ export const registerForPushNotificationsAsync = async(_id) => {
       'Content-Type': 'application/json',
     })
     .post({ 
-      _id: _id,
+      _id: info._id,
       token: token
     })
     .json();

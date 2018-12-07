@@ -6,7 +6,7 @@ import { Provider, } from 'mobx-react/native';
 import { store } from './src/stores';
 import { theme } from './src/constants/theme'
 import { Navigation } from './src/screens/index';
-import { images, tabBarIcons  } from './src/constants/images';
+import { images, productImgs, categoryImgs  } from './src/constants/images';
 import { cacheImages } from './src/utils/cacheImages'
 
 export default class App extends React.Component {
@@ -21,8 +21,8 @@ export default class App extends React.Component {
   cacheAssets = async () => {
     const imagesAssets = cacheImages([
       ...Object.values(images),
-      ...Object.values(tabBarIcons.active),
-      ...Object.values(tabBarIcons.inactive),
+      ...Object.values(productImgs),
+      ...Object.values(categoryImgs),
     ]);
 
     await Promise.all([...imagesAssets]);
@@ -50,4 +50,4 @@ export default class App extends React.Component {
   }
 }
 
-console.ignoredYellowBox = ['Unrecognized WebSocket'];
+console.ignoredYellowBox = ['Unrecognized WebSocket', `Warning: Can't call setState`];

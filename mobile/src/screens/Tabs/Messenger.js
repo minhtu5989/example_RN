@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Box, Text } from 'react-native-design-utility'
 import { ScrollView } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import {socket} from '../../components/SocketIO'
 import { MyButton } from '../../commons/MyButton';
@@ -12,7 +12,7 @@ class Messenger extends Component {
     static navigationOptions ={
         tabBarLabel: 'Messenger',
         tabBarIcon: ({ tintColor }) => 
-            <FontAwesome name='list' size={25} color={tintColor} /> 
+            <MaterialCommunityIcons name='facebook-messenger' size={25} color={tintColor} /> 
     }
     render() {
         return (
@@ -24,8 +24,8 @@ class Messenger extends Component {
                             backgroundColor: '#90caf9' 
                         }}
                     >
-                        <MyButton onPress={ () => NavigationService.navigate('AdminBox') }>
-                            <Text color={theme.color.black} bold>Nhắn tin tới Admin</Text>
+                        <MyButton onPress={ () => NavigationService.navigate('ChatRoom') }>
+                            <Text color={theme.color.black} bold>Trò chuyện cùng Adam </Text>
                         </MyButton>
                     </Box>
             </Box>            

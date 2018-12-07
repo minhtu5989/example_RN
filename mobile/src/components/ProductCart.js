@@ -86,10 +86,6 @@ class ProductCard extends Component {
               <Text left size="xs">
                 {product.name} 
               </Text>
-              <Text left size="xs" color="greyLight">
-                At ${product.kgPrice.toFixed(2)}
-                /kg
-              </Text>
             </Box>
           </BoxAnimated>
         </TouchableWithoutFeedback>

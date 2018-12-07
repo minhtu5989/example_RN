@@ -12,18 +12,20 @@ class CartItem extends Component {
     render() {
         const { product } = this.props
         return (
-            <Box align='center' p='xs' m="3xs" bg='white' dir='row' h={150} w={width} >
-                <Box f={0.3} >
+            <Box align='center' p='xs' m="3xs" bg='white' dir='row' h={150} w={width} f={1} >
+                <Box >
                     <Image 
                         source={product.imageUrl}
-                        style={{height: 70, width: 70}} 
+                        style={{height: '90%', width: 100}} 
                         resizeMode='contain'
                     /> 
                 </Box>
-                <Box m='lg' f={1}>
+                <Box ml='sm' f={1}>
                     <Box>
                         <Text bold size='lg'> {product.name} </Text>
-                        <Text color='greyDark' size='md'>At ${product.kgPrice}/kg </Text>
+                        <Text left size="sm" bold>
+                            ${product.price} each
+                        </Text>
                     </Box>
                     <Box>
                         <TouchableOpacity onPress={product.removeFromCart}>
@@ -34,16 +36,17 @@ class CartItem extends Component {
                         </TouchableOpacity>
                     </Box>
                 </Box>
-                <Box center mr='md'>
+                <Box align='center' dir='col' f= {1}  >
                     <TouchableOpacity >
                         <Box h={35} w={45} center radius='sm' style={{borderWidth:1, borderColor:theme.color.myAppColorLighter}}>
                             <Text>{product.cartQty}</Text>
                         </Box>
                     </TouchableOpacity>
+                    <Box mt='xs'>
+                        <Text>${product.totalPrice }</Text>
+                    </Box>
                 </Box>
-                <Box>
-                    <Text>${product.totalPrice }</Text>
-                </Box>
+                
             </Box>
         );
     }

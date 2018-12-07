@@ -2,7 +2,7 @@ import { AuthStore } from './Auth';
 import { ProductsStore } from './Products';
 import { ShoppingCartStore } from './ShoppingCart';
 import { ProductModel } from '../models/Product';
-
+import { productImgs } from '../constants/images';
 const authStore = AuthStore.create();
 
 const shoppingCartStore = ShoppingCartStore.create({ products: [] });
@@ -10,32 +10,52 @@ const shoppingCartStore = ShoppingCartStore.create({ products: [] });
 const productsStore = ProductsStore.create({
   data: [
     ProductModel.create({
-      id: '1vv',
-      name: 'Táo',
-      imageUrl: require('../../assets/img/products/apple.png'),
-      kgPrice: 10.12,
-      unityPrice: 1.9,
+      id: '1',
+      name: 'Ba lô',
+      imageUrl: productImgs.balo,
+      unityPrice: 25.5,
     }),
     ProductModel.create({
-      id: '2cc',
-      name: 'Cà chua',
-      imageUrl: require('../../assets/img/products/tomato.png'),
-      kgPrice: 9.51,
-      unityPrice: 1.25,
+      id: '2',
+      name: 'Đồng hồ',
+      imageUrl: productImgs.dongho,
+      unityPrice: 1000,
     }),
     ProductModel.create({
-      id: '12vv',
-      name: 'Đào',
-      imageUrl: require('../../assets/img/products/apple.png'),
-      kgPrice: 10.5,
-      unityPrice: 2.5,
+      id: '3',
+      name: 'Áo dú',
+      imageUrl: productImgs.aolot,
+      unityPrice: 6.9,
     }),
     ProductModel.create({
-      id: '3ads',
-      name: 'Đu đủ',
-      imageUrl: require('../../assets/img/products/tomato.png'),
-      kgPrice: 12.4,
-      unityPrice: 2.5,
+      id: '4',
+      name: 'Giày',
+      imageUrl: productImgs.giay,
+      unityPrice: 220.59,
+    }),
+    ProductModel.create({
+      id: '5',
+      name: 'Mắt kính',
+      imageUrl: productImgs.matkinh,
+      unityPrice: 150.99,
+    }),
+    ProductModel.create({
+      id: '6',
+      name: 'Quần dài',
+      imageUrl: productImgs.quandai,
+      unityPrice: 50.99,
+    }),
+    ProductModel.create({
+      id: '7',
+      name: 'Quần short',
+      imageUrl: productImgs.quandui,
+      unityPrice: 30.25,
+    }),
+    ProductModel.create({
+      id: '8',
+      name: 'Áo khoát Jean',
+      imageUrl: productImgs.aokhoat,
+      unityPrice: 180.5,
     }),
   ],
 });

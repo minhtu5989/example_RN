@@ -4,22 +4,24 @@ export const images = {
     shoppingCart: require('../../assets/img/shoppingCart.png'),
   };
   
-  export const tabBarIcons = {
-    active: {
-      Home: require('../../assets/img/HomeIconActive.png'),
-      List: require('../../assets/img/ListIconActive.png'),
-      Stores: require('../../assets/img/StoresIconActive.png'),
-      Order: require('../../assets/img/OrderIconActive.png'),
-    },
-    inactive: {
-      Home: require('../../assets/img/HomeIconInactive.png'),
-      List: require('../../assets/img/ListIconInactive.png'),
-      Stores: require('../../assets/img/StoresIconInactive.png'),
-      Order: require('../../assets/img/OrderIconInactive.png'),
-    },
-  };
-  
-  export const productImgs = {
-    apple: require('../../assets/img/products/apple.png'),
-  };
-  
+export const productImgs = {
+  quandui: require('../../assets/img/category/quandui.jpg'),
+  quandai: require('../../assets/img/category/quandai.jpg'),
+  balo: require('../../assets/img/category/balo.jpg'),
+  aokhoat: require('../../assets/img/category/aokhoat.jpeg'),
+  matkinh: require('../../assets/img/category/matkinh.png'),
+  dongho: require('../../assets/img/category/dongho.jpg'),
+  aolot: require('../../assets/img/category/aolot.jpg'),
+  giay: require('../../assets/img/category/giay.jpg'),
+};
+
+export const categoryImgs = {
+  quandui: require('../../assets/img/category/quandui.jpg'),
+  quandai: require('../../assets/img/category/quandai.jpg'),
+  balo: require('../../assets/img/category/balo.jpg'),
+  aokhoat: require('../../assets/img/category/aokhoat.jpeg'),
+  matkinh: require('../../assets/img/category/matkinh.png'),
+  dongho: require('../../assets/img/category/dongho.jpg'),
+  aolot: require('../../assets/img/category/aolot.jpg'),
+  giay: require('../../assets/img/category/giay.jpg'),
+};

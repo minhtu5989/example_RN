@@ -1,44 +1,56 @@
 import React, { Component } from 'react'
 import { Box, Text } from 'react-native-design-utility'
 import { FlatList } from 'react-native'
-import { Notifications } from 'expo';
 import { inject } from 'mobx-react/native';
 
 import CategoryCard from '../../components/CategoryCard';
 import { theme } from "../../constants/theme";
 import DealCarousel from '../../components/DealCarousel';
 import { ProfileBtn } from "../../commons/ProfileBtn";
-import { registerForPushNotificationsAsync } from '../../../src/api/registerForPushNotificationsAsync';
+import { categoryImgs } from '../../constants/images';
 
-const NUMBER_COLUMN = 3;
+const NUMBER_COLUMN = 2;
 
 const catagories = [
     {
         _id: 1,
-        title: 'Quần đùi',
-        image: require('../../../assets/img/cart.png')
+        title: 'Quần short',
+        image: categoryImgs.quandui
     },
     {
         _id: 2,
         title: 'Quần dài',
-        image: require('../../../assets/img/drugs.png')
+        image: categoryImgs.quandai
     },
     {
         _id: 3,
         title: 'Áo khoát',
-        image: require('../../../assets/img/pets.png')
+        image: categoryImgs.aokhoat
     },
     {
         _id: 4,
         title: 'Balo',
+        image: categoryImgs.balo
     },
     {
         _id: 5,
         title: 'Mắt kính',
+        image: categoryImgs.matkinh
     },
     {
         _id: 6,
         title: 'Đồng hồ',
+        image: categoryImgs.dongho
+    },
+    {
+        _id: 7,
+        title: 'underwear',
+        image: categoryImgs.aolot
+    },
+    {
+        _id: 8,
+        title: 'shoes',
+        image: categoryImgs.giay
     }
 ]
  
@@ -53,27 +65,17 @@ class HomeScreen extends Component {
         )
     });
 
-    state = {
-        notification: {},
-    };
-
-    componentDidMount() {
-        registerForPushNotificationsAsync(this.props.authStore.info._id)
-        this._notificationSubscription = Notifications.addListener(this._handleNotification);
-    }
-
-    _handleNotification = (notification) => {
-    this.setState({notification: notification});
-    };
-
     _renderItem= ({item, index}) => {
-        let styleItem = {};
+        let styleItem = {
+            borderBottomWidth: 4, 
+            borderBottomColor: theme.color.greyLight,
+        };
         if(index % NUMBER_COLUMN !== 0) {
-            styleItem.borderLeftWidth = 2;
-            styleItem.borderLeftColor = theme.color.greyLighter;
+            styleItem.borderLeftWidth = 4;
+            styleItem.borderLeftColor = theme.color.greyLight;
         }
         return(
-            <Box w={1/3} center h={120} bg='transparent' style={styleItem} >
+            <Box w={1/NUMBER_COLUMN} center h={200} bg='transparent' style={styleItem} >
                 <CategoryCard item={item}/>
             </Box>
         )
@@ -81,11 +83,9 @@ class HomeScreen extends Component {
 
     keyExtractor = item => String(item._id)
 
-    separator = () => <Box h={2} bg='greyLighter'/>
-
     render() {
         return (
-            <Box f={1}>
+            <Box f={1} bg={theme.color.greyLight}>
             
                 <Box w='100%' h={220} bg='black' center>
                     <DealCarousel/>
@@ -97,13 +97,7 @@ class HomeScreen extends Component {
                         renderItem={this._renderItem}
                         keyExtractor={this.keyExtractor}
                         numColumns={NUMBER_COLUMN}
-                        ItemSeparatorComponent={this.separator}
                     />
-                </Box>
-
-                <Box style={{ justifyContent: 'center', alignItems: 'center'}}>
-                    <Text>Origin: {this.state.notification.origin}</Text>
-                    <Text>Data: {JSON.stringify(this.state.notification.data)}</Text>
                 </Box>
             </Box>            
         );

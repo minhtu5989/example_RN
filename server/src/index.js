@@ -25,8 +25,8 @@ server.listen( process.env.PORT || 3000, err => {
 });
 
 io.on('connection', socket => {
-  socket.on('CLIENT_SEND_MESSAGE', message => {
-      io.emit('SERVER_SEND_MESSAGE', message )
+  socket.on('CHAT_SEX', message => {
+      io.emit('SERVER_REPLY', message )
   });
 });
 console.log("Socket started");

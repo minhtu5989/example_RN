@@ -130,15 +130,12 @@ HomeStack.navigationOptions = ({navigation}) => {
 
 const MessengerStack = createStackNavigator(
     {
-        Messenger: {
-            getScreen: () => require('./Tabs/Messenger').default,
-        },
-        AdminBox: {
+        ChatRoom: {
             getScreen: () => require('../components/MessageBox').default,
         },
     },
     { 
-        mode: 'modal',
+        // mode: 'modal',
         navigationOptions:{ 
             ...primaryHeader, 
         } 
@@ -181,8 +178,8 @@ const TabNavigator = createBottomTabNavigator(
                 // fontFamily: 
                 margin: 3
             },
-            activeTintColor: 'blue', 
-            inactiveTintColor: 'black',
+            activeTintColor: theme.color.blueDark, 
+            inactiveTintColor: theme.color.greyDarkest,
             style:{
                 height: 60,
                 paddingBottom: 5,

@@ -1,19 +1,26 @@
 import React, { Component } from 'react'
 import { Box, Text } from 'react-native-design-utility'
 import { GiftedChat } from 'react-native-gifted-chat'
+import { inject } from 'mobx-react/native';
+import { Notifications } from 'expo';
 
 import { FontAwesome, EvilIcons } from '@expo/vector-icons';
 import {socket} from './SocketIO'
 import { MyButton } from '../commons/MyButton';
 import { theme } from '../constants/theme';
+import { registerForPushNotificationsAsync } from '../api/registerForPushNotificationsAsync';
 
+@inject('authStore')
 class MessageBox extends Component {
     static navigationOptions = ({ navigation }) => ({
-        title: 'Admin',
+        title: 'Chat chit',
         headerLeft: (
             <Box mr='xs'>
                 <MyButton onPress={() => navigation.goBack(null)} >
-                    <EvilIcons color={theme.color.white} size={32} name="close" />
+                    <EvilIcons 
+                        color={theme.color.white} size={32} name="close" 
+                        onPress={() => navigation.goBack(null)} 
+                    />
                 </MyButton>
             </Box>
         )
@@ -21,91 +28,55 @@ class MessageBox extends Component {
 
     state = {
         messages: [],
-        mess: ''
+        mess: '',
+        notification: {},
     }
+    
+        _handleNotification = (notification) => {
+            this.setState({notification: notification});
+        };
 
     componentWillMount() {
-    this.setState({
-        messages: [
-            {
-                _id: '4',
-                text: 'Hello developer',
-                createdAt: new Date(),
-                user: {
-                    _id: '1',
-                    name: 'React Native',
-                    avatar: 'https://placeimg.com/140/140/any',
-                },
-            },
-            {
-                _id: '3',
-                text: 'Hello developersadads',
-                createdAt: new Date(),
-                user: {
-                    _id: '2',
-                    name: 'React Native',
-                    avatar: 'https://placeimg.com/140/140/ansday',
-                },
-            },
-            {
-                _id: '1',
-                text: 'Hesadsadllo developer',
-                createdAt: new Date(),
-                user: {
-                    _id: '3',
-                    name: 'React Native',
-                    avatar: 'https://placeimg.com/140/140/anyads',
-                },
-            },
-        ],
-    })
+        registerForPushNotificationsAsync(this.props.authStore.info)
+        this._notificationSubscription = Notifications.addListener(this._handleNotification);
+        //fetch data
+        console.log('Origin:', this.state.notification3.origin);
+        console.log('Data:', this.state.notification.data);        
     }
 
-    onSend(messages = []) {
-        this.setState(previousState => ({
-            messages: GiftedChat.append(previousState.messages, messages),
-        }))
+    onSend(messages) {
+        socket.emit('CHAT_SEX', messages)
+        console.log('Messages:', messages);
     }
 
     componentDidMount() {
-        socket.on('SERVER_SEND_MESSAGE', mess => alert(mess))
+        socket.on('SERVER_REPLY', mess => {
+            this.setState(previousState => ({
+                messages: GiftedChat.append(previousState.messages, mess),
+            }))
+        })
     }
     
-    textInputProps(){
-        returnKeyType:'send'
-    }
-
     render() {
-        
+        const { info } = this.props.authStore
         return (
-            <Box f={1}>
-                {/* <Box h={40} w={150}>
-                    <MyButton 
-                        type='success' 
-                        onPress={() => 
-                            socket.emit('CLIENT_SEND_MESSAGE', 'asdd')
-                        } 
-                    >
-                        <Text>Send message</Text>
-                    </MyButton>
-                </Box> */}
+            <Box f={1}>000
                 <Box f={1} >
                     <GiftedChat
-                        // showUserAvatar={true}
-                        // keyboardShouldPersistTaps={'never'}
-                        isAnimated={true}
+                        showUserAvatar={true}
+                        keyboardShouldPersistTaps={'never'}
+                        isAnimated
                         messages={this.state.messages}
                         onSend={messages => this.onSend(messages)}
                         user={{
-                            _id: 12,
-                        }}ß
+                            _id: info._id,
+                            name: info.firstName,
+                            avatar: info.avatarUrl,
+                        }}
                         textInputProps={{
+                            autoFocus: true,
                             returnKeyType:'send',
                             underlineColorAndroid:'transparent',
-                            // style:{borderRadius: 6, borderColor: theme.color.greenLightest, borderWidth: 1,}
-                            // value: this.state.mess,
-                            // onChangeText: mess => this.setState({mess}), 
-                            // onSubmitEditing: ( () => this.onSend(this.state.mess))
                         }}
                     />
                     
