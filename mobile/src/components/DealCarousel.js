@@ -24,10 +24,10 @@ const SLIDER = [
         title: 'image 4',
         image: require('../../assets/img/slider/slider4.png')    
     },
-    {
-        title: 'image 3',
-        image: require('../../assets/img/slider/slider3.png')   
-    },
+    // {
+    //     title: 'image 3',
+    //     image: require('../../assets/img/slider/slider3.png')   
+    // },
 
 ]
 

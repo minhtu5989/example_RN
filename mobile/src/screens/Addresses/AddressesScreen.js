@@ -93,7 +93,7 @@ class AddressesScreen extends Component {
 
     renderIfEmpty = () => (
         <Box f={1} center bg='white'>
-            <Box  center px='md'>
+            <Box f={1} center px='md'>
                 <Box center mb='md'>
                     <EvilIcons name='location' color={theme.color.black} size={200}/>
                 </Box>         
@@ -105,12 +105,12 @@ class AddressesScreen extends Component {
                         You haven't added an address yet !
                     </Text>                
                 </Box>
-                <Box w={width - 48} h={40} style={{justifyContent:'flex-end', marginBottom: 15}}>
-                    <MyButton type='success' onPress={this.handleAddAddress}>
-                        <Text>Add address</Text>
-                    </MyButton>
-                </Box> 
             </Box>
+            <Box w='90%' h={40} style={{justifyContent:'flex-end', marginBottom: 20}}>
+                <MyButton type='success' onPress={this.handleAddAddress}>
+                    <Text>Add address</Text>
+                </MyButton>
+            </Box> 
         </Box>
     )
 

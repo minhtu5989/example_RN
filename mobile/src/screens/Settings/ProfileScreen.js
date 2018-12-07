@@ -85,15 +85,15 @@ class ProfileScreen extends Component {
           ))}
         </ScrollView>
 
-            <MyButton 
-              type='success' 
-              style={{borderRadius: 6, height: 40, width: '90%', marginBottom: 20,}} 
-              onPress={ () => this.props.authStore.logOut() }
-            >
-                <Text bold color="black">
-                    Log out
-                </Text>
-            </MyButton>
+        <MyButton 
+          type='success' 
+          style={{borderRadius: 6, height: 40, width: '90%', marginBottom: 20,}} 
+          onPress={ () => this.props.authStore.logOut() }
+        >
+            <Text bold color="black">
+                Log out
+            </Text>
+        </MyButton>
 
       </Box>
     );

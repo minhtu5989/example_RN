@@ -90,7 +90,7 @@ class HomeScreen extends Component {
                 <Box w='100%' h={220} bg='black' center>
                     <DealCarousel/>
                 </Box>
-
+                <Text ml='sm' bold color={theme.color.black}>Categories: </Text>
                 <Box f={1} p={10}>
                     <FlatList
                         data={catagories}

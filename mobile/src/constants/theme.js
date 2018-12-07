@@ -16,8 +16,8 @@ const color = {
   greyDark: '#757575',
   grey: '#9e9e9e',
   greyLight: '#bdbdbd',
-  greyLighter: '#F5F5F5',
-  greyLightest: '#eeeeee',
+  greyLighter: '#eeeeee',
+  greyLightest: '#F5F5F5',
 
 
   redDarkest: '#b71c1c',

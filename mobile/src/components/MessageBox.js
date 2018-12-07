@@ -15,7 +15,7 @@ import { PushNotification } from '../api/PushNotification';
 @inject('authStore')
 class MessageBox extends Component {
     static navigationOptions = ({ navigation }) => ({
-        title: 'Chat sex',
+        title: 'Chat room',
         headerLeft: (
             <Box mr='xs'>
                 <MyButton onPress={() => navigation.goBack(null)} >
@@ -78,8 +78,8 @@ class MessageBox extends Component {
                                 underlineColorAndroid:'transparent',
                             }}
                         />
-                    <Text>Origin: {this.state.notification.origin}</Text>
-                    <Text>Data: {JSON.stringify(this.state.notification.data)}</Text>
+                        {/* <Text>Origin: {this.state.notification.origin}</Text>
+                        <Text>Data: {JSON.stringify(this.state.notification.data)}</Text> */}
                     </Box>
                 </TouchableWithoutFeedback>
         );
