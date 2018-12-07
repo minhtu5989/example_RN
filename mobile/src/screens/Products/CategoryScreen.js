@@ -63,7 +63,7 @@ class CategoryScreen extends Component {
                             - Sử dụng tốt design pattern
                         </Text>
                         <Text m='xs' >
-                            - Bố trí file và thư mục gọn gàng, logic
+                            - Bố trí file, thư mục, github gọn gàng, logic
                         </Text>
                         <Text>
                             ==> App chưa hoàn thành vì tôi chỉ muốn show off những kỹ năng về React Native của tôi. Mong bạn thông cảm ! Cảm ơn vì đã theo dõi.
