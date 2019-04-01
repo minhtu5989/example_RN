@@ -54,19 +54,16 @@ class CategoryScreen extends Component {
                             - LogIn với tài khoảng Fb, Google có check auth bằng json web token
                         </Text>
                         <Text m='xs' >
-                            - Sử dụng tốt Animation
+                            - Sử dụng Animation
                         </Text>
                         <Text m='xs' >
                             - Đã host lên heroku và data của mlab 
                         </Text>
                         <Text m='xs' >
-                            - Sử dụng tốt design pattern
+                            - Sử dụng design pattern
                         </Text>
                         <Text m='xs' >
-                            - Bố trí file, thư mục, github gọn gàng, logic
-                        </Text>
-                        <Text>
-                            ==> App chưa hoàn thành vì tôi chỉ muốn show off những kỹ năng về React Native của tôi. Mong bạn thông cảm ! Cảm ơn vì đã theo dõi.
+                            - Bố trí file logic
                         </Text>
                     </ScrollView>
                 </Box>
