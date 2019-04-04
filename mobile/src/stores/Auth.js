@@ -19,7 +19,7 @@ export const AuthStore = types
 
       if(token){
         self.authToken = token
-        console.log('__get Auth !!');
+        console.log('Got Auth !!');
       }
       else{
         NavigationService.navigate('Auth')
@@ -53,7 +53,7 @@ export const AuthStore = types
 
   saveToken: flow(function*(token){
     try {
-      console.log('__Save Token !!  ');
+      console.log('Save Token !!  ');
       
       yield AsyncStorage.setItem(TOKEN_KEY, token)
       
@@ -83,7 +83,7 @@ export const AuthStore = types
 
   logOut(){
     AsyncStorage.removeItem(TOKEN_KEY)
-    console.log('__log out !!')
+    console.log('Log out !!')
     setTimeout(() => {
       NavigationService.navigate('Auth')
     }, 500); 

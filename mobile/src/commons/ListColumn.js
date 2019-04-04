@@ -5,19 +5,13 @@ import { Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { theme } from '../constants/theme';
 import { NavigationService } from '../api/NavigationService';
 
-const Left = ({ children }) => (
-  <Box f={1} align="start">
-    {children}
-  </Box>
-);
+const Left = ({ children }) => <Box f={1} align="start">{children}</Box>
 
 const Right = ({ children }) => <Box align="end">{children}</Box>;
 
 class ListColumn extends PureComponent {
   static Left = Left;
   static Right = Right;
-
-  state = {};
 
   renderContent = () => (
     <Box

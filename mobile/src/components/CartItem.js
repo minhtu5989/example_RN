@@ -1,14 +1,24 @@
 import React, { Component } from 'react'
 import { Box, Text, } from 'react-native-design-utility'
-import { Image, Dimensions, TouchableOpacity } from 'react-native';
+import { Image, Dimensions, TouchableOpacity, LayoutAnimation  } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { theme } from '../constants/theme';
 import { observer } from 'mobx-react/native';
 
 
 const {width, height} = Dimensions.get('window')
+const CustomLayoutAnimation = {
+    duration: 1000,
+    update: {
+        type: LayoutAnimation.Types.easeInEaseOut
+    }
+}
 @observer
 class CartItem extends Component {
+    componentWillUnmount() {
+      LayoutAnimation.configureNext(CustomLayoutAnimation)
+    }
+    
     render() {
         const { product } = this.props
         return (

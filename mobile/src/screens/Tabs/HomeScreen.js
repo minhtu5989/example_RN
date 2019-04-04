@@ -86,7 +86,6 @@ class HomeScreen extends Component {
     render() {
         return (
             <Box f={1} bg={theme.color.greyLight}>
-            
                 <Box w='100%' h={220} bg='black' center>
                     <DealCarousel/>
                 </Box>

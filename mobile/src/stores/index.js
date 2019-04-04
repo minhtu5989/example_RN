@@ -3,10 +3,9 @@ import { ProductsStore } from './Products';
 import { ShoppingCartStore } from './ShoppingCart';
 import { ProductModel } from '../models/Product';
 import { productImgs } from '../constants/images';
+
 const authStore = AuthStore.create();
-
 const shoppingCartStore = ShoppingCartStore.create({ products: [] });
-
 const productsStore = ProductsStore.create({
   data: [
     ProductModel.create({
@@ -23,7 +22,7 @@ const productsStore = ProductsStore.create({
     }),
     ProductModel.create({
       id: '3',
-      name: 'Áo dú',
+      name: 'Áo ngực',
       imageUrl: productImgs.aolot,
       unityPrice: 6.9,
     }),
@@ -59,7 +58,6 @@ const productsStore = ProductsStore.create({
     }),
   ],
 });
-
 
 export const store = {
   authStore,

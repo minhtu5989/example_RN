@@ -1,33 +1,23 @@
 import React, { Component } from 'react'
 import { Box, Text } from 'react-native-design-utility'
 import { 
-    StatusBar, 
-    Dimensions, 
-    Alert, 
     FlatList,
     ActivityIndicator, 
-    StyleSheet,
-    TouchableOpacity,
-    View
 } from 'react-native'
-import Swipeable from 'react-native-swipeable';
-import { EvilIcons, FontAwesome, AntDesign, MaterialIcons } from '@expo/vector-icons';
+// import Swipeable from 'react-native-swipeable';
+import { EvilIcons, MaterialIcons } from '@expo/vector-icons';
 import { inject, observer } from 'mobx-react/native'
 import { observable, action, when } from 'mobx'
-import { NavigationService } from '../../api/NavigationService';
+// import { NavigationService } from '../../api/NavigationService';
 
 import { theme } from '../../constants/theme';
 import { MyButton } from '../../commons/MyButton';
 import { AddressListItem } from "../../components/AddressListItem";
 import AddModal from '../../components/AddModal';
 
-const {width} = Dimensions.get('window')
-
 
 @inject('authStore')
 @observer
-
-
 class AddressesScreen extends Component {
 
     @observable isLoading = false
@@ -66,7 +56,6 @@ class AddressesScreen extends Component {
     componentDidMount = () => {
         this.fetchAddresses();
     }
-    
 
     @action.bound
     async fetchAddresses()  {

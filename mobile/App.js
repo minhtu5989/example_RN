@@ -1,6 +1,6 @@
 import React from 'react';
-import { ActivityIndicator, SafeAreaView, StatusBar } from 'react-native';
-import { UtilityThemeProvider, Box, Text } from 'react-native-design-utility';
+import { ActivityIndicator, SafeAreaView, StatusBar, UIManager } from 'react-native';
+import { UtilityThemeProvider, Box } from 'react-native-design-utility';
 import { Provider, } from 'mobx-react/native';
 
 import { store } from './src/stores';
@@ -9,6 +9,8 @@ import { Navigation } from './src/screens/index';
 import { images, productImgs, categoryImgs  } from './src/constants/images';
 import { cacheImages } from './src/utils/cacheImages'
 
+UIManager.setLayoutAnimationEnabledExperimental &&
+UIManager.setLayoutAnimationEnabledExperimental(true)
 export default class App extends React.Component {
   state = {
     isReady: false,

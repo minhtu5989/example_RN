@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Box, Text } from 'react-native-design-utility'
-import { StatusBar } from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons';
 
 class StoresScreen extends Component {

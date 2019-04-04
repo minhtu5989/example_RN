@@ -6,6 +6,7 @@ import { Platform } from 'react-native';
 
 import ShoppingCartIcon from '../components/ShoppingCartIcon';
 import { theme } from "../constants/theme";
+import { Box } from 'react-native-design-utility';
 
 const primaryHeader = {
     headerBackTitle: null,
@@ -116,13 +117,15 @@ const HomeStack = createStackNavigator(
     { 
         navigationOptions:{ 
             ...primaryHeader, 
-            headerRight: <ShoppingCartIcon/> ,
+            headerRight: <ShoppingCartIcon /> ,  
         } 
     }
 )
 //tắt thanh tab Bar ở dưới trong màn hình ShoppingCart
 HomeStack.navigationOptions = ({navigation}) => {
     let tabBarVisible = true
+    console.log('Navigation', navigation);
+    
     if(NavigationService.getCurrentRouteName(navigation.state) === 'ShoppingCart')
          { tabBarVisible = false }
     return { tabBarVisible }
@@ -176,13 +179,15 @@ const TabNavigator = createBottomTabNavigator(
             labelStyle:{
                 fontSize: 10,
                 // fontFamily: 
-                margin: 3
+                marginBottom: 6
             },
             activeTintColor: theme.color.blueDark, 
             inactiveTintColor: theme.color.greyDarkest,
+            // inactiveBackgroundColor: theme.color.greyLighter,
+            activeBackgroundColor: theme.color.greyLighter,
             style:{
                 height: 60,
-                paddingBottom: 5,
+                // paddingBottom: 5,
                 backgroundColor: theme.color.greyLightest,
                 borderTopWidth: 0.3,
                 borderTopColor:'gray',

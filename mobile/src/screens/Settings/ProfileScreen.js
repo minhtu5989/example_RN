@@ -62,7 +62,7 @@ class ProfileScreen extends Component {
               </Text>
             </ListColumn.Left>
             <ListColumn.Right>
-              <Box circle={50} avatar>
+              <Box circle={70} avatar>
                 <Image source={{ uri: authStore.info.avatarUrl }} />
               </Box>
             </ListColumn.Right>
@@ -70,7 +70,7 @@ class ProfileScreen extends Component {
           {LINKS.map(el => (
             <ListColumn link={el.link} key={el.title}>
               <ListColumn.Left>
-                <Box dir="row" align="center">
+                <Box dir="row" >
                   <Box f={0.2}>{el.icon}</Box>
 
                   <Box f={1}>
@@ -90,9 +90,11 @@ class ProfileScreen extends Component {
           style={{borderRadius: 6, height: 40, width: '90%', marginBottom: 20,}} 
           onPress={ () => this.props.authStore.logOut() }
         >
+          <Box center f={1}>
             <Text bold color="black">
                 Log out
             </Text>
+          </Box>
         </MyButton>
 
       </Box>

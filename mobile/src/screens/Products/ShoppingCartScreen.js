@@ -6,6 +6,7 @@ import { inject, observer } from 'mobx-react/native';
 import CartItem from '../../components/CartItem';
 import { theme } from '../../constants/theme';
 import CloseBtn from '../../commons/CloseBtn';
+import { NavigationService } from '../../api/NavigationService';
 
 const {width} = Dimensions.get('window')
 
@@ -15,6 +16,7 @@ const {width} = Dimensions.get('window')
 class ShoppingCartScreen extends Component {
     static navigationOptions = ({navigation}) => ({
         title: 'My cart',
+
         headerTitleStyle: {
             fontWeight: '700', 
             color: theme.color.white,
@@ -23,7 +25,15 @@ class ShoppingCartScreen extends Component {
             backgroundColor: theme.color.myAppColor,
             paddingBottom: Platform.OS === 'ios' ? 16 : 0,
         },
-        headerLeft: <CloseBtn left color={theme.color.white} onPress={() => navigation.goBack(null)} style={{marginBottom: 16}} />
+        
+        headerLeft: 
+            <CloseBtn 
+                left 
+                color={theme.color.white} 
+                onPress ={ NavigationService.back }
+                // onPress={() => navigation.goBack(null)} 
+                style={{marginBottom: 16}} 
+            />
     }); 
 
     renderList(){
@@ -42,7 +52,7 @@ class ShoppingCartScreen extends Component {
                     renderItem={({item}) => 
                         <CartItem product={item}/>
                     } 
-                    keyExtractor={(item) => item.id} 
+                    keyExtractor={(item) => String(item.id)} 
                     extraData={shoppingCartStore}    
                 />
             </Box>

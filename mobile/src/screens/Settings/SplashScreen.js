@@ -17,7 +17,7 @@ class SplashScreen extends Component {
         Animated.timing(
             this.state.position, 
             {
-                toValue: 2,
+                toValue: 1,
                 duration: 2000, 
                 // useNativeDriver: true,
                 easing: Easing.bounce 
@@ -34,15 +34,15 @@ class SplashScreen extends Component {
     }
 
     render() {
-        const translateX = this.state.position.interpolate({
-            inputRange: [0, 2],
+        const translateY = this.state.position.interpolate({
+            inputRange: [0, 1],
             outputRange: [-450, 0]
         })
         return (
             <Box f={1} bg='white'>
                 <BoxAnimated f={1} h='100%' 
                     style={{
-                        transform: [ {translateX} ]
+                        transform: [ {translateY} ]
                     }} 
                 >
                     <OnBoadingLogo/>           

@@ -63,15 +63,6 @@ export const CurrentUserModel = types
       }
     }),
 
-    // editAddress(data){
-    //   self.addresses.forEach(el => {
-    //     if( el._id === data._id ){
-    //         return el = data
-    //     }
-    //   })
-    // },
-
-
     removeAddress(address){
         // self.addresses = self.addresses.filter(
         //   el => el._id !== address._id

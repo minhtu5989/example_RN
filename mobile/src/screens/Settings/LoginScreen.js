@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Box } from 'react-native-design-utility'
-import { Alert, Animated, Easing, Dimensions} from 'react-native';
+import { theme } from '../../constants/theme';
+import { Animated, Easing, Dimensions} from 'react-native';
 import { inject,observer } from "mobx-react/native";
 
 import { OnBoadingLogo } from '../../commons/OnBoadingLogo'
@@ -34,7 +35,7 @@ class LoginScreen extends Component {
                 toValue: 1,
                 duration: 2000, 
                 // useNativeDriver: true,
-                easing: Easing.bounce 
+                easing: Easing.ease 
             }
         )
 
@@ -64,9 +65,9 @@ class LoginScreen extends Component {
 
     render() {
         const { opacity } = this.state;
-        const translateX = this.state.position.interpolate({
+        const translateY = this.state.position.interpolate({
             inputRange: [0, 1],
-            outputRange: [-300, 0]
+            outputRange: [0, -100]
         })
         
         return (
@@ -75,7 +76,7 @@ class LoginScreen extends Component {
                 <BoxAnimated
                     f={4/5}
                     style={{
-                        transform: [ {translateX} ]
+                        transform: [ {translateY} ]
                     }} 
                 >
                     <Box center style={{marginTop: (screen.height / 5.3 ) }} >

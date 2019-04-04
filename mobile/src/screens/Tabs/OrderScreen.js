@@ -1,29 +1,7 @@
 import React, { Component } from 'react'
-// import { Box, Text } from 'react-native-design-utility'
-// import { StatusBar } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons';
 
-// class OrderScreen extends Component {
-//     static navigationOptions = {
-//         tabBarLabel: 'Order',
-//         tabBarIcon: ({ tintColor }) => 
-//                 <FontAwesome name='cart-plus' size={25} color={tintColor} /> 
-//     };
-
-//     render() {
-//         return (
-//             <Box f={1} center>
-//                 <StatusBar barStyle="dark-content"/>
-//                 <Text>This is Order screen</Text>
-//             </Box>            
-//         );
-//     }
-// }
-
-// export default OrderScreen;
-
-
-import {ScrollView, StyleSheet, Text, TouchableOpacity, View, StatusBar} from 'react-native';
+import {ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Swipeable from 'react-native-swipeable';
 
 export default class OrderScreen extends Component {
@@ -32,9 +10,7 @@ export default class OrderScreen extends Component {
         tabBarIcon: ({ tintColor }) => 
                 <FontAwesome name='cart-plus' size={25} color={tintColor} /> 
     };
-  state = {
-    currentlyOpenSwipeable: null
-  };
+  state = { currentlyOpenSwipeable: null };
 
   handleScroll = () => {
     const {currentlyOpenSwipeable} = this.state;

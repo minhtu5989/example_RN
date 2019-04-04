@@ -7,4 +7,4 @@ export function cacheImages(images){
             return Image.prefetch(image);
         return Asset.fromModule(image).downloadAsync();
     })
-}
+} 

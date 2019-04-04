@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { TouchableOpacity, StyleSheet } from 'react-native';
-import { Box,Text } from 'react-native-design-utility'
-import { FontAwesome, EvilIcons } from '@expo/vector-icons';
 
 export class MyButton extends Component {
     getAdditionalStyle(){
@@ -28,22 +26,34 @@ export class MyButton extends Component {
     }
     
     render() {
-        const { children, ref, style } = this.props;
+        const { children, ref, style, disabled, disabledStyle, ...rest } = this.props;
         const additionalStyle = this.getAdditionalStyle();
-
+        const _style = [styles.button]
+        if(disabled){
+            _style.push(disabledStyle)
+        }
+        else {
+            _style.push(style)
+        }
         return  (
                 <TouchableOpacity
-                    {...this.props}  
+                    {...rest}  
                     ref={ref}
-                    style={[ {height:'100%', width:'100%', alignSelf:'center', 
-                            borderWidth: 1, borderRadius: 6,} ,additionalStyle, style]} 
+                    style={[ additionalStyle, _style ]} 
+                    disabled={disabled}
                 >
-                    <Box center f={1}>
                         {children}
-                    </Box>
                 </TouchableOpacity>
         )
     }
 }
 
-
+const styles = StyleSheet.create({
+    button: {
+        height:'100%', 
+        width:'100%', 
+        alignSelf:'center', 
+        borderWidth: 1, 
+        borderRadius: 6,
+    }
+})

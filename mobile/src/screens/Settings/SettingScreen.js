@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StatusBar, ScrollView } from 'react-native';
+import { ScrollView } from 'react-native';
 import { Box, Text } from 'react-native-design-utility';
 import { EvilIcons, MaterialIcons } from '@expo/vector-icons';
 
