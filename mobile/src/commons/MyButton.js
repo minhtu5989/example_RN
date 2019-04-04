@@ -6,16 +6,16 @@ export class MyButton extends Component {
         const { type } = this.props;
         switch (type) {
             case 'success':
-                return { backgroundColor: '#25c73a', borderColor: '#3EA552', };
+                return { backgroundColor: '#25c73a', borderColor: '#3EA552', borderWidth: 1 };
         
             case 'danger':
-                return { backgroundColor: '#ff564e', borderColor: '#FF0000', };
+                return { backgroundColor: '#ff564e', borderColor: '#FF0000', borderWidth: 1};
     
             case 'warning':
-                return { backgroundColor: '#FFCC00' , borderColor: '#ffb827', };
+                return { backgroundColor: '#FFCC00' , borderColor: '#ffb827', borderWidth: 1 };
             
             case 'primary':
-                return { backgroundColor: '#0099FF', borderColor: '#6aa3da', };
+                return { backgroundColor: '#0099FF', borderColor: '#6aa3da', borderWidth: 1 };
 
             case 'image': 
                 return { backgroundColor: 'transparent', borderWidth: 0 }
@@ -53,7 +53,6 @@ const styles = StyleSheet.create({
         height:'100%', 
         width:'100%', 
         alignSelf:'center', 
-        borderWidth: 1, 
         borderRadius: 6,
     }
 })

@@ -7,7 +7,7 @@ import {
 // import Swipeable from 'react-native-swipeable';
 import { EvilIcons, MaterialIcons } from '@expo/vector-icons';
 import { inject, observer } from 'mobx-react/native'
-import { observable, action, when } from 'mobx'
+import { observable, action, when, reaction } from 'mobx'
 // import { NavigationService } from '../../api/NavigationService';
 
 import { theme } from '../../constants/theme';
@@ -43,6 +43,7 @@ class AddressesScreen extends Component {
         super(props);
         this.handleAddAddress = this.handleAddAddress.bind(this);
 
+        // when là một lần duy nhất khi đk đúng, reaction là thực hiện liên tục khi đk đúng
         when(
             () => this.props.authStore.info.totalAddresses !== 0,
             () => {
